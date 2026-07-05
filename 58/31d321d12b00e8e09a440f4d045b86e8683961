@@ -1,0 +1,29 @@
+tests/runtime.test.ts
+  s_053366b8594682::t_bbe6da723f21aa 36,50,70,93,125,130,156,199,276
+tests/runtime.service.test.ts
+  s_053366b8594682::t_a90875d9a7b330 41,53,72,117
+tests/validation.test.ts
+  s_053366b8594682::t_c36b70bda51520 14,32,39,41,43
+tests/http.server.routes.test.ts
+  s_053366b8594682::t_afb106cc8141de 19
+test/client.test.ts
+  s_053366b8594682::t_2884094a636f5f 92
+tests/memory.service.test.ts
+  s_053366b8594682::t_72fecaa9568121 17,37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "5831d321d12b00e8e09a440f4d045b86e8683961",
+  "prompts": {},
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
