@@ -45,3 +45,8 @@ jobs:
         run: npm publish -w @infinicon/sdk --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @infinicon/server
+        run: npm publish -w @infinicon/server --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

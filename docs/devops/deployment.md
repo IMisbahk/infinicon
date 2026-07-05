@@ -1,6 +1,23 @@
 # Deployment
 
-## Reference server (Bun)
+## npm (recommended for most users)
+
+Requires [Bun](https://bun.sh):
+
+```bash
+npx @infinicon/server
+```
+
+Set `PORT`, `DATABASE_URL`, and `INFINICON_API_KEY` as needed. See [`packages/server/README.md`](../../packages/server/README.md).
+
+## Docker
+
+```bash
+docker build -t infinicon-server .
+docker run -p 8787:8787 -e DATABASE_URL="postgres://..." infinicon-server
+```
+
+## Reference server from source (Bun)
 
 ```bash
 bun install
@@ -32,6 +49,8 @@ Ephemeral filesystem on Render means local disk is not durable. Use Postgres for
 - `GET /metrics` — JSON runtime counters (ingest/query/tombstone/jobs)
 
 ## Render
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/IMisbahk/infinicon)
 
 See [`render.yaml`](../../render.yaml) at repo root. Web service + optional managed Postgres.
 

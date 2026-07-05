@@ -4,6 +4,16 @@
 
 TypeScript client for the Infinicon memory API v0.
 
+## Memory server
+
+Run the reference server first (requires [Bun](https://bun.sh)):
+
+```bash
+npx @infinicon/server
+```
+
+## Agent SDK
+
 ```bash
 npm install @infinicon/sdk
 ```

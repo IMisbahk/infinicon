@@ -1,23 +1,35 @@
 # infinicon
 
 [![npm sdk](https://img.shields.io/npm/v/@infinicon/sdk?label=%40infinicon%2Fsdk)](https://www.npmjs.com/package/@infinicon/sdk)
+[![npm server](https://img.shields.io/npm/v/@infinicon/server?label=%40infinicon%2Fserver)](https://www.npmjs.com/package/@infinicon/server)
 [![npm core-types](https://img.shields.io/npm/v/@infinicon/core-types?label=%40infinicon%2Fcore-types)](https://www.npmjs.com/package/@infinicon/core-types)
 [![CI](https://github.com/IMisbahk/infinicon/actions/workflows/ci.yml/badge.svg)](https://github.com/IMisbahk/infinicon/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 > give your ai agents unbounded context.
 
-Infinicon is a **memory SDK + reference server** for AI agents. Use `@infinicon/sdk` from your app; run the reference server locally or on Render for storage and retrieval.
+Infinicon is a **memory SDK + reference server** for AI agents. Install `@infinicon/sdk` in your app and run `@infinicon/server` for storage and retrieval.
 
 Specs and ADRs in `docs/` remain the source of truth for behavior.
 
 ## Install
 
+**Agent (client):**
+
 ```bash
 npm install @infinicon/sdk
-# or
-bun add @infinicon/sdk
 ```
+
+**Memory server** (requires [Bun](https://bun.sh)):
+
+```bash
+npx @infinicon/server
+# listens on http://localhost:8787
+```
+
+Or deploy to Render:
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/IMisbahk/infinicon)
 
 ```typescript
 import { openMemory } from "@infinicon/sdk"
@@ -57,6 +69,7 @@ src/
   server.ts         # Bun server entrypoint
 packages/
   sdk/              # @infinicon/sdk — published npm client
+  server/           # @infinicon/server — published reference server
   core-types/       # @infinicon/core-types — spec-aligned contracts
   plugin-host/      # plugin registration and lifecycle host
 examples/
@@ -72,8 +85,9 @@ tests/              # runtime, server, contract tests
 | Subsystem            | Location                                        |
 | -------------------- | ----------------------------------------------- |
 | **SDK (start here)** | `packages/sdk/` → `@infinicon/sdk`              |
+| **Server**           | `packages/server/` → `@infinicon/server`        |
 | Runtime              | `src/runtime/service.ts`                        |
-| Server               | `src/server.ts` + `src/transport/httpServer.ts` |
+| Server source        | `src/server.ts` + `src/transport/httpServer.ts` |
 | Core types           | `packages/core-types/`                          |
 | Plugin host          | `packages/plugin-host/`                         |
 | Storage adapters     | `src/runtime/adapters/`                         |
@@ -83,7 +97,7 @@ tests/              # runtime, server, contract tests
 
 ```bash
 bun test
-bun run dev          # memory server (separate terminal)
+npx @infinicon/server   # or: bun run dev (from repo clone)
 bun run example:simple  # minimal one-file agent (recommended to start)
 bun run example:agent   # full agent-chat example
 ```
@@ -133,8 +147,9 @@ Prose specs in `docs/specs/*.md` remain normative. Update prose first, then cont
 ## Packages
 
 - [`@infinicon/sdk`](packages/sdk/package.json): TypeScript client for the memory API
+- [`@infinicon/server`](packages/server/README.md): reference memory server (`npx @infinicon/server`)
 - [`@infinicon/core-types`](packages/core-types/README.md): spec-aligned TypeScript contracts, validators, and JSON schemas
-- [`@infinicon/plugin-host`](packages/plugin-host/src/index.ts): plugin registration host
+- [`@infinicon/plugin-host`](packages/plugin-host/src/index.ts): plugin registration host (bundled into server)
 
 ## Examples
 
@@ -157,7 +172,7 @@ See [examples/README.md](examples/README.md).
 
 Packages publish to npm on [GitHub Release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) or manual workflow dispatch.
 
-1. Bump `version` in `packages/core-types/package.json` and `packages/sdk/package.json`
+1. Bump `version` in `packages/core-types/package.json`, `packages/sdk/package.json`, and `packages/server/package.json`
 2. Add a GitHub repo secret `NPM_TOKEN` ([npm granular access token](https://docs.npmjs.com/creating-and-viewing-access-tokens) with publish scope)
 3. Create a release tag (e.g. `v0.1.1`) — triggers [`.github/workflows/publish-npm.yml`](.github/workflows/publish-npm.yml)
 

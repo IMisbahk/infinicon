@@ -1,0 +1,31 @@
+{
+  "name": "@infinicon/server",
+  "version": "0.1.0",
+  "description": "Reference memory server for Infinicon v0 (requires Bun)",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IMisbahk/infinicon.git",
+    "directory": "packages/server"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "README.md"
+  ],
+  "bin": {
+    "infinicon-server": "./bin/infinicon-server.mjs"
+  },
+  "scripts": {
+    "build": "bun build ../../src/server.ts --outdir dist --target bun --format esm --minify",
+    "prepublishOnly": "bun run build",
+    "start": "bun dist/server.js"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  }
+}
