@@ -1,0 +1,79 @@
+package.json
+  s_98b357d7cbc526::t_ef03ccacec155f 11-12,14,19,26-27
+tsconfig.json
+  s_98b357d7cbc526::t_51a796a6853033 16,19-22
+CLAUDE.md
+  s_98b357d7cbc526::t_cfcfe6c8fd867f 1-3,8-12,15-16,19-32,36-48
+CHANGELOG.md
+  s_98b357d7cbc526::t_f0dcaa7770b76f 1-6
+README.md
+  s_98b357d7cbc526::t_45f4b507ff9d86 224-278
+contracts/README.md
+  s_98b357d7cbc526::t_b86c3f632dfbda 1-33
+contracts/fixtures/README.md
+  s_98b357d7cbc526::t_b0b9e901794633 1-17
+contracts/fixtures/context-assembly.invalid.bad-warning.json
+  s_98b357d7cbc526::t_a29e8a2ffec3ae 1-34
+contracts/fixtures/context-assembly.valid.json
+  s_98b357d7cbc526::t_364c54802df7bd 1-67
+contracts/fixtures/data-model.invalid.missing-scope.json
+  s_98b357d7cbc526::t_cb6a142dbc6e20 1-22
+contracts/fixtures/data-model.valid.json
+  s_98b357d7cbc526::t_9899167c8e1de9 1-49
+contracts/fixtures/memory-api.ingest.valid.json
+  s_98b357d7cbc526::t_603db7497bf1f0 1-26
+contracts/openapi/memory-api.v0.json
+  s_98b357d7cbc526::t_f64cd322cd3803 1-1078
+contracts/schemas/context-assembly.v0.schema.json
+  s_98b357d7cbc526::t_7e6d67fd58ca88 1-157
+contracts/schemas/data-model.v0.schema.json
+  s_98b357d7cbc526::t_b221b866f85c32 1-151
+contracts/schemas/plugin-interface.v0.schema.json
+  s_98b357d7cbc526::t_35ceaa9c63366f 1-54
+contracts/schemas/storage-ports.v0.schema.json
+  s_98b357d7cbc526::t_af8c2011275237 1-51
+contracts/scripts/validate_contracts.py
+  s_98b357d7cbc526::t_c0196f16ed7b93 1-221
+primer.md
+  s_98b357d7cbc526::t_7b544d08aecbef 1-11
+src/domain/types.ts
+  s_98b357d7cbc526::t_8974ac4d96d8b7 1-227
+src/domain/validation.ts
+  s_98b357d7cbc526::t_8bf646e174d3d3 1-154
+src/server.ts
+  s_98b357d7cbc526::t_45d52fbe05a74f 1-11
+src/services/memoryService.ts
+  s_98b357d7cbc526::t_e326a011f693fe 1-311
+src/storage/inMemory.ts
+  s_98b357d7cbc526::t_d4126f83080695 1-203
+src/storage/ports.ts
+  s_98b357d7cbc526::t_e94f10fc330e60 1-63
+src/transport/httpServer.ts
+  s_98b357d7cbc526::t_3d2c768bffc63e 1-117
+tests/domain.validation.test.ts
+  s_98b357d7cbc526::t_85f61e0b629031 1-78
+tests/http.server.routes.test.ts
+  s_98b357d7cbc526::t_7c84a064380591 1-61
+tests/memory.service.test.ts
+  s_98b357d7cbc526::t_ba96c5ccbeff3c 1-143
+tests/server.health.test.ts
+  s_98b357d7cbc526::t_5c441d5caf1a5b 1-13
+tests/storage.in-memory.test.ts
+  s_98b357d7cbc526::t_c586d6a90f0d5f 1-58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "dcc8a2640cb1ab5e381ecc70b9ca689b773b8944",
+  "prompts": {},
+  "sessions": {
+    "s_98b357d7cbc526": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a452462b-f2b0-43fe-a769-579ba6aff394",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
