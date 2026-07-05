@@ -1,3 +1,5 @@
 .infinicon/
 CLAUDE.md
 AGENT.md
+__pycache__/
+*.pyc
