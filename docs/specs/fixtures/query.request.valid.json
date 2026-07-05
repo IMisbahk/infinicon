@@ -1,0 +1,9 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "ns-support"
+  },
+  "query": "incident timeline root cause",
+  "limit": 10,
+  "consistency": "strong"
+}

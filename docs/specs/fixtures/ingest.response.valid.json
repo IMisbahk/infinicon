@@ -1,0 +1,16 @@
+{
+  "results": [
+    {
+      "ref": {
+        "id": "ep_01",
+        "type": "episode",
+        "scope": {
+          "tenantId": "tenant-acme",
+          "namespaceId": "ns-support",
+          "agentId": "agent-01"
+        }
+      },
+      "status": "created"
+    }
+  ]
+}

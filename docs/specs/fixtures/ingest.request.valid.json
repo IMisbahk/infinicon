@@ -1,0 +1,19 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "ns-support",
+    "agentId": "agent-01"
+  },
+  "episodes": [
+    {
+      "contentType": "text/plain",
+      "content": "User asked to summarize incident timeline",
+      "dedupeKey": "ingest-evt-0001",
+      "createdBy": "support-agent",
+      "metadata": {
+        "channel": "chat"
+      }
+    }
+  ],
+  "consistency": "accepted"
+}

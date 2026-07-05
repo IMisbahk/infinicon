@@ -1,0 +1,17 @@
+{
+  "refs": [
+    {
+      "ref": {
+        "id": "atom_100",
+        "type": "atom",
+        "scope": {
+          "tenantId": "tenant-acme",
+          "namespaceId": "ns-support"
+        }
+      },
+      "score": 0.88,
+      "reason": "high lexical + semantic overlap"
+    }
+  ],
+  "cursor": "cursor-next-1"
+}

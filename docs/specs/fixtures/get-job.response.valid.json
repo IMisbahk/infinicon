@@ -1,0 +1,7 @@
+{
+  "jobId": "job-123",
+  "type": "consolidation",
+  "status": "running",
+  "createdAt": "2026-07-05T11:00:00Z",
+  "updatedAt": "2026-07-05T11:10:00Z"
+}
