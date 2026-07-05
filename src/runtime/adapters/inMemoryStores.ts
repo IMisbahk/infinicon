@@ -24,7 +24,7 @@ const isVisibleByFilters = (object: DurableMemoryObject, filters?: MemoryFilters
   if (object.status === "tombstoned" && !filters?.includeTombstoned) return false
   if (object.status === "disputed" && !filters?.includeDisputed) return false
   if (object.status === "superseded" && !filters?.includeSuperseded) return false
-  if (filters?.allowedTypes && !filters.allowedTypes.includes(object.type)) return false
+  if (filters?.types && !filters.types.includes(object.type)) return false
   return true
 }
 
@@ -186,8 +186,8 @@ export class InMemoryIndexStore implements IndexStore {
 
     if (!filters) return clipped
     return clipped.filter((candidate) => {
-      if (!filters.allowedTypes) return true
-      return filters.allowedTypes.includes(candidate.ref.type)
+      if (!filters.types) return true
+      return filters.types.includes(candidate.ref.type)
     })
   }
 

@@ -61,7 +61,7 @@ const asRef = (object: DurableMemoryObject): MemoryRef => ({
 
 const defaultCreatedBy = {
   id: "runtime",
-  type: "system",
+  kind: "system",
 } as const
 
 export class MemoryRuntimeService {
@@ -332,9 +332,9 @@ export class MemoryRuntimeService {
           supersedes: item.supersedes,
           provenance: {
             sourceRefs: sources.map(asRef),
-            createdBy: { id: this.deps.consolidator.descriptor.name, type: "plugin" },
+            producedBy: { id: this.deps.consolidator.descriptor.name, kind: "plugin" },
             createdAt: now,
-            transformationType: "consolidation",
+            transformation: "consolidation",
             confidence: item.confidence,
           },
           metadata: item.metadata ?? {},
@@ -524,7 +524,7 @@ export async function createDerivedLink(
     from,
     to,
     metadata: {},
-    createdBy: { id: "runtime", type: "system" },
+    createdBy: { id: "runtime", kind: "system" },
   }
 
   await graphStore.addLink(link)
