@@ -66,6 +66,17 @@ Server default: `http://localhost:3100`
 - `POST /v0/get-job`
 - `POST /v0/subscribe`
 
+### Runtime validation behavior
+
+The reference server validates request shape and constraints before processing:
+
+- Scope is required on every operation
+- Unsupported consistency and mode values are rejected
+- Empty ingest or tombstone batches are rejected
+- Invalid budget fields are rejected
+
+Validation errors return structured `bad_request` responses.
+
 ### Current limits and integration points
 
 The reference implementation is intentionally conservative and keeps clean extension seams for other subsystems:
