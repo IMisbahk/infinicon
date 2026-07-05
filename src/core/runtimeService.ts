@@ -1,4 +1,14 @@
 import { ensureScope } from "./scope"
+import {
+  validateAssembleContext,
+  validateConsolidate,
+  validateGetJob,
+  validateHydrate,
+  validateIngest,
+  validateQuery,
+  validateSubscribe,
+  validateTombstone,
+} from "./validation"
 import type {
   AssembleContextRequest,
   AssembleContextResponse,
@@ -64,7 +74,7 @@ export class RuntimeService {
   }
 
   async ingest(req: IngestRequest): Promise<IngestResponse> {
-    ensureScope(req.scope)
+    validateIngest(req)
     const now = new Date().toISOString()
     const results: IngestResponse["results"] = []
 
@@ -101,7 +111,7 @@ export class RuntimeService {
   }
 
   async query(req: QueryRequest): Promise<QueryResponse> {
-    ensureScope(req.scope)
+    validateQuery(req)
     const rows = await this.indexStore.search(req)
     return {
       refs: rows.map((row) => ({
@@ -113,7 +123,7 @@ export class RuntimeService {
   }
 
   async hydrate(req: HydrateRequest): Promise<HydrateResponse> {
-    ensureScope(req.scope)
+    validateHydrate(req)
     const objects: Episode[] = []
     const missing: MemoryRef[] = []
     const rows = await this.episodeStore.getEpisodesByRefs(req.refs)
@@ -131,7 +141,7 @@ export class RuntimeService {
   }
 
   async assembleContext(req: AssembleContextRequest): Promise<AssembleContextResponse> {
-    ensureScope(req.scope)
+    validateAssembleContext(req)
     const warnings: ContextWarning[] = []
     if (req.consistency === "eventual") {
       warnings.push({ code: "eventual_consistency", message: "assembled context using eventual consistency" })
@@ -213,7 +223,7 @@ export class RuntimeService {
   }
 
   async consolidate(req: ConsolidateRequest): Promise<ConsolidateResponse> {
-    ensureScope(req.scope)
+    validateConsolidate(req)
     const now = new Date().toISOString()
     const jobId = this.ids.next()
     const mode = req.mode ?? "enqueue"
@@ -248,7 +258,7 @@ export class RuntimeService {
   }
 
   async getJob(req: GetJobRequest): Promise<GetJobResponse> {
-    ensureScope(req.scope)
+    validateGetJob(req)
     const job = await this.metadataStore.getJob(req.scope, req.jobId)
     if (!job) {
       throw new Error(`job not found: ${req.jobId}`)
@@ -257,7 +267,7 @@ export class RuntimeService {
   }
 
   async subscribe(req: SubscribeRequest): Promise<SubscribeResponse> {
-    ensureScope(req.scope)
+    validateSubscribe(req)
     const events = await this.metadataStore.listEvents(req)
     return {
       events,
@@ -266,7 +276,7 @@ export class RuntimeService {
   }
 
   async tombstone(req: TombstoneRequest): Promise<TombstoneResponse> {
-    ensureScope(req.scope)
+    validateTombstone(req)
     const results: TombstoneResponse["results"] = []
 
     for (const ref of req.refs) {
