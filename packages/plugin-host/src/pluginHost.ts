@@ -1,18 +1,19 @@
 import { PluginHostError } from "./errors"
 import {
   pluginSpecVersionV0,
-  type InfiniconPlugin,
   type PluginConfigValidationResult,
   type PluginContext,
   type PluginDescriptor,
+  type PluginHostEvent,
+  type PluginHostEventListener,
+  type PluginHostReadonlyView,
+  type PluginHostStats,
+  type PluginHostSubscription,
   type PluginKind,
+  type PluginRegistrationInput,
+  type PluginRunRequest,
   type RegisteredPlugin,
 } from "./types"
-
-type RegisterPluginInput<TConfig, TInput, TOutput> = {
-  plugin: InfiniconPlugin<TConfig, TInput, TOutput>
-  config: TConfig
-}
 
 type PluginKey = string
 
@@ -43,16 +44,17 @@ const validateDescriptor = (descriptor: PluginDescriptor): PluginConfigValidatio
   return { ok: true }
 }
 
-export class PluginHost {
-  private readonly specVersion: string
+export class PluginHost implements PluginHostReadonlyView {
+  readonly specVersion: string
   private readonly pluginsByKey = new Map<PluginKey, RegisteredPlugin>()
   private readonly pluginsByKind = new Map<PluginKind, RegisteredPlugin[]>()
+  private readonly listeners = new Set<PluginHostEventListener>()
 
   constructor(specVersion: string = pluginSpecVersionV0) {
     this.specVersion = specVersion
   }
 
-  register<TConfig, TInput, TOutput>({ plugin, config }: RegisterPluginInput<TConfig, TInput, TOutput>): void {
+  register<TConfig, TInput, TOutput>({ plugin, config }: PluginRegistrationInput<TConfig, TInput, TOutput>): void {
     const descriptorValidation = validateDescriptor(plugin.descriptor)
     if (!descriptorValidation.ok) {
       throw new PluginHostError("plugin_descriptor_invalid", "plugin descriptor is invalid", {
@@ -99,6 +101,34 @@ export class PluginHost {
     const byKind = this.pluginsByKind.get(plugin.descriptor.kind) ?? []
     byKind.push(registration)
     this.pluginsByKind.set(plugin.descriptor.kind, byKind)
+    this.emit({
+      type: "plugin_registered",
+      pluginKey,
+      descriptor: registration.descriptor,
+    })
+  }
+
+  unregister(kind: PluginKind, name: string, version: string): boolean {
+    const pluginKey = `${kind}::${name}::${version}`
+    const registration = this.pluginsByKey.get(pluginKey)
+    if (!registration) return false
+
+    this.pluginsByKey.delete(pluginKey)
+    const byKind = this.pluginsByKind.get(kind) ?? []
+    this.pluginsByKind.set(
+      kind,
+      byKind.filter((candidate) => {
+        const key = `${candidate.descriptor.kind}::${candidate.descriptor.name}::${candidate.descriptor.version}`
+        return key !== pluginKey
+      }),
+    )
+    this.emit({
+      type: "plugin_unregistered",
+      pluginKey,
+      descriptor: registration.descriptor,
+    })
+
+    return true
   }
 
   listByKind(kind: PluginKind): readonly RegisteredPlugin[] {
@@ -111,7 +141,51 @@ export class PluginHost {
     return this.pluginsByKey.get(`${kind}::${name}::${version}`)
   }
 
+  has(kind: PluginKind, name: string, version: string): boolean {
+    return this.pluginsByKey.has(`${kind}::${name}::${version}`)
+  }
+
+  stats(): PluginHostStats {
+    return {
+      totalRegisteredPlugins: this.pluginsByKey.size,
+      registeredByKind: {
+        extractor: this.listByKind("extractor").length,
+        embedder: this.listByKind("embedder").length,
+        ranker: this.listByKind("ranker").length,
+        consolidator: this.listByKind("consolidator").length,
+        formatter: this.listByKind("formatter").length,
+        storage_adapter: this.listByKind("storage_adapter").length,
+      },
+    }
+  }
+
+  subscribe(listener: PluginHostEventListener): PluginHostSubscription {
+    this.listeners.add(listener)
+    return {
+      unsubscribe: () => {
+        this.listeners.delete(listener)
+      },
+    }
+  }
+
+  asReadonly(): PluginHostReadonlyView {
+    return {
+      specVersion: this.specVersion,
+      listByKind: (kind) => this.listByKind(kind),
+      get: (kind, name, version) => this.get(kind, name, version),
+      has: (kind, name, version) => this.has(kind, name, version),
+      stats: () => this.stats(),
+    }
+  }
+
   async run<TInput, TOutput>(kind: PluginKind, name: string, version: string, input: TInput, context: PluginContext): Promise<TOutput> {
+    const result = await this.runRequest<TInput, TOutput>({ kind, name, version, input, context })
+    return result
+  }
+
+  async runRequest<TInput, TOutput>(request: PluginRunRequest<TInput>): Promise<TOutput> {
+    const { kind, name, version, input, context } = request
+    const pluginKey = `${kind}::${name}::${version}`
     const registered = this.get(kind, name, version)
     if (!registered) {
       throw new PluginHostError("plugin_not_found", `plugin ${kind}::${name}::${version} is not registered`, {
@@ -121,6 +195,20 @@ export class PluginHost {
       })
     }
 
-    return registered.plugin.run(input, context, registered.config) as Promise<TOutput>
+    const output = await (registered.plugin.run(input, context, registered.config) as Promise<TOutput>)
+    this.emit({
+      type: "plugin_executed",
+      pluginKey,
+      descriptor: registered.descriptor,
+      requestId: context.requestId,
+    })
+
+    return output
+  }
+
+  private emit(event: PluginHostEvent): void {
+    for (const listener of this.listeners) {
+      listener(event)
+    }
   }
 }

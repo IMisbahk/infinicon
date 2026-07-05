@@ -56,3 +56,53 @@ export type RegisteredPlugin<TConfig = unknown, TInput = unknown, TOutput = unkn
   config: TConfig
   plugin: InfiniconPlugin<TConfig, TInput, TOutput>
 }
+
+export type PluginRegistrationInput<TConfig = unknown, TInput = unknown, TOutput = unknown> = {
+  plugin: InfiniconPlugin<TConfig, TInput, TOutput>
+  config: TConfig
+}
+
+export type PluginRunRequest<TInput = unknown> = {
+  kind: PluginKind
+  name: string
+  version: string
+  input: TInput
+  context: PluginContext
+}
+
+export type PluginHostEvent =
+  | {
+      type: "plugin_registered"
+      pluginKey: string
+      descriptor: PluginDescriptor
+    }
+  | {
+      type: "plugin_unregistered"
+      pluginKey: string
+      descriptor: PluginDescriptor
+    }
+  | {
+      type: "plugin_executed"
+      pluginKey: string
+      descriptor: PluginDescriptor
+      requestId: string
+    }
+
+export type PluginHostStats = {
+  totalRegisteredPlugins: number
+  registeredByKind: Record<PluginKind, number>
+}
+
+export type PluginHostEventListener = (event: PluginHostEvent) => void
+
+export type PluginHostSubscription = {
+  unsubscribe: () => void
+}
+
+export type PluginHostReadonlyView = {
+  specVersion: string
+  listByKind(kind: PluginKind): readonly RegisteredPlugin[]
+  get(kind: PluginKind, name: string, version: string): RegisteredPlugin | undefined
+  has(kind: PluginKind, name: string, version: string): boolean
+  stats(): PluginHostStats
+}
