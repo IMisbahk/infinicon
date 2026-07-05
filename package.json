@@ -1,0 +1,14 @@
+{
+  "name": "infinicon-bootstrap",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "start:server": "node packages/reference-server/src/server.js",
+    "verify": "npm run test"
+  }
+}
