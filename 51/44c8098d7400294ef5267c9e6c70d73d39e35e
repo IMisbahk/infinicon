@@ -1,0 +1,27 @@
+runtime/src/types.ts
+  s_7faf738db506c2::t_f979200e0e2ec8 1-298
+runtime/src/id.ts
+  s_7faf738db506c2::t_334a5b949ea38b 1-6
+runtime/tsconfig.json
+  s_7faf738db506c2::t_c5e641630007cf 1-11
+runtime/src/index.ts
+  s_7faf738db506c2::t_448424103128b4 1-6
+runtime/package.json
+  s_7faf738db506c2::t_6cf70aa283c227 1-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "5144c8098d7400294ef5267c9e6c70d73d39e35e",
+  "prompts": {},
+  "sessions": {
+    "s_7faf738db506c2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4b16a792-0547-4bff-94e5-6bdb583b415e",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
