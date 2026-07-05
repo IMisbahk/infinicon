@@ -9,7 +9,8 @@
   ],
   "dependencies": {
     "@infinicon/core-types": "workspace:*",
-    "@infinicon/plugin-host": "workspace:*"
+    "@infinicon/plugin-host": "workspace:*",
+    "@infinicon/sdk": "workspace:*"
   },
   "scripts": {
     "dev": "bun run src/server.ts",
@@ -21,8 +22,11 @@
     "check": "bun test",
     "build": "bun build src/runtime/index.ts --outdir dist --target bun",
     "build:server": "bun build src/server.ts --outdir dist --target bun",
-    "build:core-types": "bun build packages/core-types/src/index.ts --outdir packages/core-types/dist --target=node",
-    "build:sdk": "bun build ./src/client.ts --outdir ./dist --target node",
+    "build:core-types": "bun run --cwd packages/core-types build",
+    "build:sdk": "bun run --cwd packages/sdk build",
+    "build:packages": "bun run build:core-types && bun run build:sdk",
+    "pack:core-types": "npm pack --workspace @infinicon/core-types",
+    "pack:sdk": "npm pack --workspace @infinicon/sdk",
     "test:core-types": "bun test packages/core-types/test",
     "test:plugin-host": "bun test packages/plugin-host/test",
     "test:sdk": "bun test test packages/sdk",

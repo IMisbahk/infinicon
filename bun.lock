@@ -7,6 +7,7 @@
       "dependencies": {
         "@infinicon/core-types": "workspace:*",
         "@infinicon/plugin-host": "workspace:*",
+        "@infinicon/sdk": "workspace:*",
       },
     },
     "examples/agent-chat": {

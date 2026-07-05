@@ -2,18 +2,28 @@ import { InfiniconClient, type InfiniconClientConfig } from "./client"
 import { ScopedMemory } from "./scopedMemory"
 import type { Scope } from "./types"
 
+type EnvBag = Record<string, string | undefined>
+
+const readEnv = (): EnvBag =>
+  (globalThis as { process?: { env?: EnvBag } }).process?.env ?? {}
+
+const envString = (key: string): string | undefined => {
+  const value = readEnv()[key]?.trim()
+  return value || undefined
+}
+
 export const scopeFromEnv = (overrides: Partial<Scope> = {}): Scope => ({
-  tenantId: process.env.INFINICON_TENANT_ID?.trim() || "default",
-  namespaceId: process.env.INFINICON_NAMESPACE_ID?.trim() || "default",
-  ...(process.env.INFINICON_AGENT_ID?.trim() ? { agentId: process.env.INFINICON_AGENT_ID.trim() } : {}),
-  ...(process.env.INFINICON_SESSION_ID?.trim() ? { sessionId: process.env.INFINICON_SESSION_ID.trim() } : {}),
+  tenantId: envString("INFINICON_TENANT_ID") ?? "default",
+  namespaceId: envString("INFINICON_NAMESPACE_ID") ?? "default",
+  ...(envString("INFINICON_AGENT_ID") ? { agentId: envString("INFINICON_AGENT_ID")! } : {}),
+  ...(envString("INFINICON_SESSION_ID") ? { sessionId: envString("INFINICON_SESSION_ID")! } : {}),
   ...overrides,
 })
 
 export const createClient = (config: Partial<InfiniconClientConfig> = {}): InfiniconClient => {
-  const apiKey = config.apiKey ?? process.env.INFINICON_API_KEY?.trim()
+  const apiKey = config.apiKey ?? envString("INFINICON_API_KEY")
   return new InfiniconClient({
-    baseUrl: config.baseUrl ?? process.env.INFINICON_BASE_URL?.trim() ?? "http://localhost:8787",
+    baseUrl: config.baseUrl ?? envString("INFINICON_BASE_URL") ?? "http://localhost:8787",
     ...(apiKey ? { apiKey } : {}),
     ...(config.fetchImpl ? { fetchImpl: config.fetchImpl } : {}),
     ...(config.headers ? { headers: config.headers } : {}),

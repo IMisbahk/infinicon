@@ -1,14 +1,32 @@
 {
   "name": "@infinicon/core-types",
   "version": "0.1.0",
-  "private": true,
+  "description": "Spec-aligned TypeScript contracts for Infinicon v0",
   "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IMisbahk/infinicon.git",
+    "directory": "packages/core-types"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "main": "./dist/index.js",
-  "types": "./src/index.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
       "default": "./dist/index.js"
     }
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target node --format esm && bunx tsc -p tsconfig.build.json",
+    "prepublishOnly": "bun run build"
   }
 }

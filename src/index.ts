@@ -1,6 +1,12 @@
 export * from "./runtime"
-export { InfiniconClient, type InfiniconClientConfig } from "./client"
-export { createClient, openMemory, scopeFromEnv, withScope } from "./createClient"
-export { InfiniconSdkError } from "./errors"
-export { ScopedMemory } from "./scopedMemory"
-export type * from "./types"
+export {
+  InfiniconClient,
+  type InfiniconClientConfig,
+  createClient,
+  openMemory,
+  scopeFromEnv,
+  withScope,
+  InfiniconSdkError,
+  ScopedMemory,
+} from "@infinicon/sdk"
+export type * from "@infinicon/sdk"
