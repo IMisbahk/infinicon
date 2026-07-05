@@ -54,7 +54,15 @@ tests/              # runtime, server, and devops tests
 
 ```bash
 bun test
-bun run dev
+bun run dev          # memory server (separate terminal)
+bun run example:simple  # minimal one-file agent (recommended to start)
+bun run example:agent   # full agent-chat example
+```
+
+Copy env for the agent example:
+
+```bash
+cp examples/agent-chat/.env.example examples/agent-chat/.env
 ```
 
 Server default: `http://localhost:8787`
@@ -95,6 +103,7 @@ Prose specs in `docs/specs/*.md` remain normative. Update prose first, then cont
 
 ## Packages
 
+- [`@infinicon/sdk`](packages/sdk/package.json): TypeScript client for the memory API
 - [`@infinicon/core-types`](packages/core-types/README.md): spec-aligned TypeScript contracts, validators, and JSON schemas
 - [`@infinicon/plugin-host`](packages/plugin-host/src/index.ts): plugin registration host
 
