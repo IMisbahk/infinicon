@@ -38,6 +38,8 @@ The runtime must authorize these actions separately:
 - Assemble context.
 - Consolidate.
 - Tombstone.
+- Subscribe to lifecycle events.
+- Read lifecycle events from cursor.
 - Audit tombstoned metadata.
 - Administer plugins and storage adapters.
 

@@ -35,6 +35,7 @@ Deliverables:
 
 - OpenAPI, Protobuf, or both.
 - Generated request and response shapes.
+- Lifecycle event subscription and cursor semantics in machine-readable form.
 - API compatibility policy ([spec](specs/api-compatibility-policy.v0.md)).
 - Initial conformance test plan ([spec](specs/conformance-test-plan.v0.md)).
 - Machine-readable contract mapping ([spec](specs/machine-readable-contract.v0.md)).

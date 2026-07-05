@@ -2,7 +2,7 @@
 
 Infinicon is a memory runtime that sits between AI agents and storage systems.
 
-The runtime accepts durable observations, evolves them into useful memory, and assembles bounded working context for future tasks. Its core responsibility is memory semantics: lifecycle, provenance, retrieval, consolidation, deletion, and context assembly.
+The runtime accepts durable observations, evolves them into useful memory, and assembles bounded working context for future tasks. Its core responsibility is memory semantics: lifecycle, provenance, retrieval, consolidation, deletion, event subscriptions, and context assembly.
 
 ## Deployment Model
 

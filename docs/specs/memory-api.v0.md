@@ -45,6 +45,40 @@ type MemoryRef = {
 }
 ```
 
+### MemoryEventType
+
+Event type strings used by `subscribe`:
+
+```typescript
+type MemoryEventType =
+  | "episode.ingested"
+  | "atom.extracted"
+  | "memory.indexed"
+  | "consolidation.started"
+  | "consolidation.completed"
+  | "consolidation.failed"
+  | "memory.disputed"
+  | "memory.superseded"
+  | "memory.tombstoned"
+```
+
+### MemoryEvent
+
+Lifecycle event shape emitted by `subscribe`:
+
+```typescript
+type MemoryEvent = {
+  type: MemoryEventType
+  scope: Scope
+  cursor: string
+  occurredAt: string
+  ref?: MemoryRef
+  jobId?: string
+  warnings?: ContextWarning[]
+  metadata?: Record<string, unknown>
+}
+```
+
 ### Error Shape
 
 Errors should be structured:
@@ -287,6 +321,7 @@ type SubscribeRequest = {
   scope: Scope
   eventTypes?: MemoryEventType[]
   cursor?: string
+  consistency?: "strong" | "eventual"
 }
 ```
 
@@ -304,11 +339,38 @@ Initial event types:
 - `memory.superseded`
 - `memory.tombstoned`
 
+### Response
+
+```typescript
+type SubscribeResponse = {
+  events: MemoryEvent[]
+  nextCursor?: string
+}
+```
+
 ### Semantics
 
 - Subscriptions are for lifecycle awareness, not distributed consensus.
-- Consumers must tolerate duplicate events.
+- Event delivery is at-least-once. Consumers must tolerate duplicate events.
+- The runtime should preserve cursor order within a scope.
 - Events should include a cursor or offset when transport supports it.
+- If a `cursor` is provided, the runtime should resume at or after that cursor.
+- If the runtime cannot resume from the provided cursor, it must fail with a structured error rather than silently skipping ahead.
+- `consistency: "strong"` should avoid gaps before the first returned event after a valid cursor.
+- `consistency: "eventual"` may return delayed lifecycle events for lower-latency reads.
+- Events must be scoped and authorized like other memory operations.
+- Subscriptions must not include tombstoned memory content in event payloads.
+
+### Failure Modes
+
+Examples:
+
+- `invalid_cursor` when a supplied cursor is unknown, expired, or malformed.
+- `scope_mismatch` when a cursor does not belong to the requested scope.
+- `consistency_not_supported` when `strong` subscription consistency is requested but unsupported by the adapter.
+- `unauthorized` when caller auth does not permit event subscription for the scope.
+
+The runtime should use structured errors and avoid silently dropping events.
 
 ## Operation: getJob
 
@@ -349,3 +411,4 @@ Non-breaking changes may add optional fields, new event types, new warning codes
 - Should query and assemble support streaming partial results?
 - Should tombstone be synchronous by default or always job-backed?
 - How should pagination work across heterogeneous storage adapters?
+- Should `subscribe` be long-lived streaming only, polling only, or transport-dependent?
