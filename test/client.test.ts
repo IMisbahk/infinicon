@@ -100,7 +100,7 @@ describe("InfiniconClient", () => {
     expect(mock.calls).toHaveLength(1)
 
     const firstCall = mock.calls[0]
-    expect(firstCall?.input).toBe("https://memory.example.com/v0/memory/ingest")
+    expect(firstCall?.input).toBe("https://memory.example.com/v0/ingest")
     expect(firstCall?.init?.method).toBe("POST")
 
     const headers = new Headers(firstCall?.init?.headers)
@@ -196,13 +196,13 @@ describe("InfiniconClient", () => {
     await client.getJob({ scope, jobId: "job-1" })
 
     expect(mock.calls.map((call) => call.input)).toEqual([
-      "https://memory.example.com/v0/memory/query",
-      "https://memory.example.com/v0/memory/hydrate",
-      "https://memory.example.com/v0/memory/assemble-context",
-      "https://memory.example.com/v0/memory/consolidate",
-      "https://memory.example.com/v0/memory/tombstone",
-      "https://memory.example.com/v0/memory/subscribe",
-      "https://memory.example.com/v0/memory/get-job",
+      "https://memory.example.com/v0/query",
+      "https://memory.example.com/v0/hydrate",
+      "https://memory.example.com/v0/assemble-context",
+      "https://memory.example.com/v0/consolidate",
+      "https://memory.example.com/v0/tombstone",
+      "https://memory.example.com/v0/subscribe",
+      "https://memory.example.com/v0/get-job",
     ])
   })
 })

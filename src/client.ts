@@ -43,7 +43,7 @@ export class InfiniconClient {
   public ingest(request: IngestRequest): Promise<IngestResponse> {
     return this.http.request({
       method: "POST",
-      path: "/v0/memory/ingest",
+      path: "/v0/ingest",
       body: withScope(request),
     })
   }
@@ -51,7 +51,7 @@ export class InfiniconClient {
   public query(request: QueryRequest): Promise<QueryResponse> {
     return this.http.request({
       method: "POST",
-      path: "/v0/memory/query",
+      path: "/v0/query",
       body: withScope(request),
     })
   }
@@ -59,7 +59,7 @@ export class InfiniconClient {
   public hydrate(request: HydrateRequest): Promise<HydrateResponse> {
     return this.http.request({
       method: "POST",
-      path: "/v0/memory/hydrate",
+      path: "/v0/hydrate",
       body: withScope(request),
     })
   }
@@ -69,7 +69,7 @@ export class InfiniconClient {
   ): Promise<AssembleContextResponse> {
     return this.http.request({
       method: "POST",
-      path: "/v0/memory/assemble-context",
+      path: "/v0/assemble-context",
       body: withScope(request),
     })
   }
@@ -77,7 +77,7 @@ export class InfiniconClient {
   public consolidate(request: ConsolidateRequest): Promise<ConsolidateResponse> {
     return this.http.request({
       method: "POST",
-      path: "/v0/memory/consolidate",
+      path: "/v0/consolidate",
       body: withScope(request),
     })
   }
@@ -85,7 +85,7 @@ export class InfiniconClient {
   public tombstone(request: TombstoneRequest): Promise<TombstoneResponse> {
     return this.http.request({
       method: "POST",
-      path: "/v0/memory/tombstone",
+      path: "/v0/tombstone",
       body: withScope(request),
     })
   }
@@ -93,7 +93,7 @@ export class InfiniconClient {
   public subscribe(request: SubscribeRequest): Promise<SubscribeResponse> {
     return this.http.request({
       method: "POST",
-      path: "/v0/memory/subscribe",
+      path: "/v0/subscribe",
       body: withScope(request),
     })
   }
@@ -101,7 +101,7 @@ export class InfiniconClient {
   public getJob(request: GetJobRequest): Promise<GetJobResponse> {
     return this.http.request({
       method: "POST",
-      path: "/v0/memory/get-job",
+      path: "/v0/get-job",
       body: withScope(request),
     })
   }
