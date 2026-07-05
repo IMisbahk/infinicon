@@ -1,10 +1,39 @@
 # infinicon
 
+[![npm sdk](https://img.shields.io/npm/v/@infinicon/sdk?label=%40infinicon%2Fsdk)](https://www.npmjs.com/package/@infinicon/sdk)
+[![npm core-types](https://img.shields.io/npm/v/@infinicon/core-types?label=%40infinicon%2Fcore-types)](https://www.npmjs.com/package/@infinicon/core-types)
+[![CI](https://github.com/IMisbahk/infinicon/actions/workflows/ci.yml/badge.svg)](https://github.com/IMisbahk/infinicon/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 > give your ai agents unbounded context.
 
 Infinicon is a **memory SDK + reference server** for AI agents. Use `@infinicon/sdk` from your app; run the reference server locally or on Render for storage and retrieval.
 
 Specs and ADRs in `docs/` remain the source of truth for behavior.
+
+## Install
+
+```bash
+npm install @infinicon/sdk
+# or
+bun add @infinicon/sdk
+```
+
+```typescript
+import { openMemory } from "@infinicon/sdk"
+
+const memory = openMemory()
+await memory.remember("user prefers dark mode")
+const prior = await memory.recall("theme preference")
+```
+
+## Support
+
+If Infinicon helps your project, consider supporting development:
+
+**[☕ Support via Razorpay](https://razorpay.me/@misbah)**
+
+(GitHub also shows a **Sponsor** heart on the repo via [`.github/FUNDING.yml`](.github/FUNDING.yml).)
 
 ## Start Here
 
@@ -26,11 +55,9 @@ src/
   runtime/          # canonical memory runtime (MemoryRuntimeService + adapters)
   transport/        # HTTP routing layer
   server.ts         # Bun server entrypoint
-  client.ts         # SDK source (consume via @infinicon/sdk)
-  types.ts          # SDK-facing type exports
 packages/
-  sdk/              # @infinicon/sdk — use this from your agent app
-  core-types/       # spec-aligned contracts, validators, schemas
+  sdk/              # @infinicon/sdk — published npm client
+  core-types/       # @infinicon/core-types — spec-aligned contracts
   plugin-host/      # plugin registration and lifecycle host
 examples/
   simple-chat.ts    # one-file agent demo (start here)
@@ -125,3 +152,15 @@ See [examples/README.md](examples/README.md).
 - Retrieval in the reference stack is **lexical** unless you plug in embedder/ranker plugins.
 - Optional Bearer auth via `INFINICON_API_KEY` on the server.
 - [`docs/devops/deployment.md`](docs/devops/deployment.md) for Render/production.
+
+## Publishing (maintainers)
+
+Packages publish to npm on [GitHub Release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) or manual workflow dispatch.
+
+1. Bump `version` in `packages/core-types/package.json` and `packages/sdk/package.json`
+2. Add a GitHub repo secret `NPM_TOKEN` ([npm granular access token](https://docs.npmjs.com/creating-and-viewing-access-tokens) with publish scope)
+3. Create a release tag (e.g. `v0.1.1`) — triggers [`.github/workflows/publish-npm.yml`](.github/workflows/publish-npm.yml)
+
+```bash
+bun run build:packages   # local dry run before release
+```

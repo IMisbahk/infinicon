@@ -1,6 +1,12 @@
 # @infinicon/sdk
 
+[![npm version](https://img.shields.io/npm/v/@infinicon/sdk)](https://www.npmjs.com/package/@infinicon/sdk)
+
 TypeScript client for the Infinicon memory API v0.
+
+```bash
+npm install @infinicon/sdk
+```
 
 ## Quick start
 
