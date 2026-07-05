@@ -1,0 +1,43 @@
+examples/agent-chat/src/config.ts
+  s_053366b8594682::t_09f775ad114d8e 1-43
+examples/agent-chat/src/main.ts
+  s_053366b8594682::t_5b107f6e1bf972 1-68,78-104
+  s_053366b8594682::t_506c663421024f 69-77
+examples/agent-chat/src/llmProvider.ts
+  s_053366b8594682::t_8482b6a890bb9e 1-57
+examples/agent-chat/.env.example
+  s_053366b8594682::t_5d1fcf8de03a04 1-18
+examples/agent-chat/package.json
+  s_053366b8594682::t_ee24a02be1a5e9 1-14
+examples/agent-chat/src/memorySession.ts
+  s_053366b8594682::t_d69bb019ae17df 1-4,6-14,57-111,184-214
+  s_053366b8594682::t_02a04a02cc2701 112-183
+  s_053366b8594682::t_7bd42aba14f8bd 5,15-56
+examples/agent-chat/test/memorySession.test.ts
+  s_053366b8594682::t_09f859a31e675a 1-10,17-22,24-26,39-41,43-44,46-67,129
+  s_053366b8594682::t_03b6ba5f84ef05 11-16,23,27-38,42,45
+  s_053366b8594682::t_e5e3484e2dbbed 68-128
+examples/agent-chat/README.md
+  s_053366b8594682::t_71667919043533 1-74
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "33a48572f3c03e62a4dd7fbe9134e5160fa4d8a6",
+  "prompts": {},
+  "humans": {
+    "h_b8c068798e4e71": {
+      "author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
