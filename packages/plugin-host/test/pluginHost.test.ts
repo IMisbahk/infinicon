@@ -230,4 +230,54 @@ describe("PluginHost", () => {
     expect(readonlyView.has("ranker", "baseline-ranker", "1.0.0")).toBe(true)
     expect(readonlyView.stats().totalRegisteredPlugins).toBe(1)
   })
+
+  it("registers multiple plugins", () => {
+    const host = new PluginHost(pluginSpecVersionV0)
+
+    host.registerMany([
+      { plugin: makeRankerPlugin(), config: { deterministic: true } },
+      {
+        plugin: {
+          ...makeRankerPlugin(),
+          descriptor: {
+            ...makeRankerPlugin().descriptor,
+            name: "baseline-ranker-2",
+          },
+        },
+        config: { deterministic: true },
+      },
+    ])
+
+    expect(host.stats().totalRegisteredPlugins).toBe(2)
+    expect(host.has("ranker", "baseline-ranker", "1.0.0")).toBe(true)
+    expect(host.has("ranker", "baseline-ranker-2", "1.0.0")).toBe(true)
+  })
+
+  it("clears all plugins", () => {
+    const host = new PluginHost(pluginSpecVersionV0)
+
+    host.register({ plugin: makeRankerPlugin(), config: { deterministic: true } })
+    host.clear()
+
+    expect(host.stats().totalRegisteredPlugins).toBe(0)
+    expect(host.listByKind("ranker")).toHaveLength(0)
+  })
+
+  it("handles listener errors without failing host operations", () => {
+    const listenerErrors: unknown[] = []
+    const host = new PluginHost(pluginSpecVersionV0, {
+      onEventListenerError: (error) => {
+        listenerErrors.push(error)
+      },
+    })
+
+    host.subscribe(() => {
+      throw new Error("listener boom")
+    })
+
+    host.register({ plugin: makeRankerPlugin(), config: { deterministic: true } })
+
+    expect(host.has("ranker", "baseline-ranker", "1.0.0")).toBe(true)
+    expect(listenerErrors).toHaveLength(1)
+  })
 })

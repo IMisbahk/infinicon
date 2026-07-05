@@ -6,6 +6,7 @@ import {
   type PluginDescriptor,
   type PluginHostEvent,
   type PluginHostEventListener,
+  type PluginHostOptions,
   type PluginHostReadonlyView,
   type PluginHostStats,
   type PluginHostSubscription,
@@ -49,12 +50,37 @@ export class PluginHost implements PluginHostReadonlyView {
   private readonly pluginsByKey = new Map<PluginKey, RegisteredPlugin>()
   private readonly pluginsByKind = new Map<PluginKind, RegisteredPlugin[]>()
   private readonly listeners = new Set<PluginHostEventListener>()
+  private readonly options: PluginHostOptions
 
-  constructor(specVersion: string = pluginSpecVersionV0) {
+  constructor(specVersion: string = pluginSpecVersionV0, options: PluginHostOptions = {}) {
     this.specVersion = specVersion
+    this.options = options
   }
 
   register<TConfig, TInput, TOutput>({ plugin, config }: PluginRegistrationInput<TConfig, TInput, TOutput>): void {
+    const registration = this.validateAndBuildRegistration({ plugin, config })
+    this.persistRegistration(registration)
+  }
+
+  registerMany(registrations: PluginRegistrationInput[]): void {
+    const prepared = registrations.map((registration) => this.validateAndBuildRegistration(registration))
+    for (const registration of prepared) {
+      this.persistRegistration(registration)
+    }
+  }
+
+  clear(): void {
+    const keys = [...this.pluginsByKey.keys()]
+    for (const pluginKey of keys) {
+      const [kind, name, version] = pluginKey.split("::") as [PluginKind, string, string]
+      this.unregister(kind, name, version)
+    }
+  }
+
+  private validateAndBuildRegistration<TConfig, TInput, TOutput>({
+    plugin,
+    config,
+  }: PluginRegistrationInput<TConfig, TInput, TOutput>): { pluginKey: string; registration: RegisteredPlugin<TConfig, TInput, TOutput> } {
     const descriptorValidation = validateDescriptor(plugin.descriptor)
     if (!descriptorValidation.ok) {
       throw new PluginHostError("plugin_descriptor_invalid", "plugin descriptor is invalid", {
@@ -88,19 +114,30 @@ export class PluginHost implements PluginHostReadonlyView {
       })
     }
 
-    const registration: RegisteredPlugin<TConfig, TInput, TOutput> = {
-      descriptor: Object.freeze({
-        ...plugin.descriptor,
-        capabilities: [...plugin.descriptor.capabilities],
-      }),
-      config,
-      plugin,
+    return {
+      pluginKey,
+      registration: {
+        descriptor: Object.freeze({
+          ...plugin.descriptor,
+          capabilities: [...plugin.descriptor.capabilities],
+        }),
+        config,
+        plugin,
+      },
     }
+  }
 
+  private persistRegistration<TConfig, TInput, TOutput>({
+    pluginKey,
+    registration,
+  }: {
+    pluginKey: string
+    registration: RegisteredPlugin<TConfig, TInput, TOutput>
+  }): void {
     this.pluginsByKey.set(pluginKey, registration)
-    const byKind = this.pluginsByKind.get(plugin.descriptor.kind) ?? []
+    const byKind = this.pluginsByKind.get(registration.descriptor.kind) ?? []
     byKind.push(registration)
-    this.pluginsByKind.set(plugin.descriptor.kind, byKind)
+    this.pluginsByKind.set(registration.descriptor.kind, byKind)
     this.emit({
       type: "plugin_registered",
       pluginKey,
@@ -208,7 +245,11 @@ export class PluginHost implements PluginHostReadonlyView {
 
   private emit(event: PluginHostEvent): void {
     for (const listener of this.listeners) {
-      listener(event)
+      try {
+        listener(event)
+      } catch (error) {
+        this.options.onEventListenerError?.(error, event)
+      }
     }
   }
 }

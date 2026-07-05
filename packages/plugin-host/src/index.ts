@@ -8,6 +8,7 @@ export {
   type PluginDescriptor,
   type PluginHostEvent,
   type PluginHostEventListener,
+  type PluginHostOptions,
   type PluginHostReadonlyView,
   type PluginHostStats,
   type PluginHostSubscription,

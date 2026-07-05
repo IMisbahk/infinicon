@@ -99,6 +99,10 @@ export type PluginHostSubscription = {
   unsubscribe: () => void
 }
 
+export type PluginHostOptions = {
+  onEventListenerError?: (error: unknown, event: PluginHostEvent) => void
+}
+
 export type PluginHostReadonlyView = {
   specVersion: string
   listByKind(kind: PluginKind): readonly RegisteredPlugin[]
