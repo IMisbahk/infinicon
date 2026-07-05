@@ -1,3 +1,6 @@
 .infinicon/
 CLAUDE.md
 AGENT.md
+node_modules/
+packages/*/dist/
+types/

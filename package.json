@@ -1,0 +1,13 @@
+{
+  "name": "infinicon-core",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "bun run build:core-types",
+    "build:core-types": "bun build packages/core-types/src/index.ts --outdir packages/core-types/dist --target=node",
+    "test": "bun test",
+    "test:core-types": "bun test packages/core-types/test"
+  }
+}
