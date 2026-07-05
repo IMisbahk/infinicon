@@ -19,6 +19,10 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [Spec review process](docs/spec-review-process.md)
 - [Architecture decision records](docs/adr/README.md)
 
+## Reference Implementation (early)
+
+- [Runtime skeleton](runtime/README.md)
+
 ## Core Specs
 
 - [Specifications index](docs/specs/README.md)

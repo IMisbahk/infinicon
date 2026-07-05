@@ -56,6 +56,10 @@ Deliverables:
 - `ingest`, `query`, `hydrate`, and `assembleContext` paths.
 - First thin client SDK.
 
+Implementation note:
+
+- A development runtime skeleton is available in `runtime/` with in-memory adapters and contract tests.
+
 Exit criteria:
 
 - The skeleton passes early conformance tests.
