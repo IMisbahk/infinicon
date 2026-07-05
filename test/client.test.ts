@@ -89,7 +89,7 @@ describe("InfiniconClient", () => {
         {
           contentType: "text/plain",
           content: "hello",
-          createdBy: "agent:test",
+          createdBy: { id: "agent:test", kind: "agent" },
           dedupeKey: "ingest-1",
         },
       ],

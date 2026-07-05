@@ -33,7 +33,7 @@ function episode(id: string, content: string, status: Episode["status"] = "activ
     type: "episode",
     scope,
     createdAt: new Date().toISOString(),
-    createdBy: { id: "tester", type: "system" },
+    createdBy: { id: "tester", kind: "system" },
     status,
     contentType: "text/plain",
     content,
@@ -47,7 +47,7 @@ function link(id: string, fromId: string, toId: string, status: Link["status"] =
     type: "link",
     scope,
     createdAt: new Date().toISOString(),
-    createdBy: { id: "tester", type: "system" },
+    createdBy: { id: "tester", kind: "system" },
     status,
     linkType: "derived_from",
     from: { id: fromId, type: "episode", scope },
@@ -67,7 +67,7 @@ describe("MemoryRuntimeService", () => {
           contentType: "text/plain",
           content: "hello world",
           dedupeKey: "d1",
-          createdBy: { id: "tester", type: "system" as const },
+          createdBy: { id: "tester", kind: "system" as const },
         },
       ],
       consistency: "accepted" as const,
@@ -90,7 +90,7 @@ describe("MemoryRuntimeService", () => {
         {
           contentType: "text/plain",
           content: "memory about bun runtime",
-          createdBy: { id: "tester", type: "system" },
+          createdBy: { id: "tester", kind: "system" },
         },
       ],
     })
@@ -122,12 +122,12 @@ describe("MemoryRuntimeService", () => {
         {
           contentType: "text/plain",
           content: "first memory chunk",
-          createdBy: { id: "tester", type: "system" },
+          createdBy: { id: "tester", kind: "system" },
         },
         {
           contentType: "text/plain",
           content: "second memory chunk that should not fit in tiny budget",
-          createdBy: { id: "tester", type: "system" },
+          createdBy: { id: "tester", kind: "system" },
         },
       ],
     })
@@ -153,7 +153,7 @@ describe("MemoryRuntimeService", () => {
         {
           contentType: "text/plain",
           content: "secret memory to tombstone",
-          createdBy: { id: "tester", type: "system" },
+          createdBy: { id: "tester", kind: "system" },
         },
       ],
     })
@@ -196,7 +196,7 @@ describe("MemoryRuntimeService", () => {
         {
           contentType: "text/plain",
           content: "event test",
-          createdBy: { id: "tester", type: "system" },
+          createdBy: { id: "tester", kind: "system" },
         },
       ],
     })
@@ -273,7 +273,7 @@ describe("InMemoryMetadataStore", () => {
     await store.upsertJob({
       jobId: "job-1",
       scope,
-      type: "consolidation",
+      kind: "consolidation",
       status: "queued",
       createdAt: now,
       updatedAt: now,

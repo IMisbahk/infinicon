@@ -14,7 +14,7 @@ describe("MemoryRuntimeService via createRuntime", () => {
           contentType: "application/json",
           content: { text: "hello" },
           dedupeKey: "k1",
-          createdBy: { id: "agent-1", type: "agent" },
+          createdBy: { id: "agent-1", kind: "agent" },
         },
       ],
     })
@@ -34,7 +34,7 @@ describe("in-memory storage adapters", () => {
       type: "episode" as const,
       scope,
       createdAt: new Date().toISOString(),
-      createdBy: { id: "agent-1", type: "agent" as const },
+      createdBy: { id: "agent-1", kind: "agent" as const },
       status: "active" as const,
       metadata: {},
       contentType: "text/plain",

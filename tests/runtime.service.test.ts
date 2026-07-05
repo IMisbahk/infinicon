@@ -38,7 +38,7 @@ describe("MemoryRuntimeService", () => {
           contentType: "text/plain",
           content: "remember this",
           dedupeKey: "msg-1",
-          createdBy: { id: "user-1", type: "user" },
+          createdBy: { id: "user-1", kind: "user" },
         },
       ],
     })
@@ -50,7 +50,7 @@ describe("MemoryRuntimeService", () => {
           contentType: "text/plain",
           content: "remember this",
           dedupeKey: "msg-1",
-          createdBy: { id: "user-1", type: "user" },
+          createdBy: { id: "user-1", kind: "user" },
         },
       ],
     })
@@ -69,7 +69,7 @@ describe("MemoryRuntimeService", () => {
         {
           contentType: "text/plain",
           content: "secret alpha",
-          createdBy: { id: "user-1", type: "user" },
+          createdBy: { id: "user-1", kind: "user" },
         },
       ],
     })
@@ -114,7 +114,7 @@ describe("MemoryRuntimeService", () => {
         {
           contentType: "text/plain",
           content: "remove me",
-          createdBy: { id: "user-1", type: "user" },
+          createdBy: { id: "user-1", kind: "user" },
         },
       ],
     })

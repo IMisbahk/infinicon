@@ -16,7 +16,7 @@ describe("http routes", () => {
               contentType: "application/json",
               content: { text: "bun runtime" },
               dedupeKey: "r1",
-              createdBy: { id: "agent-1", type: "agent" },
+              createdBy: { id: "agent-1", kind: "agent" },
               metadata: {},
             },
           ],

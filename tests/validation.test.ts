@@ -11,7 +11,7 @@ describe("validation", () => {
         },
         episodes: [],
       }),
-    ).toThrow("episodes must be a non-empty array")
+    ).toThrow("episodes must contain at least one episode")
   })
 
   test("validateAssembleContext rejects negative budget", () => {
@@ -29,26 +29,17 @@ describe("validation", () => {
     ).toThrow("budget.maxTokens")
   })
 
-  test("validateTombstone rejects invalid policy", () => {
+  test("validateTombstone rejects empty refs", () => {
     expect(() =>
       validateTombstone({
         scope: {
           tenantId: "t1",
           namespaceId: "n1",
         },
-        refs: [
-          {
-            id: "ep1",
-            type: "episode",
-            scope: {
-              tenantId: "t1",
-              namespaceId: "n1",
-            },
-          },
-        ],
+        refs: [],
         reason: "x",
-        cascadePolicy: "bad-policy" as unknown as "none",
+        cascadePolicy: "none",
       }),
-    ).toThrow("cascadePolicy")
+    ).toThrow("refs must contain at least one memory ref")
   })
 })
