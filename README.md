@@ -23,3 +23,15 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [Storage ports v0](docs/specs/storage-ports.v0.md)
 - [Context assembly v0](docs/specs/context-assembly.v0.md)
 
+## DevOps Guardrails
+
+- [DevOps ownership](docs/devops/ownership.md)
+- [Spec integrity checks](docs/devops/spec-integrity-checks.md)
+
+Local verification:
+
+```bash
+python3 scripts/spec_integrity_check.py
+python3 -m unittest discover -s tests -v
+```
+

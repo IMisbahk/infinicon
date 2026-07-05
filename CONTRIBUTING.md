@@ -53,6 +53,14 @@ When implementation begins:
 - Add tests for behavior, not just happy paths.
 - Avoid dependencies unless they are justified by an ADR or accepted design.
 - Do not couple the core runtime to one storage backend, model provider, or agent framework.
+- Run repository guardrails before opening a PR:
+  - `python3 scripts/spec_integrity_check.py`
+  - `python3 -m unittest discover -s tests -v`
+
+DevOps ownership and guardrail behavior are documented in:
+
+- `docs/devops/ownership.md`
+- `docs/devops/spec-integrity-checks.md`
 
 ## Documentation Style
 
