@@ -1,0 +1,22 @@
+packages/runtime-adapters-memory/src/memory-adapter.js
+  s_81056f85adc66a::t_a70d600b93fad4 247-265
+  s_81056f85adc66a::t_3b5c2c573d99ca 221
+packages/runtime-core/src/ports.js
+  s_81056f85adc66a::t_368401ab1c748c 87-94
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "54fbe11083ed5e10fb5c7360f0e6a0888e53dc0a",
+  "prompts": {},
+  "sessions": {
+    "s_81056f85adc66a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0a0967d8-61b7-4560-8af8-8d77c10b0d2e",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
