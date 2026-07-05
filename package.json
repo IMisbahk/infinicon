@@ -1,0 +1,10 @@
+{
+  "name": "infinicon-plugins",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bun test",
+    "test:plugin-host": "bun test packages/plugin-host/test"
+  }
+}
