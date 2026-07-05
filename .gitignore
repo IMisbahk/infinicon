@@ -1,5 +1,10 @@
 .infinicon/
+.cursor/
+
+
 CLAUDE.md
+
+
 AGENT.md
 .env
 .env.*
