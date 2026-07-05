@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://infinicon.dev/contracts/schemas/plugin-interface.v0.schema.json",
+  "title": "Infinicon Plugin Interface v0",
+  "type": "object",
+  "required": ["descriptor"],
+  "properties": {
+    "descriptor": { "$ref": "#/$defs/PluginDescriptor" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "PluginKind": {
+      "type": "string",
+      "enum": ["extractor", "embedder", "ranker", "consolidator", "formatter", "storage_adapter"]
+    },
+    "PluginDescriptor": {
+      "type": "object",
+      "required": [
+        "name",
+        "version",
+        "kind",
+        "supportedSpecVersion",
+        "configSchema",
+        "capabilities",
+        "sideEffects",
+        "idempotencyGuarantees"
+      ],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "kind": { "$ref": "#/$defs/PluginKind" },
+        "supportedSpecVersion": { "type": "string", "minLength": 1 },
+        "configSchema": {
+          "description": "JSON Schema object for plugin config",
+          "type": "object",
+          "additionalProperties": true
+        },
+        "capabilities": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "sideEffects": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "idempotencyGuarantees": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

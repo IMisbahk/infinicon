@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://infinicon.dev/contracts/schemas/context-assembly.v0.schema.json",
+  "title": "Infinicon Context Assembly v0",
+  "type": "object",
+  "required": ["request", "response"],
+  "properties": {
+    "request": {
+      "$ref": "#/$defs/AssembleContextRequest"
+    },
+    "response": {
+      "$ref": "#/$defs/AssembleContextResponse"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Scope": {
+      "type": "object",
+      "required": ["tenantId", "namespaceId"],
+      "properties": {
+        "tenantId": { "type": "string" },
+        "namespaceId": { "type": "string" },
+        "agentId": { "type": "string" },
+        "sessionId": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "MemoryRef": {
+      "type": "object",
+      "required": ["id", "type", "scope"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["episode", "atom", "consolidation", "link"] },
+        "scope": { "$ref": "#/$defs/Scope" }
+      },
+      "additionalProperties": false
+    },
+    "ContextBudget": {
+      "type": "object",
+      "required": ["maxTokens"],
+      "properties": {
+        "maxTokens": { "type": "integer", "minimum": 1 },
+        "maxSegments": { "type": "integer", "minimum": 1 },
+        "reservedTokens": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "MemoryFilters": {
+      "type": "object",
+      "properties": {
+        "includeDisputed": { "type": "boolean" },
+        "includeSuperseded": { "type": "boolean" },
+        "types": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ContextConstraints": {
+      "type": "object",
+      "properties": {
+        "mustIncludeRefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/MemoryRef" }
+        },
+        "excludedRefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/MemoryRef" }
+        },
+        "includeDisputed": { "type": "boolean" },
+        "preferRecency": { "type": "boolean" },
+        "preferHighConfidence": { "type": "boolean" },
+        "maxSegments": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "ContextWarning": {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "empty_context",
+            "truncated",
+            "required_ref_omitted",
+            "stale_consolidation",
+            "disputed_memory_included",
+            "superseded_memory_included",
+            "eventual_consistency",
+            "partial_hydration"
+          ]
+        },
+        "message": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "ContextSegment": {
+      "type": "object",
+      "required": ["ref", "content", "score", "reason", "provenance"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/MemoryRef" },
+        "content": { "type": "string" },
+        "score": { "type": "number" },
+        "reason": { "type": "string" },
+        "provenance": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": false
+    },
+    "WorkingContext": {
+      "type": "object",
+      "required": ["scope", "task", "budget", "segments", "tokenEstimate", "truncated", "warnings", "generatedAt"],
+      "properties": {
+        "scope": { "$ref": "#/$defs/Scope" },
+        "task": { "type": "string" },
+        "budget": { "$ref": "#/$defs/ContextBudget" },
+        "segments": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ContextSegment" }
+        },
+        "tokenEstimate": { "type": "integer", "minimum": 0 },
+        "truncated": { "type": "boolean" },
+        "warnings": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ContextWarning" }
+        },
+        "generatedAt": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "AssembleContextRequest": {
+      "type": "object",
+      "required": ["scope", "task", "budget"],
+      "properties": {
+        "scope": { "$ref": "#/$defs/Scope" },
+        "task": { "type": "string" },
+        "budget": { "$ref": "#/$defs/ContextBudget" },
+        "filters": { "$ref": "#/$defs/MemoryFilters" },
+        "constraints": { "$ref": "#/$defs/ContextConstraints" },
+        "consistency": {
+          "type": "string",
+          "enum": ["strong", "eventual"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "AssembleContextResponse": {
+      "type": "object",
+      "required": ["context"],
+      "properties": {
+        "context": { "$ref": "#/$defs/WorkingContext" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

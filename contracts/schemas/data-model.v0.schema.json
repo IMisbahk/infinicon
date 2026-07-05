@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://infinicon.dev/contracts/schemas/data-model.v0.schema.json",
+  "title": "Infinicon Data Model v0",
+  "type": "object",
+  "required": ["scope", "object"],
+  "properties": {
+    "scope": {
+      "$ref": "#/$defs/Scope"
+    },
+    "object": {
+      "oneOf": [
+        { "$ref": "#/$defs/Episode" },
+        { "$ref": "#/$defs/Atom" },
+        { "$ref": "#/$defs/Consolidation" },
+        { "$ref": "#/$defs/Link" }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Scope": {
+      "type": "object",
+      "required": ["tenantId", "namespaceId"],
+      "properties": {
+        "tenantId": { "type": "string" },
+        "namespaceId": { "type": "string" },
+        "agentId": { "type": "string" },
+        "sessionId": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "ActorRef": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "MemoryRef": {
+      "type": "object",
+      "required": ["id", "type", "scope"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["episode", "atom", "consolidation", "link"] },
+        "scope": { "$ref": "#/$defs/Scope" }
+      },
+      "additionalProperties": false
+    },
+    "Provenance": {
+      "type": "object",
+      "required": ["sourceRefs", "producedBy", "createdAt", "transformationType"],
+      "properties": {
+        "sourceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/MemoryRef" }
+        },
+        "producedBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "transformationType": { "type": "string" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "metadata": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": false
+    },
+    "Episode": {
+      "type": "object",
+      "required": ["id", "type", "scope", "createdAt", "createdBy", "status", "contentType", "content", "metadata"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "episode" },
+        "scope": { "$ref": "#/$defs/Scope" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "$ref": "#/$defs/ActorRef" },
+        "status": { "type": "string", "enum": ["active", "tombstoned", "pending", "failed"] },
+        "dedupeKey": { "type": "string" },
+        "contentType": { "type": "string" },
+        "content": { "type": ["object", "array", "string", "number", "boolean", "null"] },
+        "metadata": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": false
+    },
+    "Atom": {
+      "type": "object",
+      "required": ["id", "type", "scope", "createdAt", "createdBy", "status", "atomType", "content", "provenance", "metadata"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "atom" },
+        "scope": { "$ref": "#/$defs/Scope" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "$ref": "#/$defs/ActorRef" },
+        "status": { "type": "string", "enum": ["active", "disputed", "superseded", "tombstoned", "pending", "failed"] },
+        "atomType": { "type": "string" },
+        "content": { "type": "string" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "provenance": { "$ref": "#/$defs/Provenance" },
+        "metadata": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": false
+    },
+    "Consolidation": {
+      "type": "object",
+      "required": ["id", "type", "scope", "createdAt", "createdBy", "status", "content", "sourceRefs", "provenance", "metadata"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "consolidation" },
+        "scope": { "$ref": "#/$defs/Scope" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "$ref": "#/$defs/ActorRef" },
+        "status": { "type": "string", "enum": ["active", "disputed", "superseded", "tombstoned", "pending", "failed"] },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "sourceRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/MemoryRef" }
+        },
+        "supersedes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/MemoryRef" }
+        },
+        "provenance": { "$ref": "#/$defs/Provenance" },
+        "metadata": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": false
+    },
+    "Link": {
+      "type": "object",
+      "required": ["id", "type", "scope", "createdAt", "createdBy", "status", "linkType", "from", "to", "metadata"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "const": "link" },
+        "scope": { "$ref": "#/$defs/Scope" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "$ref": "#/$defs/ActorRef" },
+        "status": { "type": "string", "enum": ["active", "tombstoned"] },
+        "linkType": {
+          "type": "string",
+          "enum": ["derived_from", "supports", "contradicts", "supersedes", "mentions", "same_as", "corrects", "invalidates"]
+        },
+        "from": { "$ref": "#/$defs/MemoryRef" },
+        "to": { "$ref": "#/$defs/MemoryRef" },
+        "metadata": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": false
+    }
+  }
+}

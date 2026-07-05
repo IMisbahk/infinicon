@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://infinicon.dev/contracts/schemas/storage-ports.v0.schema.json",
+  "title": "Infinicon Storage Ports Capability Descriptor v0",
+  "type": "object",
+  "required": [
+    "adapterName",
+    "implementedPorts",
+    "transactionalGuarantees",
+    "indexConsistency",
+    "paginationBehavior",
+    "supportedFilters"
+  ],
+  "properties": {
+    "adapterName": { "type": "string", "minLength": 1 },
+    "implementedPorts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": ["EpisodeStore", "GraphStore", "IndexStore", "MetadataStore"]
+      }
+    },
+    "transactionalGuarantees": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "maxObjectSizes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "indexConsistency": {
+      "type": "string",
+      "enum": ["synchronous", "eventual", "mixed"]
+    },
+    "paginationBehavior": {
+      "type": "string"
+    },
+    "supportedFilters": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "backupRestoreExpectations": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
