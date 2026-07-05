@@ -1,0 +1,27 @@
+contracts/schemas/plugin-interface.v0.schema.json
+  s_9cfc509b3027ac::t_40806dfb3f3bf6 1-54
+contracts/openapi/memory-api.v0.json
+  s_9cfc509b3027ac::t_24a13f00b7f5fa 1-1078
+contracts/schemas/storage-ports.v0.schema.json
+  s_9cfc509b3027ac::t_8ccc3cddddac57 1-51
+contracts/schemas/context-assembly.v0.schema.json
+  s_9cfc509b3027ac::t_d32e31ab5ccdc6 1-157
+contracts/schemas/data-model.v0.schema.json
+  s_9cfc509b3027ac::t_cce50a34a475e1 1-151
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "da3ba2b7d9aa76272ee4edc4a1b82d31f54ed74d",
+  "prompts": {},
+  "sessions": {
+    "s_9cfc509b3027ac": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0484f01a-3df9-4721-bdad-16e9eee96b83",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
