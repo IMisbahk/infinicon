@@ -31,9 +31,17 @@ Spec changes should include:
 
 - Motivation.
 - Affected documents.
-- Compatibility impact.
+- Compatibility impact (breaking or non-breaking).
 - Alternatives considered.
 - Open questions.
+- Machine-readable contract update impact.
+- Conformance test impact.
+
+Use these companion specs when relevant:
+
+- `docs/specs/machine-readable-contract.v0.md`
+- `docs/specs/api-compatibility-policy.v0.md`
+- `docs/specs/conformance-test-plan.v0.md`
 
 If a changed prose spec has a machine-readable draft counterpart, update it in the same change and run:
 

@@ -1,24 +1,24 @@
-# Specs Workspace Guide
+# Specifications
 
-This directory contains normative prose specs and draft machine-readable contracts.
+This directory contains Infinicon v0 specifications.
 
-## Source of truth
+Human-readable specs are the normative source of truth.
 
-Normative behavior is defined by prose specs and accepted ADRs.
+## Core v0 Specs
 
-Machine-readable artifacts are contract helpers for tooling and conformance work. They must stay conservative and must not silently define behavior that prose specs do not define.
+- [Data model v0](data-model.v0.md)
+- [Memory API v0](memory-api.v0.md)
+- [Plugin interface v0](plugin-interface.v0.md)
+- [Storage ports v0](storage-ports.v0.md)
+- [Context assembly v0](context-assembly.v0.md)
 
-## Artifacts
+## Phase 1 Contract Specs
 
-### Normative prose specs
+- [Machine-readable contract v0](machine-readable-contract.v0.md)
+- [API compatibility policy v0](api-compatibility-policy.v0.md)
+- [Conformance test plan v0](conformance-test-plan.v0.md)
 
-- `data-model.v0.md`
-- `memory-api.v0.md`
-- `plugin-interface.v0.md`
-- `storage-ports.v0.md`
-- `context-assembly.v0.md`
-
-### Draft machine-readable contracts
+## Draft machine-readable artifacts
 
 - `memory-api.v0.openapi.json`
 - `data-model.v0.schema.json`
@@ -46,8 +46,9 @@ python3 docs/specs/run-conformance.py
 4. Ensure JSON parse remains valid for all machine-readable files
 5. Update or add fixtures when request or response shape changes
 
-## Scope guard
+## Notes
 
-Do not lock open questions into strict machine-readable constraints unless the prose spec has accepted that behavior.
-
-If uncertain, keep schema permissive and document the rationale in `machine-readable-contract-notes.v0.md`.
+- Breaking public contract changes require a new major spec version.
+- Keep prose specs and machine-readable contracts aligned.
+- Do not let implementation drift define behavior ahead of specs.
+- Keep draft schemas conservative while open spec questions remain unresolved.

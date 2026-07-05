@@ -1,0 +1,27 @@
+{
+  "id": "ep_01J00EXAMPLE0000000000001",
+  "type": "episode",
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod",
+    "agentId": "agent-support-1",
+    "sessionId": "session-2026-07-05-01"
+  },
+  "createdAt": "2026-07-05T10:00:00Z",
+  "createdBy": {
+    "kind": "agent",
+    "id": "agent-support-1"
+  },
+  "status": "active",
+  "dedupeKey": "ticket-4492-msg-17",
+  "contentType": "application/json",
+  "content": {
+    "channel": "chat",
+    "text": "Customer reports repeated invoice mismatch after upgrade",
+    "ticketId": "4492"
+  },
+  "metadata": {
+    "source": "zendesk-import",
+    "priority": "high"
+  }
+}

@@ -48,6 +48,6 @@ This often creates documentation that describes accidents rather than intent. It
 
 ## Follow-Up Work
 
-- Define a spec review process.
+- Define a spec review process ([doc](../spec-review-process.md)).
 - Add conformance tests once machine-readable API schemas exist.
 - Document versioning and compatibility policy before v1.

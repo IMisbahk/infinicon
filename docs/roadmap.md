@@ -35,8 +35,9 @@ Deliverables:
 
 - OpenAPI, Protobuf, or both.
 - Generated request and response shapes.
-- API compatibility policy.
-- Initial conformance test plan.
+- API compatibility policy ([spec](specs/api-compatibility-policy.v0.md)).
+- Initial conformance test plan ([spec](specs/conformance-test-plan.v0.md)).
+- Machine-readable contract mapping ([spec](specs/machine-readable-contract.v0.md)).
 
 Exit criteria:
 
@@ -54,6 +55,11 @@ Deliverables:
 - In-memory development adapters.
 - `ingest`, `query`, `hydrate`, and `assembleContext` paths.
 - First thin client SDK.
+
+Implementation note:
+
+- A development runtime skeleton is available in `runtime/` with in-memory adapters and contract tests.
+- The skeleton now includes a Bun HTTP reference server with a health endpoint and a thin typed client SDK.
 
 Exit criteria:
 
@@ -114,6 +120,10 @@ Exit criteria:
 - Security defaults are explicit.
 
 ## Open Decisions
+
+A centralized, source-linked register is maintained in [`open-decisions.md`](open-decisions.md).
+
+Current program-level decisions:
 
 - Reference implementation language.
 - First SDK language.

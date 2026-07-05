@@ -1,0 +1,20 @@
+{
+  "cursor": "cursor_0001",
+  "eventType": "episode.ingested",
+  "occurredAt": "2026-07-05T10:20:00Z",
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod"
+  },
+  "ref": {
+    "id": "ep_01J00EXAMPLE0000000000001",
+    "type": "episode",
+    "scope": {
+      "tenantId": "tenant-acme",
+      "namespaceId": "support-prod"
+    }
+  },
+  "metadata": {
+    "source": "ingest"
+  }
+}

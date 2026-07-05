@@ -1,0 +1,51 @@
+{
+  "objects": [
+    {
+      "id": "co_01J00EXAMPLE0000000000003",
+      "type": "consolidation",
+      "scope": {
+        "tenantId": "tenant-acme",
+        "namespaceId": "support-prod"
+      },
+      "createdAt": "2026-07-05T10:10:00Z",
+      "createdBy": {
+        "kind": "plugin",
+        "id": "consolidator.default.v1"
+      },
+      "status": "active",
+      "content": "Post-migration billing issues cluster around missing addendum codes and stale ERP sync windows.",
+      "sourceRefs": [
+        {
+          "id": "ep_01J00EXAMPLE0000000000001",
+          "type": "episode",
+          "scope": {
+            "tenantId": "tenant-acme",
+            "namespaceId": "support-prod"
+          }
+        }
+      ],
+      "provenance": {
+        "sourceRefs": [
+          {
+            "id": "ep_01J00EXAMPLE0000000000001",
+            "type": "episode",
+            "scope": {
+              "tenantId": "tenant-acme",
+              "namespaceId": "support-prod"
+            }
+          }
+        ],
+        "producer": {
+          "kind": "plugin",
+          "id": "consolidator.default.v1"
+        },
+        "producedAt": "2026-07-05T10:10:00Z",
+        "transform": "consolidate"
+      },
+      "metadata": {
+        "window": "7d"
+      }
+    }
+  ],
+  "missing": []
+}

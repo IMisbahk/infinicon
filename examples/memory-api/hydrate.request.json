@@ -1,0 +1,17 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod"
+  },
+  "refs": [
+    {
+      "id": "co_01J00EXAMPLE0000000000003",
+      "type": "consolidation",
+      "scope": {
+        "tenantId": "tenant-acme",
+        "namespaceId": "support-prod"
+      }
+    }
+  ],
+  "includeProvenance": true
+}

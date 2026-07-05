@@ -1,0 +1,28 @@
+{
+  "name": "extractor.rules.v1",
+  "version": "1.0.0",
+  "kind": "extractor",
+  "supportedSpecVersion": "v0",
+  "configSchema": {
+    "type": "object",
+    "required": ["mode"],
+    "properties": {
+      "mode": {
+        "type": "string",
+        "enum": ["deterministic", "model_backed"]
+      }
+    },
+    "additionalProperties": false
+  },
+  "capabilities": {
+    "produces": ["atom", "link"]
+  },
+  "sideEffects": {
+    "writesDurableMemory": false,
+    "externalNetworkCalls": false
+  },
+  "idempotencyGuarantees": {
+    "sameInputSameOutput": true,
+    "scopeAware": true
+  }
+}

@@ -1,11 +1,11 @@
 {
-  "name": "infinicon-runtime",
+  "name": "@infinicon/runtime",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun run src/server/index.ts",
     "test": "bun test",
-    "check": "bun test"
+    "check": "bun test",
+    "start": "bun run src/server/main.ts"
   }
 }

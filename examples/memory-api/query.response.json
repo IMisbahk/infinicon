@@ -1,0 +1,29 @@
+{
+  "refs": [
+    {
+      "ref": {
+        "id": "co_01J00EXAMPLE0000000000003",
+        "type": "consolidation",
+        "scope": {
+          "tenantId": "tenant-acme",
+          "namespaceId": "support-prod"
+        }
+      },
+      "score": 0.93,
+      "reason": "Recent consolidation covering billing migration issues"
+    },
+    {
+      "ref": {
+        "id": "at_01J00EXAMPLE0000000000002",
+        "type": "atom",
+        "scope": {
+          "tenantId": "tenant-acme",
+          "namespaceId": "support-prod"
+        }
+      },
+      "score": 0.88,
+      "reason": "Direct constraint relevant to query"
+    }
+  ],
+  "cursor": "cursor_0001"
+}

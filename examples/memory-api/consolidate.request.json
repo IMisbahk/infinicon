@@ -1,0 +1,11 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod"
+  },
+  "trigger": "manual",
+  "filters": {
+    "statuses": ["active"]
+  },
+  "mode": "enqueue"
+}

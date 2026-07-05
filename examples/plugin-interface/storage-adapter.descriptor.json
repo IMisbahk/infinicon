@@ -1,0 +1,34 @@
+{
+  "name": "storage.postgres-pgvector.v1",
+  "version": "1.0.0",
+  "kind": "storage_adapter",
+  "supportedSpecVersion": "v0",
+  "configSchema": {
+    "type": "object",
+    "required": ["dsn"],
+    "properties": {
+      "dsn": {
+        "type": "string"
+      },
+      "primaryIndexConsistency": {
+        "type": "string",
+        "enum": ["synchronous", "eventual"]
+      }
+    },
+    "additionalProperties": false
+  },
+  "capabilities": {
+    "implementedPorts": ["EpisodeStore", "GraphStore", "IndexStore", "MetadataStore"],
+    "indexConsistency": "eventual",
+    "supportedFilters": ["status", "type", "createdAtRange"],
+    "pagination": "cursor"
+  },
+  "sideEffects": {
+    "writesDurableMemory": true,
+    "externalNetworkCalls": true
+  },
+  "idempotencyGuarantees": {
+    "sameInputSameOutput": true,
+    "scopeAware": true
+  }
+}
