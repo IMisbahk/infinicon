@@ -32,6 +32,13 @@
         "@infinicon/core-types": "workspace:*",
       },
     },
+    "packages/server": {
+      "name": "@infinicon/server",
+      "version": "0.1.0",
+      "bin": {
+        "infinicon-server": "./bin/infinicon-server.mjs",
+      },
+    },
   },
   "packages": {
     "@infinicon/core-types": ["@infinicon/core-types@workspace:packages/core-types"],
@@ -41,5 +48,7 @@
     "@infinicon/plugin-host": ["@infinicon/plugin-host@workspace:packages/plugin-host"],
 
     "@infinicon/sdk": ["@infinicon/sdk@workspace:packages/sdk"],
+
+    "@infinicon/server": ["@infinicon/server@workspace:packages/server"],
   }
 }
