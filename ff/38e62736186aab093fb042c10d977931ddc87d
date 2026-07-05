@@ -1,0 +1,21 @@
+packages/core-types/test/schemas.test.ts
+  s_604172b87735d2::t_2785185bcde590 1-65
+packages/core-types/test/validators.test.ts
+  s_604172b87735d2::t_c9b4e22f846f38 1-114
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "ff38e62736186aab093fb042c10d977931ddc87d",
+  "prompts": {},
+  "sessions": {
+    "s_604172b87735d2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "11e6e80b-6693-4dbc-ac8a-1e1a7210cb17",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
