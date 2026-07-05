@@ -161,7 +161,8 @@ export class InMemoryRuntime {
       warnings.push({ code: "eventual_consistency", message: "context used eventual consistency" })
     }
 
-    const mustInclude = new Set((request.constraints?.mustIncludeRefs ?? []).map((ref) => ref.id))
+    const mustIncludeRefs = request.constraints?.mustIncludeRefs ?? []
+    const mustInclude = new Set(mustIncludeRefs.map((ref) => ref.id))
     const excluded = new Set((request.constraints?.excludedRefs ?? []).map((ref) => ref.id))
 
     for (const hit of queried.refs) {
@@ -202,6 +203,40 @@ export class InMemoryRuntime {
       mustInclude.delete(hit.ref.id)
     }
 
+    if (mustInclude.size > 0) {
+      for (const requiredRef of mustIncludeRefs) {
+        if (!mustInclude.has(requiredRef.id)) continue
+        if (excluded.has(requiredRef.id)) continue
+
+        const hydrated = this.hydrate({ scope: request.scope, refs: [requiredRef], includeProvenance: true })
+        if (hydrated.objects.length === 0) {
+          warnings.push({ code: "partial_hydration", message: `unable to hydrate required ref ${requiredRef.id}` })
+          continue
+        }
+
+        const object = hydrated.objects[0]
+        const content = "content" in object ? object.content : object
+        const segmentTokens = approximateTokens(content)
+        const limit = request.budget.maxTokens - (request.budget.reservedTokens ?? 0)
+        const maxSegments = request.constraints?.maxSegments ?? request.budget.maxSegments
+
+        if (tokenEstimate + segmentTokens > limit || (maxSegments && segments.length >= maxSegments)) {
+          warnings.push({ code: "truncated", message: "context was truncated by budget" })
+          continue
+        }
+
+        segments.push({
+          ref: requiredRef,
+          content,
+          score: 1,
+          reason: "required_ref",
+          provenance: undefined,
+        })
+        tokenEstimate += segmentTokens
+        mustInclude.delete(requiredRef.id)
+      }
+    }
+
     if (segments.length === 0) {
       warnings.push({ code: "empty_context", message: "no memory matched for context assembly" })
     }
@@ -213,6 +248,35 @@ export class InMemoryRuntime {
       })
     }
 
+    if (request.constraints?.maxSegments && segments.length > request.constraints.maxSegments) {
+      segments.splice(request.constraints.maxSegments)
+      warnings.push({ code: "truncated", message: "context was truncated by max segments" })
+    }
+
+    if (request.budget.maxSegments && segments.length > request.budget.maxSegments) {
+      segments.splice(request.budget.maxSegments)
+      warnings.push({ code: "truncated", message: "context was truncated by budget max segments" })
+    }
+
+    segments.sort((a, b) => b.score - a.score)
+
+    const uniqueWarnings = new Map<string, WorkingContext["warnings"][number]>()
+    for (const warning of warnings) {
+      uniqueWarnings.set(`${warning.code}:${warning.message}`, warning)
+    }
+
+    const dedupedWarnings = Array.from(uniqueWarnings.values())
+
+    if (dedupedWarnings.length > 0 && dedupedWarnings.some((warning) => warning.code === "truncated") && request.consistency === "strong") {
+      // strong consistency does not guarantee infinite budget and this warning is expected
+    }
+
+    const truncated = dedupedWarnings.some((warning) => warning.code === "truncated")
+
+    const finalWarnings = dedupedWarnings
+
+    const generatedAt = new Date().toISOString()
+
     return {
       context: {
         scope: request.scope,
@@ -220,9 +284,9 @@ export class InMemoryRuntime {
         budget: request.budget,
         segments,
         tokenEstimate,
-        truncated: warnings.some((warning) => warning.code === "truncated"),
-        warnings,
-        generatedAt: new Date().toISOString(),
+        truncated,
+        warnings: finalWarnings,
+        generatedAt,
       },
     }
   }

@@ -25,7 +25,12 @@ export const createRuntimeServer = (): RuntimeServer => {
       return json({ code: "method_not_allowed", message: "only POST is supported" }, 405)
     }
 
-    const payload = await request.json()
+    let payload: unknown
+    try {
+      payload = await request.json()
+    } catch {
+      return json({ code: "invalid_json", message: "request body must be valid JSON" }, 400)
+    }
 
     if (url.pathname === "/v0/ingest") {
       return json(runtime.ingest(payload))
