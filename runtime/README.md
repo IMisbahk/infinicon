@@ -39,11 +39,17 @@ bun test
 
 ```bash
 cd runtime
-bun run src/server/http-server.ts
+bun run start
 ```
 
 (or import `startRuntimeServer(port)` and launch from your app entrypoint)
 
+Default port is `3000` and can be overridden with `PORT`.
+
+```bash
+PORT=4000 bun run start
+```
+ 
 ## SDK usage
 
 ```ts
