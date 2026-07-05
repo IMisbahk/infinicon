@@ -35,7 +35,15 @@ Spec changes should include:
 - Alternatives considered.
 - Open questions.
 
+If a changed prose spec has a machine-readable draft counterpart, update it in the same change and run:
+
+```bash
+python3 docs/specs/validate-machine-readable.py
+```
+
 Breaking changes require a new major spec version once versioning begins.
+
+See `docs/specs/README.md` for machine-readable artifact workflow.
 
 ## ADR Changes
 
