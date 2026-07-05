@@ -20,13 +20,16 @@
     "lib": [
       "ES2022",
       "DOM"
-    ]
+    ],
+    "paths": {
+      "@infinicon/core-types": ["./packages/core-types/src/index.ts"],
+      "@infinicon/plugin-host": ["./packages/plugin-host/src/index.ts"]
+    }
   },
   "include": [
     "src/**/*.ts",
     "test/**/*.ts",
     "tests/**/*.ts",
-    "runtime/**/*.ts",
     "packages/**/*.ts"
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "infinicon",
+      "dependencies": {
+        "@infinicon/core-types": "workspace:*",
+      },
+    },
+    "packages/core-types": {
+      "name": "@infinicon/core-types",
+      "version": "0.1.0",
+    },
+  },
+  "packages": {
+    "@infinicon/core-types": ["@infinicon/core-types@workspace:packages/core-types"],
+  }
+}

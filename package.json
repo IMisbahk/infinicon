@@ -6,6 +6,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "dependencies": {
+    "@infinicon/core-types": "workspace:*"
+  },
   "scripts": {
     "dev": "bun run src/server.ts",
     "start:server": "bun run src/server.ts",
