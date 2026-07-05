@@ -1,0 +1,63 @@
+.github/workflows/spec-integrity.yml
+  s_98b357d7cbc526::t_3cba26a8d97a27 1-28
+.gitignore
+  s_98b357d7cbc526::t_10350893d3124a 5-14
+CONTRIBUTING.md
+  s_98b357d7cbc526::t_66b8f65151e5ab 73-80
+docs/architecture/overview.md
+  s_98b357d7cbc526::t_285aec50add136 119-120
+docs/architecture/reference-runtime.md
+  s_98b357d7cbc526::t_a3532c8c2f26d8 1-53
+docs/devops/ownership.md
+  s_98b357d7cbc526::t_1587b0c02ddca7 1-26
+docs/devops/spec-integrity-checks.md
+  s_98b357d7cbc526::t_56ea49f370d612 1-43
+scripts/spec_integrity_check.py
+  s_98b357d7cbc526::t_7497de3845c5c5 1-161
+src/runtime/errors.ts
+  s_98b357d7cbc526::t_e5451b351404d8 1-51
+src/runtime/plugins.ts
+  s_98b357d7cbc526::t_16cbfb323e0187 1-121
+src/runtime/types-reference.ts
+  s_98b357d7cbc526::t_b960f7a7660bc6 1-290
+src/runtime/validation.ts
+  s_98b357d7cbc526::t_33f92d87f61858 1-6
+tests/runtime.service.test.ts
+  s_98b357d7cbc526::t_7adf7e983dcd51 1-133
+tests/test_spec_integrity_check.py
+  s_98b357d7cbc526::t_98c1bd497f61ce 1-92
+README.md
+  s_98b357d7cbc526::t_2901ad073864e2 22,144-156
+package.json
+  s_98b357d7cbc526::t_f5edbc9d584603 2,8-9,11-12
+src/runtime/adapters/inMemoryStores.ts
+  s_98b357d7cbc526::t_f8e43ab9ab9b60 1-240
+src/runtime/index.ts
+  s_98b357d7cbc526::t_a741c084b77abb 5-11
+src/runtime/ports-reference.ts
+  s_98b357d7cbc526::t_8e5fb2a08209ab 1-82
+src/runtime/service.ts
+  s_98b357d7cbc526::t_6cf4c0f8690f7c 1-509
+src/runtime/utils-reference.ts
+  s_98b357d7cbc526::t_f4b737f699faf0 1-31
+src/runtime/utils.ts
+  s_98b357d7cbc526::t_2ce282c61fa773 1-2,29-41
+tsconfig.json
+  s_98b357d7cbc526::t_fc53af11c6e76b 7,18-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "2bc37023773647691273ca0675ee99f2ab45597e",
+  "prompts": {},
+  "sessions": {
+    "s_98b357d7cbc526": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a452462b-f2b0-43fe-a769-579ba6aff394",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
