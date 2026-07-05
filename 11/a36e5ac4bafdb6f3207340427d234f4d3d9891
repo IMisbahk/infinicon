@@ -1,0 +1,33 @@
+src/index.ts
+  s_98b357d7cbc526::t_243edeef13a8ee 11
+src/storage/metadata-store.js
+  s_98b357d7cbc526::t_822c02a1d35f50 1
+src/api/memory-service.js
+  s_98b357d7cbc526::t_75dccc35ae0d60 12
+src/runtime/index.ts
+  s_98b357d7cbc526::t_895decfa3a3c1a 10-11,16
+  s_98b357d7cbc526::t_3f9422b78b2253 12-15
+  s_98b357d7cbc526::t_cc3b15919fe2fa 3,7
+src/storage/graph-store.js
+  s_98b357d7cbc526::t_837ac479fbb9fa 1
+src/storage/episode-store.js
+  s_98b357d7cbc526::t_365ffe2d85c5be 1
+src/storage/index-store.js
+  s_98b357d7cbc526::t_a499ad102b2183 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "11a36e5ac4bafdb6f3207340427d234f4d3d9891",
+  "prompts": {},
+  "sessions": {
+    "s_98b357d7cbc526": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a452462b-f2b0-43fe-a769-579ba6aff394",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
