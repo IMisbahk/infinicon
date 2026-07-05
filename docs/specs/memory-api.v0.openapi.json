@@ -1,0 +1,1065 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Infinicon Memory API",
+    "version": "0.1.0-draft",
+    "description": "Machine-readable draft derived from docs/specs/memory-api.v0.md. This file is conservative by design and avoids defining behavior beyond accepted prose specs and ADRs."
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "memory"
+    }
+  ],
+  "paths": {
+    "/v0/memory/ingest": {
+      "post": {
+        "tags": [
+          "memory"
+        ],
+        "operationId": "ingest",
+        "summary": "Write episodes into memory",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IngestRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ingest result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngestResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/MemoryApiError"
+          }
+        }
+      }
+    },
+    "/v0/memory/query": {
+      "post": {
+        "tags": [
+          "memory"
+        ],
+        "operationId": "query",
+        "summary": "Return ranked memory references",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Query result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/MemoryApiError"
+          }
+        }
+      }
+    },
+    "/v0/memory/hydrate": {
+      "post": {
+        "tags": [
+          "memory"
+        ],
+        "operationId": "hydrate",
+        "summary": "Load full memory objects from refs",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HydrateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Hydrate result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HydrateResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/MemoryApiError"
+          }
+        }
+      }
+    },
+    "/v0/memory/assemble-context": {
+      "post": {
+        "tags": [
+          "memory"
+        ],
+        "operationId": "assembleContext",
+        "summary": "Assemble task-specific working context",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssembleContextRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Working context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssembleContextResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/MemoryApiError"
+          }
+        }
+      }
+    },
+    "/v0/memory/consolidate": {
+      "post": {
+        "tags": [
+          "memory"
+        ],
+        "operationId": "consolidate",
+        "summary": "Request or schedule consolidation",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsolidateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Consolidation job response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsolidateResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/MemoryApiError"
+          }
+        }
+      }
+    },
+    "/v0/memory/tombstone": {
+      "post": {
+        "tags": [
+          "memory"
+        ],
+        "operationId": "tombstone",
+        "summary": "Tombstone memory refs with cascade policy",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TombstoneRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tombstone result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TombstoneResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/MemoryApiError"
+          }
+        }
+      }
+    },
+    "/v0/memory/subscribe": {
+      "post": {
+        "tags": [
+          "memory"
+        ],
+        "operationId": "subscribe",
+        "summary": "Subscribe to memory lifecycle events",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Subscription accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscribeResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/MemoryApiError"
+          }
+        }
+      }
+    },
+    "/v0/memory/get-job": {
+      "post": {
+        "tags": [
+          "memory"
+        ],
+        "operationId": "getJob",
+        "summary": "Fetch asynchronous job state",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetJobRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Job state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetJobResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/MemoryApiError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "MemoryApiError": {
+        "description": "Structured API error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MemoryApiError"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Scope": {
+        "type": "object",
+        "required": [
+          "tenantId",
+          "namespaceId"
+        ],
+        "properties": {
+          "tenantId": {
+            "type": "string"
+          },
+          "namespaceId": {
+            "type": "string"
+          },
+          "agentId": {
+            "type": "string"
+          },
+          "sessionId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      },
+      "MemoryRef": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "scope"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "episode",
+              "atom",
+              "consolidation",
+              "link"
+            ]
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemoryApiError": {
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "retryable"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "retryable": {
+            "type": "boolean"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IngestEpisode": {
+        "type": "object",
+        "required": [
+          "contentType",
+          "content",
+          "dedupeKey",
+          "createdBy",
+          "metadata"
+        ],
+        "properties": {
+          "contentType": {
+            "type": "string"
+          },
+          "content": {},
+          "dedupeKey": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      },
+      "IngestRequest": {
+        "type": "object",
+        "required": [
+          "scope",
+          "episodes"
+        ],
+        "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "episodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IngestEpisode"
+            },
+            "minItems": 1
+          },
+          "consistency": {
+            "type": "string",
+            "enum": [
+              "accepted",
+              "indexed"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "IngestResult": {
+        "type": "object",
+        "required": [
+          "ref",
+          "status"
+        ],
+        "properties": {
+          "ref": {
+            "$ref": "#/components/schemas/MemoryRef"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "created",
+              "deduplicated",
+              "rejected"
+            ]
+          },
+          "error": {
+            "$ref": "#/components/schemas/MemoryApiError"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IngestResponse": {
+        "type": "object",
+        "required": [
+          "results"
+        ],
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IngestResult"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemoryFilters": {
+        "type": "object",
+        "description": "Intentionally open in v0 draft; concrete filter vocabulary remains spec-level and adapter-dependent.",
+        "additionalProperties": true
+      },
+      "ContextWarning": {
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "QueryRequest": {
+        "type": "object",
+        "required": [
+          "scope",
+          "query"
+        ],
+        "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "query": {
+            "type": "string"
+          },
+          "filters": {
+            "$ref": "#/components/schemas/MemoryFilters"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "consistency": {
+            "type": "string",
+            "enum": [
+              "strong",
+              "eventual"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "QueryRefResult": {
+        "type": "object",
+        "required": [
+          "ref",
+          "score"
+        ],
+        "properties": {
+          "ref": {
+            "$ref": "#/components/schemas/MemoryRef"
+          },
+          "score": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContextWarning"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "QueryResponse": {
+        "type": "object",
+        "required": [
+          "refs"
+        ],
+        "properties": {
+          "refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QueryRefResult"
+            }
+          },
+          "cursor": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HydrateRequest": {
+        "type": "object",
+        "required": [
+          "scope",
+          "refs"
+        ],
+        "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemoryRef"
+            },
+            "minItems": 1
+          },
+          "includeProvenance": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DurableMemoryObject": {
+        "type": "object",
+        "description": "Polymorphic durable object envelope for v0 draft. Specific object shapes remain defined by data-model.v0 spec.",
+        "required": [
+          "id",
+          "type",
+          "scope",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "episode",
+              "atom",
+              "consolidation",
+              "link"
+            ]
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "disputed",
+              "superseded",
+              "tombstoned",
+              "pending",
+              "failed"
+            ]
+          }
+        },
+        "additionalProperties": true
+      },
+      "HydrateResponse": {
+        "type": "object",
+        "required": [
+          "objects",
+          "missing"
+        ],
+        "properties": {
+          "objects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DurableMemoryObject"
+            }
+          },
+          "missing": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemoryRef"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContextBudget": {
+        "type": "object",
+        "required": [
+          "maxTokens"
+        ],
+        "properties": {
+          "maxTokens": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "maxSegments": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "reservedTokens": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContextConstraints": {
+        "type": "object",
+        "description": "Constraint vocabulary from context-assembly.v0 remains partially open in draft prose.",
+        "properties": {
+          "mustIncludeRefs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemoryRef"
+            }
+          },
+          "excludedRefs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemoryRef"
+            }
+          },
+          "includeDisputed": {
+            "type": "boolean"
+          },
+          "preferRecency": {
+            "type": "boolean"
+          },
+          "preferHighConfidence": {
+            "type": "boolean"
+          },
+          "maxSegments": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": true
+      },
+      "AssembleContextRequest": {
+        "type": "object",
+        "required": [
+          "scope",
+          "task",
+          "budget"
+        ],
+        "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "task": {
+            "type": "string"
+          },
+          "budget": {
+            "$ref": "#/components/schemas/ContextBudget"
+          },
+          "filters": {
+            "$ref": "#/components/schemas/MemoryFilters"
+          },
+          "constraints": {
+            "$ref": "#/components/schemas/ContextConstraints"
+          },
+          "consistency": {
+            "type": "string",
+            "enum": [
+              "strong",
+              "eventual"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContextSegment": {
+        "type": "object",
+        "required": [
+          "ref",
+          "score",
+          "provenance"
+        ],
+        "properties": {
+          "ref": {
+            "$ref": "#/components/schemas/MemoryRef"
+          },
+          "content": {},
+          "score": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "provenance": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      },
+      "WorkingContext": {
+        "type": "object",
+        "required": [
+          "scope",
+          "task",
+          "budget",
+          "segments",
+          "tokenEstimate",
+          "truncated",
+          "warnings",
+          "generatedAt"
+        ],
+        "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "task": {
+            "type": "string"
+          },
+          "budget": {
+            "$ref": "#/components/schemas/ContextBudget"
+          },
+          "segments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContextSegment"
+            }
+          },
+          "tokenEstimate": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "truncated": {
+            "type": "boolean"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContextWarning"
+            }
+          },
+          "generatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssembleContextResponse": {
+        "type": "object",
+        "required": [
+          "context"
+        ],
+        "properties": {
+          "context": {
+            "$ref": "#/components/schemas/WorkingContext"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConsolidateRequest": {
+        "type": "object",
+        "required": [
+          "scope",
+          "trigger"
+        ],
+        "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "trigger": {
+            "type": "string",
+            "enum": [
+              "manual",
+              "scheduled",
+              "threshold",
+              "idle"
+            ]
+          },
+          "filters": {
+            "$ref": "#/components/schemas/MemoryFilters"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "enqueue",
+              "run_now"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConsolidateResponse": {
+        "type": "object",
+        "required": [
+          "jobId",
+          "status"
+        ],
+        "properties": {
+          "jobId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "TombstoneRequest": {
+        "type": "object",
+        "required": [
+          "scope",
+          "refs",
+          "reason",
+          "cascadePolicy"
+        ],
+        "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemoryRef"
+            },
+            "minItems": 1
+          },
+          "reason": {
+            "type": "string"
+          },
+          "cascadePolicy": {
+            "type": "string",
+            "enum": [
+              "none",
+              "mark_derived_stale",
+              "tombstone_derived"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "TombstoneResult": {
+        "type": "object",
+        "required": [
+          "ref",
+          "status"
+        ],
+        "properties": {
+          "ref": {
+            "$ref": "#/components/schemas/MemoryRef"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "tombstoned",
+              "already_tombstoned",
+              "not_found",
+              "rejected"
+            ]
+          },
+          "affectedDerivedRefs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemoryRef"
+            }
+          },
+          "error": {
+            "$ref": "#/components/schemas/MemoryApiError"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TombstoneResponse": {
+        "type": "object",
+        "required": [
+          "results"
+        ],
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TombstoneResult"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "MemoryEventType": {
+        "type": "string",
+        "enum": [
+          "episode.ingested",
+          "atom.extracted",
+          "memory.indexed",
+          "consolidation.started",
+          "consolidation.completed",
+          "consolidation.failed",
+          "memory.disputed",
+          "memory.superseded",
+          "memory.tombstoned"
+        ]
+      },
+      "SubscribeRequest": {
+        "type": "object",
+        "required": [
+          "scope"
+        ],
+        "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "eventTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemoryEventType"
+            }
+          },
+          "cursor": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SubscribeResponse": {
+        "type": "object",
+        "required": [
+          "subscriptionId"
+        ],
+        "properties": {
+          "subscriptionId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetJobRequest": {
+        "type": "object",
+        "required": [
+          "scope",
+          "jobId"
+        ],
+        "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "jobId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobStatus": {
+        "type": "string",
+        "enum": [
+          "queued",
+          "running",
+          "completed",
+          "failed",
+          "cancelled"
+        ]
+      },
+      "GetJobResponse": {
+        "type": "object",
+        "required": [
+          "jobId",
+          "type",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "jobId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/JobStatus"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "result": {},
+          "error": {
+            "$ref": "#/components/schemas/MemoryApiError"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
