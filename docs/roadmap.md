@@ -59,6 +59,7 @@ Deliverables:
 Implementation note:
 
 - A development runtime skeleton is available in `runtime/` with in-memory adapters and contract tests.
+- The skeleton now includes a Bun HTTP reference server with a health endpoint and a thin typed client SDK.
 
 Exit criteria:
 

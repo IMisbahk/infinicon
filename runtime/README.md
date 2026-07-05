@@ -30,7 +30,32 @@ bun test
 - `src/types.ts` - public contract types aligned to v0 specs
 - `src/stores/` - in-memory storage port adapters
 - `src/runtime.ts` - memory API operation implementation
+- `src/server/http-server.ts` - reference HTTP server skeleton with health and v0 endpoints
+- `src/client/http-client.ts` - thin client SDK for runtime endpoints
 - `tests/runtime.test.ts` - contract behavior tests
+- `tests/server-client.test.ts` - server and client integration tests
+
+## Start server
+
+```bash
+cd runtime
+bun run src/server/http-server.ts
+```
+
+(or import `startRuntimeServer(port)` and launch from your app entrypoint)
+
+## SDK usage
+
+```ts
+import { InfiniconClient } from "@infinicon/runtime"
+
+const client = new InfiniconClient("http://localhost:3000")
+const health = await client.health()
+```
+
+This SDK intentionally stays thin and does not own memory semantics.
+
+Memory semantics stay in the runtime contract and server implementation.
 
 ## Notes
 

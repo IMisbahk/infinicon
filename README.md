@@ -22,6 +22,7 @@ It is currently in a spec-first architecture phase. The implementation should em
 ## Reference Implementation (early)
 
 - [Runtime skeleton](runtime/README.md)
+- Includes in-memory runtime, Bun HTTP server skeleton, and thin typed client SDK
 
 ## Core Specs
 
