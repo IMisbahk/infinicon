@@ -116,6 +116,10 @@ Exit criteria:
 
 ## Open Decisions
 
+A centralized, source-linked register is maintained in [`open-decisions.md`](open-decisions.md).
+
+Current program-level decisions:
+
 - Reference implementation language.
 - First SDK language.
 - License.
