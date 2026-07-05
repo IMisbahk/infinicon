@@ -1,0 +1,37 @@
+.dockerignore
+  s_053366b8594682::t_79f93108af0574 1-17
+.prettierrc
+  s_053366b8594682::t_e31fb0f369a718 1-7
+.gitattributes
+  s_053366b8594682::t_a671c551667755 1-11
+.editorconfig
+  s_053366b8594682::t_4e1472e6a6dfc7 1-18
+.prettierignore
+  s_053366b8594682::t_ce6ffcb50b3d7b 1-9
+.bun-version
+  s_053366b8594682::t_e125ce2cf84a2a 1
+.env.example
+  s_053366b8594682::t_34ff6a3f862ecc 1-6
+.gitignore
+  s_053366b8594682::t_717483fb23c187 4-6
+.cursorignore
+  s_053366b8594682::t_c92e4e9824663c 1-8
+.npmrc
+  s_053366b8594682::t_45058d56a42afc 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "f03678fa606e84dba9765fe8281ca7c0bcc4ba57",
+  "prompts": {},
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
