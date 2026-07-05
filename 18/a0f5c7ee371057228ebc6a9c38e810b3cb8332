@@ -1,0 +1,22 @@
+tests/runtime.test.ts
+  s_8005768c0df3a9::t_dc31c679d18ed8 1-2,6-15,26-27,29-51,53-83,85-109,219-220
+  s_8005768c0df3a9::t_adfd545a651dd6 3-5,16-25,28,52,84,110-218
+tests/adapters.test.ts
+  s_8005768c0df3a9::t_d27639efffe250 1-141
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "18a0f5c7ee371057228ebc6a9c38e810b3cb8332",
+  "prompts": {},
+  "sessions": {
+    "s_8005768c0df3a9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c7be954f-d7f9-4882-89bd-0cb901b6af93",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
