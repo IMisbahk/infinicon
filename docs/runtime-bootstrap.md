@@ -51,7 +51,32 @@ This bootstrap intentionally does **not** include:
 
 - Indexing/ranking is deterministic token-overlap baseline for bootstrap validation
 - In-memory adapter is for development and conformance checks only
-- Job handling is minimal and in-process
+- Job handling is still in-process (not distributed), but now persists basic lifecycle state and supports retrieval through `getJob`
+- Event stream is baseline in-memory lifecycle tracking and should be replaced by durable event infrastructure for production
+
+## Validation and error baseline
+
+Implemented conservative validation guards for:
+- `ingest`
+- `query`
+- `hydrate`
+- `assembleContext`
+- `consolidate`
+- `tombstone`
+- `subscribe`
+- `getJob`
+
+Server-level error behavior now guarantees structured JSON for invalid request bodies (`invalid_json`) and runtime request validation failures (`invalid_request`).
+
+## Event semantics baseline
+
+Runtime now emits minimal lifecycle events into metadata store:
+- `episode.ingested`
+- `consolidation.started`
+- `consolidation.completed` or `consolidation.queued`
+- `memory.tombstoned`
+
+`subscribe` returns scoped events since cursor with optional event-type filtering.
 
 ## Why this shape
 
