@@ -1,0 +1,75 @@
+tests/http.server.routes.test.ts
+  s_053366b8594682::t_0a8b0d4cd670ab 43
+  s_053366b8594682::t_6675900be62528 6,47
+tests/jobRunner.test.ts
+  s_053366b8594682::t_1bdf385bd6d31b 1-53
+tests/http.auth.test.ts
+  s_053366b8594682::t_0a06668c5bf46f 1-49
+docs/devops/deployment.md
+  s_053366b8594682::t_dcc1520b467c75 1-45
+tests/fixtures/retrieval/basic-ranking.json
+  s_053366b8594682::t_fe640c20ba87f8 1-20
+tests/retrievalFixtures.test.ts
+  s_053366b8594682::t_a9fdec32c5ac08 1-53,59-63
+  s_053366b8594682::t_e0a9a072c32bce 54-58
+tests/runtime.test.ts
+  s_053366b8594682::t_65f65909a4dbc8 326
+  s_605040629d538e::t_38a146203b2d95 147-196
+render.yaml
+  s_053366b8594682::t_b6c28d2c13549d 1-23
+tests/evolution.test.ts
+  s_053366b8594682::t_a1de56569a37ab 152
+  s_053366b8594682::t_38115976a34c3c 1-151,153-163
+tests/server.health.test.ts
+  s_053366b8594682::t_f50433da853236 23-24
+  s_053366b8594682::t_08d05c3187e342 6,11-22,25
+docs/roadmap.md
+  s_053366b8594682::t_392450675cd572 111-116,129-134
+  s_053366b8594682::t_52e2b24e2a8009 83-87
+  s_c4c40e1c6eb3a7::t_cc41ef912b2a6e 62-64
+  s_053366b8594682::t_ef55d61afb526d 135
+tests/pluginBootstrap.test.ts
+  s_053366b8594682::t_4756357f0ffd90 1-16,18-20,22-50,53,131-132
+  s_053366b8594682::t_612fe41af5e815 51
+  s_053366b8594682::t_d14c6dc23be973 52,54-130
+  s_053366b8594682::t_2fa309393ad2a6 17,21
+docs/devops/migrations/001_initial.sql
+  s_053366b8594682::t_76d1a991fe31e4 1-29
+docs/devops/backup-restore.md
+  s_053366b8594682::t_2745d28399b9df 1-33
+tests/memory.service.test.ts
+  s_053366b8594682::t_e91ada3c100c2a 8
+  s_053366b8594682::t_f96c5441aa7212 25-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "ea09f814284d6550a9e9a227a72c06ca803dbb9e",
+  "prompts": {},
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    },
+    "s_605040629d538e": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "586e7a62-6ff0-4862-8f4b-5cb934460877",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    },
+    "s_c4c40e1c6eb3a7": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "6edcd020-1ac1-4f32-b11b-c5c46e7813f9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
