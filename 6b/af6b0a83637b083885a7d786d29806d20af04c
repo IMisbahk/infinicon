@@ -1,0 +1,19 @@
+bun.lock
+  s_3ac260317d7bfe::t_32c52d86c2bb38 35-41,51-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "6baf6b0a83637b083885a7d786d29806d20af04c",
+  "prompts": {},
+  "sessions": {
+    "s_3ac260317d7bfe": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a4c5f31f-fd18-4213-9d4d-ce9aada225a1",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
