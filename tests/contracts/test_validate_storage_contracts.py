@@ -1,6 +1,8 @@
 import unittest
 
-from docs.contracts import validate_storage_contracts as validator
+from docs.contracts.contract_validation import ValidationError
+from docs.contracts.contract_validation import validate_adapter_descriptor
+from docs.contracts.contract_validation import validate_manifest
 
 
 class ValidateStorageContractsTests(unittest.TestCase):
@@ -88,14 +90,14 @@ class ValidateStorageContractsTests(unittest.TestCase):
         }
 
     def test_validate_manifest_accepts_current_shape(self):
-        validator.validate_manifest(self.make_valid_manifest())
+        validate_manifest(self.make_valid_manifest())
 
     def test_validate_manifest_rejects_capability_drift(self):
         manifest = self.make_valid_manifest()
         manifest["ports"]["episodeStore"]["requiredCapabilities"].append("newCapability")
 
-        with self.assertRaises(ValueError):
-            validator.validate_manifest(manifest)
+        with self.assertRaises(ValidationError):
+            validate_manifest(manifest)
 
     def test_validate_example_requires_backup_restore_when_production(self):
         example = {
@@ -107,8 +109,8 @@ class ValidateStorageContractsTests(unittest.TestCase):
             "supportedFilters": ["x"],
             "productionReady": True,
         }
-        with self.assertRaises(ValueError):
-            validator.validate_example(example, "prod")
+        with self.assertRaises(ValidationError):
+            validate_adapter_descriptor(example, "prod")
 
 
 if __name__ == "__main__":

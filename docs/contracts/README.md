@@ -24,8 +24,20 @@ Run local validation:
 python3 docs/contracts/validate_storage_contracts.py
 ```
 
+Run bundle validation via CLI:
+
+```bash
+python3 -m docs.contracts.contract_cli bundle --root docs/contracts
+```
+
+Run adapter descriptor validation via CLI:
+
+```bash
+python3 -m docs.contracts.contract_cli adapter --file docs/contracts/examples/storage-adapter-capabilities.pgvector.example.v0.json --name pgvector
+```
+
 Run validator tests:
 
 ```bash
-python3 -m unittest tests/contracts/test_validate_storage_contracts.py
+python3 -m unittest tests/contracts/test_validate_storage_contracts.py tests/contracts/test_contract_validation_library.py tests/contracts/test_contract_cli.py
 ```
