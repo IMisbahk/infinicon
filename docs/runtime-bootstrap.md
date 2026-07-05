@@ -7,12 +7,15 @@ The reference runtime lives in the repository root under `src/`, not in separate
 - `src/runtime/` — `MemoryRuntimeService`, storage ports, in-memory adapters, plugin contracts
 - `src/transport/httpServer.ts` — HTTP routing for v0 memory API
 - `src/server.ts` — Bun server entrypoint
-- `src/client.ts` — typed SDK client
+- `src/client.ts` — SDK implementation (import via `@infinicon/sdk` in apps)
 
 ## Packages
 
+- `packages/sdk/` — `@infinicon/sdk` package export
 - `packages/core-types/` — spec-aligned contracts and validators
 - `packages/plugin-host/` — plugin registration host
+- `examples/simple-chat.ts` — minimal agent
+- `examples/agent-chat/` — full agent example
 
 ## Verification
 

@@ -2,11 +2,13 @@
 
 > give your ai agents unbounded context.
 
-Infinicon is a production-grade memory runtime for AI agents.
+Infinicon is a **memory SDK + reference server** for AI agents. Use `@infinicon/sdk` from your app; run the reference server locally or on Render for storage and retrieval.
 
-It is currently in a spec-first architecture phase. Implementation follows accepted specifications and ADRs.
+Specs and ADRs in `docs/` remain the source of truth for behavior.
 
 ## Start Here
+
+**Building an agent?** → [`examples/simple-chat.ts`](examples/simple-chat.ts) + [`@infinicon/sdk`](packages/sdk/README.md)
 
 - [Vision](docs/vision.md)
 - [Glossary](docs/glossary.md)
@@ -24,31 +26,31 @@ src/
   runtime/          # canonical memory runtime (MemoryRuntimeService + adapters)
   transport/        # HTTP routing layer
   server.ts         # Bun server entrypoint
-  client.ts         # typed SDK client
+  client.ts         # SDK source (consume via @infinicon/sdk)
   types.ts          # SDK-facing type exports
 packages/
+  sdk/              # @infinicon/sdk — use this from your agent app
   core-types/       # spec-aligned contracts, validators, schemas
   plugin-host/      # plugin registration and lifecycle host
-contracts/          # machine-readable OpenAPI + JSON schemas (CI canonical)
-docs/
-  specs/            # normative prose specifications
-  contracts/        # storage manifest contracts
-examples/           # documentation examples
-tests/              # runtime, server, and devops tests
+examples/
+  simple-chat.ts    # one-file agent demo (start here)
+  agent-chat/       # fuller SDK example with recall + consolidation
+contracts/          # machine-readable OpenAPI + JSON schemas
+docs/               # specs, ADRs, devops
+tests/              # runtime, server, contract tests
 ```
 
 ## Canonical Subsystems
 
 | Subsystem | Location |
 |-----------|----------|
+| **SDK (start here)** | `packages/sdk/` → `@infinicon/sdk` |
 | Runtime | `src/runtime/service.ts` |
 | Server | `src/server.ts` + `src/transport/httpServer.ts` |
-| SDK | `src/client.ts` |
 | Core types | `packages/core-types/` |
 | Plugin host | `packages/plugin-host/` |
-| Storage adapters | `src/runtime/adapters/inMemoryStores.ts` |
+| Storage adapters | `src/runtime/adapters/` |
 | API contracts | `contracts/` |
-| Storage contracts | `docs/contracts/` |
 
 ## Run Locally
 
@@ -109,13 +111,17 @@ Prose specs in `docs/specs/*.md` remain normative. Update prose first, then cont
 
 ## Examples
 
-- [Examples overview](examples/README.md)
+| Command | What |
+|---------|------|
+| `bun run example:simple` | One-file chat agent ([`examples/simple-chat.ts`](examples/simple-chat.ts)) |
+| `bun run example:agent` | Full example with recall + consolidation ([`examples/agent-chat/`](examples/agent-chat/README.md)) |
+| JSON fixtures | [`examples/memory-api/`](examples/memory-api/) etc. — spec samples, not runnable apps |
 
-## Current Limits
+See [examples/README.md](examples/README.md).
 
-- In-memory storage only (process-local)
-- Consolidation jobs are metadata-driven stubs with optional plugin-owned synthesis
-- Lexical index ranking in the reference adapter
-- No authn/authz transport layer yet
+## Reference server notes
 
-These boundaries are intentional to preserve spec-first modularity.
+- Default storage is **in-memory** (lost on server restart). Set `DATABASE_URL` for Postgres.
+- Retrieval in the reference stack is **lexical** unless you plug in embedder/ranker plugins.
+- Optional Bearer auth via `INFINICON_API_KEY` on the server.
+- [`docs/devops/deployment.md`](docs/devops/deployment.md) for Render/production.

@@ -37,10 +37,10 @@ It follows the architecture and v0 specs without expanding beyond current owners
 
 ## Explicit limitations in this skeleton
 
-- In-memory adapters are for development and tests only
-- No authz/authn transport layer yet (deferred by project roadmap)
-- Consolidator behavior is plugin-owned and optional in runtime config
-- Index retrieval is lexical/deterministic only in this skeleton
+- In-memory adapters are the default; Postgres optional via `DATABASE_URL`
+- Optional Bearer auth (`INFINICON_API_KEY`); no fine-grained RBAC yet
+- Index retrieval is lexical in the default plugins; embedder/ranker plugins are swappable
+- See [`examples/simple-chat.ts`](../../examples/simple-chat.ts) for SDK usage
 
 ## Verification
 

@@ -1,24 +1,31 @@
-# Examples Subsystem
+# Examples
 
-This directory contains normative-style examples for Infinicon v0 draft specifications.
+## Runnable (SDK)
 
-These files are implementation guidance, not a replacement for the specs. If an example and a spec ever diverge, the spec wins.
+Start with the **one-file** agent — same env as agent-chat:
 
-## Layout
+```bash
+cp examples/agent-chat/.env.example examples/agent-chat/.env
+bun run dev          # repo root, separate terminal
+bun run example:simple
+```
 
-- `data-model/` — sample durable and ephemeral objects from `docs/specs/data-model.v0.md`
-- `memory-api/` — sample request/response payloads from `docs/specs/memory-api.v0.md`
-- `context-assembly/` — focused context assembly edge-case examples from `docs/specs/context-assembly.v0.md`
-- `plugin-interface/` — plugin descriptor examples from `docs/specs/plugin-interface.v0.md`
-- `agent-chat/` — full agent using `@infinicon/sdk` ([README](agent-chat/README.md))
-- `simple-chat.ts` — **one-file** minimal agent (`bun run example:simple`, same `.env` as agent-chat)
+| Path | Description |
+|------|-------------|
+| [`simple-chat.ts`](simple-chat.ts) | Minimal query → LLM → ingest loop |
+| [`agent-chat/`](agent-chat/README.md) | Full example: recall fan-out, consolidation, config split |
 
-## Validation
+## Spec fixtures (not runnable)
 
-Run the repository validator:
+Normative JSON samples — if an example and a spec diverge, the spec wins.
+
+- `data-model/` — sample objects from `docs/specs/data-model.v0.md`
+- `memory-api/` — request/response payloads from `docs/specs/memory-api.v0.md`
+- `context-assembly/` — edge cases from `docs/specs/context-assembly.v0.md`
+- `plugin-interface/` — plugin descriptors from `docs/specs/plugin-interface.v0.md`
+
+Validate fixtures:
 
 ```bash
 node tests/validate-examples.js
 ```
-
-The validator checks that examples parse and satisfy required v0 semantic constraints.
