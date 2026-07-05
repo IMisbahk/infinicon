@@ -1,8 +1,6 @@
 /**
  * Minimal agent: query memory → ask OpenAI → ingest the turn.
- * Uses examples/agent-chat/.env (same as agent-chat).
- *
- *   bun run example:simple
+ * Run via `bun start` from repo root (zero config).
  */
 import { InfiniconClient, type MemoryRef } from "@infinicon/sdk"
 import * as readline from "readline/promises"
@@ -14,7 +12,7 @@ const openAiModel = process.env.OPENAI_MODEL?.trim() || "gpt-4o-mini"
 
 const scope = {
   tenantId: process.env.INFINICON_TENANT_ID ?? "demo",
-  namespaceId: process.env.INFINICON_NAMESPACE_ID ?? "agent-chat",
+  namespaceId: process.env.INFINICON_NAMESPACE_ID ?? "dev",
   ...(process.env.INFINICON_AGENT_ID ? { agentId: process.env.INFINICON_AGENT_ID } : {}),
 }
 

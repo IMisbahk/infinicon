@@ -28,4 +28,4 @@ const context = await client.assembleContext({
 })
 ```
 
-See [`examples/agent-chat`](../../examples/agent-chat/README.md) for a full agent loop.
+See repo root: `bun install && bun start`
