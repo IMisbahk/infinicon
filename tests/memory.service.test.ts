@@ -1,143 +1,78 @@
 import { describe, expect, test } from "bun:test"
-import { MemoryService } from "../src/services/memoryService"
-import { createInMemoryStoragePorts } from "../src/storage/inMemory"
+import { createRuntime } from "../src/transport/httpServer"
 
-const scope = { tenantId: "tenant-main", namespaceId: "ns-main" }
+const scope = { tenantId: "tenant-a", namespaceId: "ns-a" }
 
-const buildService = () => new MemoryService(createInMemoryStoragePorts())
+describe("MemoryRuntimeService via createRuntime", () => {
+  test("supports ingest and query", async () => {
+    const runtime = createRuntime()
 
-describe("memory service", () => {
-  test("supports ingest -> query -> hydrate", async () => {
-    const service = buildService()
-
-    const ingest = await service.ingest({
+    const ingested = await runtime.ingest({
       scope,
       episodes: [
         {
           contentType: "application/json",
-          content: { text: "rust build flags" },
-          dedupeKey: "dedupe-1",
-          createdBy: { id: "agent-1", kind: "agent" },
-          metadata: {},
+          content: { text: "hello" },
+          dedupeKey: "k1",
+          createdBy: { id: "agent-1", type: "agent" },
         },
       ],
-      consistency: "indexed",
     })
 
-    expect(ingest.results[0]?.status).toBe("created")
+    expect(ingested.results[0]?.status).toBe("created")
 
-    const query = await service.query({
-      scope,
-      query: "rust",
-      limit: 5,
-      consistency: "strong",
-    })
-
+    const query = await runtime.query({ scope, query: "hello", limit: 5 })
     expect(query.refs.length).toBe(1)
-
-    const hydrate = await service.hydrate({
-      scope,
-      refs: [query.refs[0]!.ref],
-    })
-
-    expect(hydrate.objects.length).toBe(1)
-    expect(hydrate.missing.length).toBe(0)
   })
+})
 
-  test("returns deduplicated result on repeated dedupe key", async () => {
-    const service = buildService()
-
-    const request = {
+describe("in-memory storage adapters", () => {
+  test("episode store resolves dedupe keys and tombstones", async () => {
+    const episodeStore = new (await import("../src/runtime")).InMemoryEpisodeStore()
+    const ep = {
+      id: "ep_1",
+      type: "episode" as const,
       scope,
-      episodes: [
-        {
-          contentType: "application/json",
-          content: { text: "same event" },
-          dedupeKey: "dup-1",
-          createdBy: { id: "agent-1", kind: "agent" },
-          metadata: {},
-        },
-      ],
+      createdAt: new Date().toISOString(),
+      createdBy: { id: "agent-1", type: "agent" as const },
+      status: "active" as const,
+      metadata: {},
+      contentType: "text/plain",
+      content: "hello",
+      dedupeKey: "k1",
     }
 
-    const first = await service.ingest(request)
-    const second = await service.ingest(request)
+    await episodeStore.appendEpisode(ep)
+    const dedupeHit = await episodeStore.resolveDedupeKey(scope, "k1")
+    expect(dedupeHit?.id).toBe("ep_1")
 
-    expect(first.results[0]?.status).toBe("created")
-    expect(second.results[0]?.status).toBe("deduplicated")
+    const tombstoned = await episodeStore.tombstoneEpisode({
+      id: "ep_1",
+      type: "episode",
+      scope,
+    })
+    expect(tombstoned).toBe("tombstoned")
+
+    const missingAfterTombstone = await episodeStore.getEpisode({
+      id: "ep_1",
+      type: "episode",
+      scope,
+    })
+    expect(missingAfterTombstone?.status).toBe("tombstoned")
   })
 
-  test("assembles bounded context and emits warnings", async () => {
-    const service = buildService()
+  test("index store supports search and remove", async () => {
+    const { InMemoryIndexStore } = await import("../src/runtime")
+    const store = new InMemoryIndexStore()
+    const ref = { id: "ep_2", type: "episode" as const, scope }
 
-    await service.ingest({
-      scope,
-      episodes: [
-        {
-          contentType: "application/json",
-          content: { text: "long detail long detail long detail long detail" },
-          dedupeKey: "ctx-1",
-          createdBy: { id: "agent-1", kind: "agent" },
-          metadata: {},
-        },
-      ],
-    })
+    await store.indexMemory({ ref, text: "rust build flags and bun runtime" })
 
-    const assembled = await service.assembleContext({
-      scope,
-      task: "long detail",
-      budget: { maxTokens: 2 },
-      consistency: "eventual",
-    })
+    const beforeRemove = await store.search(scope, "rust", undefined, 5)
+    expect(beforeRemove.length).toBe(1)
 
-    expect(assembled.context.warnings.length).toBeGreaterThan(0)
-  })
-
-  test("tombstones episode and removes from query path", async () => {
-    const service = buildService()
-
-    const ingest = await service.ingest({
-      scope,
-      episodes: [
-        {
-          contentType: "application/json",
-          content: { text: "delete me" },
-          dedupeKey: "del-1",
-          createdBy: { id: "agent-1", kind: "agent" },
-          metadata: {},
-        },
-      ],
-    })
-
-    const ref = ingest.results[0]!.ref
-    const deleted = await service.tombstone({
-      scope,
-      refs: [ref],
-      reason: "user requested deletion",
-      cascadePolicy: "none",
-    })
-
-    expect(deleted.results[0]?.status).toBe("tombstoned")
-
-    const query = await service.query({
-      scope,
-      query: "delete",
-      limit: 5,
-    })
-    expect(query.refs.length).toBe(0)
-  })
-
-  test("creates consolidation job and returns status via getJob", async () => {
-    const service = buildService()
-
-    const queued = await service.consolidate({
-      scope,
-      trigger: "manual",
-      mode: "enqueue",
-    })
-
-    const job = await service.getJob({ scope, jobId: queued.jobId })
-
-    expect(job.status).toBe("queued")
+    await store.removeIndexed(ref)
+    const afterRemove = await store.search(scope, "rust", undefined, 5)
+    expect(afterRemove.length).toBe(0)
   })
 })

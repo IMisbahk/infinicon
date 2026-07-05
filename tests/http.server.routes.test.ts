@@ -16,7 +16,7 @@ describe("http routes", () => {
               contentType: "application/json",
               content: { text: "bun runtime" },
               dedupeKey: "r1",
-              createdBy: { id: "agent-1", kind: "agent" },
+              createdBy: { id: "agent-1", type: "agent" },
               metadata: {},
             },
           ],
@@ -56,6 +56,6 @@ describe("http routes", () => {
 
     expect(response.status).toBe(400)
     const body = await response.json()
-    expect(body.code).toBe("invalid_request")
+    expect(body.code).toBe("invalid_scope")
   })
 })

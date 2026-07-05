@@ -8,6 +8,6 @@ describe("http server", () => {
 
     expect(response.status).toBe(200)
     const body = await response.json()
-    expect(body).toEqual({ status: "ok" })
+    expect(body).toEqual({ ok: true, service: "infinicon-runtime" })
   })
 })

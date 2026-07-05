@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { validateAssembleContext, validateIngest, validateTombstone } from "../src/core/validation"
+import { validateAssembleContext, validateIngest, validateTombstone } from "../src/runtime/validation"
 
 describe("validation", () => {
   test("validateIngest rejects empty episodes", () => {
