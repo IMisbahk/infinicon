@@ -1,0 +1,58 @@
+package.json
+  s_98b357d7cbc526::t_efd81d64591fb9 6-8,15
+  s_98b357d7cbc526::t_14b2da750a7a7f 16-17
+tsconfig.json
+  s_98b357d7cbc526::t_5cf2de388067a5 11-12,21-22
+README.md
+  s_98b357d7cbc526::t_7b50f4c7cf3673 157-160
+packages/core-types/README.md
+  s_98b357d7cbc526::t_2fdbc7cae303ec 1-83
+packages/core-types/package.json
+  s_98b357d7cbc526::t_85d587f3f401a1 1-14
+packages/core-types/src/api.ts
+  s_98b357d7cbc526::t_22e7636daef547 1-169
+packages/core-types/src/conformance.ts
+  s_98b357d7cbc526::t_497d950421a99f 1-197
+packages/core-types/src/guards.ts
+  s_98b357d7cbc526::t_0dbd1201d5a2ec 1-20
+packages/core-types/src/index.ts
+  s_98b357d7cbc526::t_8847339616ea61 1-9
+packages/core-types/src/model.ts
+  s_98b357d7cbc526::t_95d7c2d71537ff 1-163
+packages/core-types/src/normalizers.ts
+  s_98b357d7cbc526::t_dc3a15eec1ab96 1-49
+packages/core-types/src/plugin.ts
+  s_98b357d7cbc526::t_7ff30f8cbb8105 1-155
+packages/core-types/src/schemas.ts
+  s_98b357d7cbc526::t_f819169702c95f 1-150
+packages/core-types/src/storage.ts
+  s_98b357d7cbc526::t_460ac3dce68370 1-81
+packages/core-types/src/validators.ts
+  s_98b357d7cbc526::t_861019c683f9c2 1-258
+packages/core-types/test/conformance.test.ts
+  s_98b357d7cbc526::t_5a4b9798545580 1-202
+packages/core-types/test/contracts.test.ts
+  s_98b357d7cbc526::t_c69fcbe95b025e 1-209
+packages/core-types/test/schemas.test.ts
+  s_98b357d7cbc526::t_56bec953b20592 1-65
+packages/core-types/test/validators.test.ts
+  s_98b357d7cbc526::t_e87e60ef1f8b30 1-114
+.gitignore
+  s_98b357d7cbc526::t_a5a327d7301a83 15-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "2193e8fdae20631c6567b748445da8c50c8664e0",
+  "prompts": {},
+  "sessions": {
+    "s_98b357d7cbc526": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a452462b-f2b0-43fe-a769-579ba6aff394",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
