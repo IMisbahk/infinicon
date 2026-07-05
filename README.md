@@ -39,3 +39,42 @@ python3 contracts/scripts/validate_contracts.py
 
 Spec-first rule still applies: update `docs/specs/*` first for behavior changes, then update contracts.
 
+## Reference Server Skeleton (v0 draft)
+
+This branch now includes a conservative Bun-based reference server skeleton aligned to current v0 specs.
+
+Current runtime layout:
+
+- `src/server.ts` — Bun entrypoint
+- `src/transport/httpServer.ts` — HTTP routing layer
+- `src/services/memoryService.ts` — Memory API service behavior
+- `src/domain/types.ts` — typed request/response model
+- `src/domain/validation.ts` — request validators
+- `src/storage/ports.ts` — storage port interfaces
+- `src/storage/inMemory.ts` — in-memory adapter implementations
+- `tests/*.test.ts` — service/storage/route tests
+
+Run the server:
+
+```bash
+bun run src/server.ts
+```
+
+Run tests:
+
+```bash
+bun test
+```
+
+Run full verification:
+
+```bash
+bun run verify
+```
+
+Notes:
+
+- Scope enforcement and tombstone hiding are implemented for the in-memory adapter path
+- Consolidation is job-backed and intentionally conservative in this skeleton
+- This is a baseline implementation target, not the final production adapter set
+

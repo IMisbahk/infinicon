@@ -4,7 +4,7 @@
 
 Infinicon is a **production-grade memory runtime for AI agents** with a strict **spec-first** development approach.
 
-Current repo state: documentation/specification phase with initial machine-readable contracts and validation scaffolding under `contracts/`.
+Current repo state: documentation/specification + machine-readable contracts + Bun reference server skeleton (`src/`, `tests/`).
 
 Core goals from docs:
 
@@ -33,10 +33,16 @@ Primary stack right now:
 - `contracts/schemas/*` — draft JSON schemas for data model and interfaces
 - `contracts/fixtures/*` — valid/invalid fixture payloads for contract checks
 - `contracts/scripts/validate_contracts.py` — dependency-free contract validation runner
+- `src/server.ts` — runtime entrypoint for Bun server
+- `src/transport/httpServer.ts` — API route mapping and error translation
+- `src/services/memoryService.ts` — core Memory API behavior implementation
+- `src/domain/*` — typed models and request validation helpers
+- `src/storage/*` — storage ports and in-memory adapters
+- `tests/*` — runtime and contract-focused tests
 
 ## Build & run
 
-This repository is still primarily docs/spec, plus early contracts and verification scripts.
+This repository now has both spec docs and an executable Bun server skeleton.
 
 Current practical verification commands:
 
@@ -44,14 +50,18 @@ Current practical verification commands:
 # repo health
 git status
 
-# inspect project docs tree
-find docs -maxdepth 3 -type f | sort
-
 # contract validation
 python3 contracts/scripts/validate_contracts.py
-```
 
-When runtime packages land, extend this section with exact build/test/run commands from the project toolchain.
+# runtime tests
+bun test
+
+# full local verification
+bun run verify
+
+# run server
+bun run src/server.ts
+```
 
 ## Conventions
 
