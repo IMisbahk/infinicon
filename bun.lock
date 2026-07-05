@@ -6,14 +6,21 @@
       "name": "infinicon",
       "dependencies": {
         "@infinicon/core-types": "workspace:*",
+        "@infinicon/plugin-host": "workspace:*",
       },
     },
     "packages/core-types": {
       "name": "@infinicon/core-types",
       "version": "0.1.0",
     },
+    "packages/plugin-host": {
+      "name": "@infinicon/plugin-host",
+      "version": "0.1.0",
+    },
   },
   "packages": {
     "@infinicon/core-types": ["@infinicon/core-types@workspace:packages/core-types"],
+
+    "@infinicon/plugin-host": ["@infinicon/plugin-host@workspace:packages/plugin-host"],
   }
 }
