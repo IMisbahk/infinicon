@@ -47,6 +47,7 @@ This branch includes an initial thin TypeScript SDK scaffold aligned with the Me
 ```bash
 bun run build
 bun test
+bun run typecheck
 ```
 
 ### Notes

@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./dist --target node",
+    "build": "bun build ./src/index.ts --outdir ./dist --target node && bunx tsc --emitDeclarationOnly --declarationDir ./dist",
     "test": "bun test",
     "typecheck": "bunx tsc --noEmit",
     "check": "bun test && bunx tsc --noEmit"
