@@ -1,3 +1,5 @@
 export { InfiniconClient, type InfiniconClientConfig } from "../../../src/client.ts"
+export { createClient, openMemory, scopeFromEnv, withScope } from "../../../src/createClient.ts"
 export { InfiniconSdkError, parseMemoryApiError } from "../../../src/errors.ts"
+export { ScopedMemory } from "../../../src/scopedMemory.ts"
 export type * from "../../../src/types.ts"
