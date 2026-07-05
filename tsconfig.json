@@ -23,13 +23,15 @@
     ],
     "paths": {
       "@infinicon/core-types": ["./packages/core-types/src/index.ts"],
-      "@infinicon/plugin-host": ["./packages/plugin-host/src/index.ts"]
+      "@infinicon/plugin-host": ["./packages/plugin-host/src/index.ts"],
+      "@infinicon/sdk": ["./packages/sdk/src/index.ts"]
     }
   },
   "include": [
     "src/**/*.ts",
     "test/**/*.ts",
     "tests/**/*.ts",
-    "packages/**/*.ts"
+    "packages/**/*.ts",
+    "examples/agent-chat/**/*.ts"
   ]
 }

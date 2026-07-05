@@ -9,6 +9,13 @@
         "@infinicon/plugin-host": "workspace:*",
       },
     },
+    "examples/agent-chat": {
+      "name": "@infinicon/example-agent-chat",
+      "version": "0.1.0",
+      "dependencies": {
+        "@infinicon/sdk": "workspace:*",
+      },
+    },
     "packages/core-types": {
       "name": "@infinicon/core-types",
       "version": "0.1.0",
@@ -17,10 +24,21 @@
       "name": "@infinicon/plugin-host",
       "version": "0.1.0",
     },
+    "packages/sdk": {
+      "name": "@infinicon/sdk",
+      "version": "0.1.0",
+      "dependencies": {
+        "@infinicon/core-types": "workspace:*",
+      },
+    },
   },
   "packages": {
     "@infinicon/core-types": ["@infinicon/core-types@workspace:packages/core-types"],
 
+    "@infinicon/example-agent-chat": ["@infinicon/example-agent-chat@workspace:examples/agent-chat"],
+
     "@infinicon/plugin-host": ["@infinicon/plugin-host@workspace:packages/plugin-host"],
+
+    "@infinicon/sdk": ["@infinicon/sdk@workspace:packages/sdk"],
   }
 }
