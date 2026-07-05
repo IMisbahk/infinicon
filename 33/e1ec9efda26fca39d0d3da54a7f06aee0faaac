@@ -1,0 +1,37 @@
+src/runtime/plugins.ts
+  s_053366b8594682::t_ee56814cb3207a 1
+src/runtime/adapters/inMemoryStores.ts
+  s_053366b8594682::t_5bd8f58e2b3bc9 9,20-21
+src/runtime/ports.ts
+  s_053366b8594682::t_e2a766292eedf6 3-6,11-17,20-27,29-35,38,40-41,44,47,50-54,57-65,68-74,77-81
+src/runtime/service.ts
+  s_053366b8594682::t_388ec59a04a814 25,32
+  s_053366b8594682::t_13c2c250236aad 41
+  s_053366b8594682::t_f5a075c3f78daa 510-532
+src/runtime/index.ts
+  s_053366b8594682::t_bbfc73a61709d8 6
+src/runtime/validation.ts
+  s_053366b8594682::t_36316c9ec94220 2-12,17-92
+src/runtime/errors.ts
+  s_053366b8594682::t_cf534561a0d984 51-81
+src/runtime/utils.ts
+  s_053366b8594682::t_a172b2419081ef 5,7,12-18,26,28-30
+src/runtime/types.ts
+  s_053366b8594682::t_e1666c720b3a30 1-8,14,17-20,22,30-36,39-46,52-54,56-63,66-68,70-78,81,83,86-91,94,114-115,122-123,137-210,236-237,242,246-251,271-276,279-280,289
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "33e1ec9efda26fca39d0d3da54a7f06aee0faaac",
+  "prompts": {},
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
