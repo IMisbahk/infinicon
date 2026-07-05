@@ -1,0 +1,23 @@
+docs/contracts/validate_storage_contracts.py
+  s_a3fbae59981f52::t_4f0572352d98f8 183,201-208
+  s_a3fbae59981f52::t_841a1bd7ea84c6 35-40
+  s_a3fbae59981f52::t_89c46530c3d955 15-23
+  s_a3fbae59981f52::t_db440fa555582d 48-69,71-131,137-146
+  s_a3fbae59981f52::t_0634bd8ab62751 158
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "889af0519fc7daa4fbfdedb35c11f7ef1e385ebd",
+  "prompts": {},
+  "sessions": {
+    "s_a3fbae59981f52": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ff597009-35b5-4bcf-967d-d70f0284c8e7",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
