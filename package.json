@@ -1,0 +1,14 @@
+{
+  "name": "infinicon-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reference server skeleton for Infinicon memory runtime",
+  "type": "module",
+  "scripts": {
+    "build": "bun build src/server.ts --outdir dist --target bun",
+    "dev": "bun run src/server.ts",
+    "start": "bun run src/server.ts",
+    "test": "bun test",
+    "verify": "bun test && python3 contracts/scripts/validate_contracts.py"
+  }
+}
