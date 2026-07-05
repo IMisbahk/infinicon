@@ -1,0 +1,42 @@
+package.json
+  s_98b357d7cbc526::t_c3fab18c2b561e 17,20-21
+src/index.ts
+  s_98b357d7cbc526::t_a1f6367d865a2a 7
+  s_98b357d7cbc526::t_276da7012c0170 8-10
+tsconfig.json
+  s_98b357d7cbc526::t_6e749d09a9ef58 13-15
+README.md
+  s_98b357d7cbc526::t_058c68b9284107 192-223
+docs/specs/sdk-client.v0.md
+  s_98b357d7cbc526::t_6ad47571c22a96 1-99
+src/client.ts
+  s_98b357d7cbc526::t_dfb242da49a3ce 1-108
+src/errors.ts
+  s_98b357d7cbc526::t_9ca5ff44b88a3e 1-71
+src/http.ts
+  s_98b357d7cbc526::t_02d0b897190a3e 1-90
+src/types.ts
+  s_98b357d7cbc526::t_ca005348b2de0a 1-282
+test/client.test.ts
+  s_98b357d7cbc526::t_64f9f2f336abe8 1-208
+test/types.test.ts
+  s_98b357d7cbc526::t_b386f9397491e3 1-45
+.gitignore
+  s_98b357d7cbc526::t_fe1407b541378f 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "c712786968374037d155b6d47b3f9b4685f4c836",
+  "prompts": {},
+  "sessions": {
+    "s_98b357d7cbc526": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a452462b-f2b0-43fe-a769-579ba6aff394",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
