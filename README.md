@@ -25,5 +25,5 @@ It is currently in a spec-first architecture phase. The implementation should em
 
 ## Packages
 
-- [`@infinicon/core-types`](packages/core-types/README.md): spec-aligned TypeScript contracts for v0 data model, memory API, plugin interfaces, storage ports, and context assembly
+- [`@infinicon/core-types`](packages/core-types/README.md): spec-aligned TypeScript contracts for v0 data model, memory API, plugin interfaces, storage ports, context assembly, runtime validation, and JSON schemas
 

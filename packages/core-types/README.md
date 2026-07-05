@@ -18,6 +18,9 @@ This package implements the type surface described by:
 - Plugin contract interfaces
 - Storage port interfaces
 - Runtime guard helpers for scope safety
+- Runtime request validators for ingest/query/context/tombstone
+- Normalizers for filters, budgets, and constraints
+- JSON schemas for scope, refs, and primary API requests
 
 ## What this package does not own
 
@@ -49,6 +52,29 @@ const contextResponse = await api.assembleContext({
 })
 
 const context: WorkingContext = contextResponse.context
+```
+
+## Runtime helpers
+
+```ts
+import {
+  normalizeContextBudget,
+  validateAssembleContextRequest,
+  assembleContextRequestSchema,
+} from "@infinicon/core-types"
+
+const request = {
+  scope: { tenantId: "tenant-1", namespaceId: "default" },
+  task: "prepare coding context",
+  budget: normalizeContextBudget({ maxTokens: 4096.9, reservedTokens: 512.1 }),
+}
+
+const validation = validateAssembleContextRequest(request)
+if (!validation.ok) {
+  throw new Error(validation.issues.map((x) => `${x.path}: ${x.message}`).join("\n"))
+}
+
+console.log(assembleContextRequestSchema.$id)
 ```
 
 ## Verification
