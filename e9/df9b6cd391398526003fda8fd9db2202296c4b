@@ -1,0 +1,31 @@
+examples/README.md
+  s_053366b8594682::t_a000b4381f5d5f 13-14
+README.md
+  s_053366b8594682::t_f152e0533cf2af 106
+  s_053366b8594682::t_de8b5b43013673 57,62-65
+  s_053366b8594682::t_f846c9cf0b43b3 58-59
+  s_053366b8594682::t_60d9fbce46232d 60-61
+examples/simple-chat.ts
+  s_053366b8594682::t_be675026f03804 1-101
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "e9df9b6cd391398526003fda8fd9db2202296c4b",
+  "prompts": {},
+  "humans": {
+    "h_b8c068798e4e71": {
+      "author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
