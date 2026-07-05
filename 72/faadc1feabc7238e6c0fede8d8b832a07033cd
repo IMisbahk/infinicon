@@ -1,0 +1,42 @@
+scripts/start.ts
+  s_053366b8594682::t_4da9a392c85817 1-25,27-31,33,38-41,43-48,50-60,62
+  s_053366b8594682::t_49902cb1b3e4d5 26,32,34-37,42,49,61
+packages/sdk/README.md
+  s_053366b8594682::t_960561ed2198cb 31
+.env.example
+  s_053366b8594682::t_4d67d1e75cd7e9 1-2,6-7,9-11,13-15,17-19
+examples/simple-chat.ts
+  s_053366b8594682::t_3dbdcacd8b8a8a 15
+  s_053366b8594682::t_9c9d678b6cabb7 3
+README.md
+  s_053366b8594682::t_e8b2899de47c4e 5-19
+  s_053366b8594682::t_78e5103c6c704b 73-74,77,80-82
+examples/README.md
+  s_053366b8594682::t_e2fd001ab68da5 3,5,8-9,12,14,16-20,22,24
+examples/agent-chat/README.md
+  s_053366b8594682::t_6060b853479cb0 3,6-8,11
+package.json
+  s_053366b8594682::t_b967e9e9933048 15-18
+  s_053366b8594682::t_1baf876ded1baf 31-32
+examples/agent-chat/.env.example
+  s_053366b8594682::t_31b38ff8a76525 1,3
+scripts/bootstrap.ts
+  s_053366b8594682::t_24cc8ad87efa18 1-4,18
+  s_053366b8594682::t_30d8147321e5ba 5-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "72faadc1feabc7238e6c0fede8d8b832a07033cd",
+  "prompts": {},
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
