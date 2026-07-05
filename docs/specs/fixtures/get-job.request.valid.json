@@ -1,7 +1,0 @@
-{
-  "scope": {
-    "tenantId": "tenant-acme",
-    "namespaceId": "ns-support"
-  },
-  "jobId": "job-123"
-}

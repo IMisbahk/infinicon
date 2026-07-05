@@ -18,37 +18,31 @@ Human-readable specs are the normative source of truth.
 - [API compatibility policy v0](api-compatibility-policy.v0.md)
 - [Conformance test plan v0](conformance-test-plan.v0.md)
 
-## Draft machine-readable artifacts
+## Machine-readable artifacts
 
-- `memory-api.v0.openapi.json`
-- `data-model.v0.schema.json`
-- `context-assembly.v0.schema.json`
-- `plugin-interface.v0.schema.json`
-- `storage-ports.v0.schema.json`
-- `machine-readable-contract-notes.v0.md`
-- `validate-machine-readable.py`
-- `run-conformance.py`
-- `fixtures/*.json`
+CI-validated machine-readable contracts live under [`../../contracts/`](../contracts/README.md).
+
+Storage manifest contracts live under [`../contracts/`](../contracts/README.md).
+
+Mapping notes: [machine-readable-contract-notes.v0.md](machine-readable-contract-notes.v0.md)
 
 ## Update policy
 
 When a normative prose spec changes:
 
-1. Update corresponding machine-readable artifact in the same change
-2. Update `machine-readable-contract-notes.v0.md` if mapping assumptions changed
+1. Update corresponding machine-readable artifact under `contracts/` in the same change
+2. Update mapping notes if assumptions changed
 3. Run:
 
 ```bash
-python3 docs/specs/validate-machine-readable.py
-python3 docs/specs/run-conformance.py
+python3 contracts/scripts/validate_contracts.py
+bun test packages/core-types/test
 ```
 
-4. Ensure JSON parse remains valid for all machine-readable files
-5. Update or add fixtures when request or response shape changes
+4. Update or add fixtures under `contracts/fixtures/` when request or response shape changes
 
 ## Notes
 
 - Breaking public contract changes require a new major spec version.
 - Keep prose specs and machine-readable contracts aligned.
 - Do not let implementation drift define behavior ahead of specs.
-- Keep draft schemas conservative while open spec questions remain unresolved.
