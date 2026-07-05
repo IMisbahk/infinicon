@@ -12,10 +12,8 @@
     "@infinicon/plugin-host": "workspace:*"
   },
   "scripts": {
-    "postinstall": "bun run scripts/bootstrap.ts",
-    "start": "bun --env-file=.env run scripts/start.ts",
-    "dev": "bun --env-file=.env run src/server.ts",
-    "start:server": "bun --env-file=.env run src/server.ts",
+    "dev": "bun run src/server.ts",
+    "start:server": "bun run src/server.ts",
     "check:spec-integrity": "python3 scripts/spec_integrity_check.py",
     "check:contracts": "python3 contracts/scripts/validate_contracts.py",
     "test:devops": "python3 -m unittest discover -s tests -v",
@@ -28,8 +26,8 @@
     "test:core-types": "bun test packages/core-types/test",
     "test:plugin-host": "bun test packages/plugin-host/test",
     "test:sdk": "bun test test packages/sdk",
-    "example:agent": "bun --env-file=.env run examples/agent-chat/src/main.ts",
-    "example:simple": "bun --env-file=.env run examples/simple-chat.ts",
+    "example:agent": "bun --env-file=examples/agent-chat/.env run examples/agent-chat/src/main.ts",
+    "example:simple": "bun --env-file=examples/agent-chat/.env run examples/simple-chat.ts",
     "typecheck:sdk": "bunx tsc --noEmit",
     "verify": "bun test && python3 -m unittest discover -s tests -v && python3 contracts/scripts/validate_contracts.py"
   }

@@ -2,21 +2,6 @@
 
 > give your ai agents unbounded context.
 
-Memory SDK + reference server for AI agents.
-
-## Quick start
-
-```bash
-bun install
-bun start
-```
-
-That's it. Memory server starts, chat opens. Type messages; `exit` to quit.
-
-Optional: add `OPENAI_API_KEY` to `.env` for real GPT replies (echo mode works without it).
-
----
-
 Infinicon is a **memory SDK + reference server** for AI agents. Use `@infinicon/sdk` from your app; run the reference server locally or on Render for storage and retrieval.
 
 Specs and ADRs in `docs/` remain the source of truth for behavior.
@@ -70,16 +55,16 @@ tests/              # runtime, server, contract tests
 ## Run Locally
 
 ```bash
-bun install   # auto-creates .env
-bun start     # server + chat in one command
+bun test
+bun run dev          # memory server (separate terminal)
+bun run example:simple  # minimal one-file agent (recommended to start)
+bun run example:agent   # full agent-chat example
 ```
 
-Advanced:
+Copy env for the agent example:
 
 ```bash
-bun run dev           # memory server only
-bun run example:simple # chat only (server must be running)
-bun test
+cp examples/agent-chat/.env.example examples/agent-chat/.env
 ```
 
 Server default: `http://localhost:8787`
