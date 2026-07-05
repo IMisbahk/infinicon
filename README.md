@@ -4,315 +4,109 @@
 
 Infinicon is a production-grade memory runtime for AI agents.
 
-It is currently in a spec-first architecture phase. The implementation should emerge from accepted specifications and ADRs, not from a rushed prototype.
+It is currently in a spec-first architecture phase. Implementation follows accepted specifications and ADRs.
 
 ## Start Here
 
 - [Vision](docs/vision.md)
 - [Glossary](docs/glossary.md)
 - [Architecture overview](docs/architecture/overview.md)
-- [System boundaries](docs/architecture/boundaries.md)
-- [Consistency model](docs/architecture/consistency.md)
-- [Security architecture](docs/architecture/security.md)
+- [Reference runtime](docs/architecture/reference-runtime.md)
 - [Plugin host architecture](docs/architecture/plugin-host.md)
 - [Roadmap](docs/roadmap.md)
-- [Open decisions register](docs/open-decisions.md)
-- [Spec review process](docs/spec-review-process.md)
-- [Architecture decision records](docs/adr/README.md)
-- [Reference runtime skeleton](docs/architecture/reference-runtime-skeleton.md)
-- [Reference runtime architecture](docs/architecture/reference-runtime.md)
-
-## Reference Implementation (early)
-
-- [Runtime skeleton](runtime/README.md)
-- Includes in-memory runtime, Bun HTTP server skeleton, and thin typed client SDK
-
-## Core Specs
-
 - [Specifications index](docs/specs/README.md)
-- [Data model v0](docs/specs/data-model.v0.md)
-- [Memory API v0](docs/specs/memory-api.v0.md)
-- [Plugin interface v0](docs/specs/plugin-interface.v0.md)
-- [Storage ports v0](docs/specs/storage-ports.v0.md)
-- [Context assembly v0](docs/specs/context-assembly.v0.md)
-- [Machine-readable contract v0](docs/specs/machine-readable-contract.v0.md)
-- [API compatibility policy v0](docs/specs/api-compatibility-policy.v0.md)
-- [Conformance test plan v0](docs/specs/conformance-test-plan.v0.md)
+- [Architecture decision records](docs/adr/README.md)
 
-## Examples
+## Repository Layout
 
-- [Examples overview](examples/README.md)
-- [Data model examples](examples/data-model)
-- [Memory API examples](examples/memory-api)
-- [Context assembly examples](examples/context-assembly)
-- [Plugin interface examples](examples/plugin-interface)
-
-Validate examples locally:
-
-```bash
-node tests/validate-examples.js
+```
+src/
+  runtime/          # canonical memory runtime (MemoryRuntimeService + adapters)
+  transport/        # HTTP routing layer
+  server.ts         # Bun server entrypoint
+  client.ts         # typed SDK client
+  types.ts          # SDK-facing type exports
+packages/
+  core-types/       # spec-aligned contracts, validators, schemas
+  plugin-host/      # plugin registration and lifecycle host
+contracts/          # machine-readable OpenAPI + JSON schemas (CI canonical)
+docs/
+  specs/            # normative prose specifications
+  contracts/        # storage manifest contracts
+examples/           # documentation examples
+tests/              # runtime, server, and devops tests
 ```
 
-## Reference Skeleton (Phase 2)
+## Canonical Subsystems
 
-This branch includes a conservative reference skeleton aligned to roadmap Phase 2:
+| Subsystem | Location |
+|-----------|----------|
+| Runtime | `src/runtime/service.ts` |
+| Server | `src/server.ts` + `src/transport/httpServer.ts` |
+| SDK | `src/client.ts` |
+| Core types | `packages/core-types/` |
+| Plugin host | `packages/plugin-host/` |
+| Storage adapters | `src/runtime/adapters/inMemoryStores.ts` |
+| API contracts | `contracts/` |
+| Storage contracts | `docs/contracts/` |
 
-- TypeScript runtime contracts in `src/core/types.ts`
-- In-memory storage port adapters:
-  - `EpisodeStore`: `src/adapters/inMemoryEpisodeStore.ts`
-  - `GraphStore`: `src/adapters/inMemoryGraphStore.ts`
-  - `IndexStore`: `src/adapters/inMemoryIndexStore.ts`
-  - `MetadataStore`: `src/adapters/inMemoryMetadataStore.ts`
-- Core service operations in `src/core/runtimeService.ts`:
-  - `ingest`
-  - `query`
-  - `hydrate`
-  - `assembleContext`
-  - `tombstone`
-  - `consolidate`
-  - `getJob`
-  - `subscribe`
-- Minimal Bun HTTP server with `GET /health` and v0 endpoints in `src/server/index.ts`
-- Thin client SDK in `src/sdk/client.ts`
-- Contract tests in `tests/runtime.test.ts`
-
-### Run locally
+## Run Locally
 
 ```bash
 bun test
-bun run src/server/index.ts
+bun run dev
 ```
 
-Server default: `http://localhost:3100`
+Server default: `http://localhost:8787`
 
-### Implemented API endpoints
+### API Endpoints
 
+- `GET /health`
 - `POST /v0/ingest`
 - `POST /v0/query`
 - `POST /v0/hydrate`
 - `POST /v0/assemble-context`
 - `POST /v0/tombstone`
 - `POST /v0/consolidate`
-- `POST /v0/get-job`
 - `POST /v0/subscribe`
+- `POST /v0/get-job`
+- `GET /v0/jobs/{jobId}`
 
-### Runtime validation behavior
-
-The reference server validates request shape and constraints before processing:
-
-- Scope is required on every operation
-- Unsupported consistency and mode values are rejected
-- Empty ingest or tombstone batches are rejected
-- Invalid budget fields are rejected
-
-Validation errors return structured `bad_request` responses.
-
-### Current limits and integration points
-
-The reference implementation is intentionally conservative and keeps clean extension seams for other subsystems:
-
-- Lifecycle persistence is in-memory only and process-local
-- Consolidation jobs are metadata-driven stubs for plugin-owned synthesis
-- Query ranking is simple lexical overlap in the in-memory index adapter
-- Tombstone cascade currently surfaces affected refs from graph provenance chain and reserves deeper cascade behavior for evolution pipeline phases
-- Plugin host and conformance harness are not implemented yet
-
-These boundaries are intentional to preserve spec-first modularity and avoid leaking storage or model vendor assumptions into the core runtime API.
-
-## Machine-Readable Draft Artifacts
-
-These artifacts are draft contracts generated from the prose v0 specs. They are tooling aids, not a replacement for normative prose specs.
-
-- [Memory API OpenAPI draft](docs/specs/memory-api.v0.openapi.json)
-- [Data model schema draft](docs/specs/data-model.v0.schema.json)
-- [Context assembly schema draft](docs/specs/context-assembly.v0.schema.json)
-- [Plugin interface schema draft](docs/specs/plugin-interface.v0.schema.json)
-- [Storage ports schema draft](docs/specs/storage-ports.v0.schema.json)
-- [Contract mapping notes](docs/specs/machine-readable-contract-notes.v0.md)
-- [Validation script](docs/specs/validate-machine-readable.py)
-- [Conformance runner](docs/specs/run-conformance.py)
-- [Conformance fixtures](docs/specs/fixtures)
-
-Run validation locally:
-
-```bash
-python3 docs/specs/validate-machine-readable.py
-python3 docs/specs/run-conformance.py
-```
-
-If a prose spec changes, update machine-readable artifacts in the same change.
-
-## DevOps Guardrails
-
-- [DevOps ownership](docs/devops/ownership.md)
-- [Spec integrity checks](docs/devops/spec-integrity-checks.md)
-
-Local verification:
-
-```bash
-python3 scripts/spec_integrity_check.py
-python3 -m unittest discover -s tests -v
-bun test
-```
-
-## Packages
-
-- [`@infinicon/core-types`](packages/core-types/README.md): spec-aligned TypeScript contracts for v0 data model, memory API, plugin interfaces, storage ports, context assembly, runtime validation, and JSON schemas
-
-## Runtime Bootstrap
-
-The repository now includes a conservative reference runtime bootstrap aligned with the v0 specifications:
-
-- runtime contracts and port interfaces
-- in-memory development adapter
-- reference HTTP server (`/health` and `/v0/*` endpoints)
-- thin TypeScript SDK client
-- contract and server tests
-
-See [Runtime Bootstrap](docs/runtime-bootstrap.md) for package details, verification, and current limits.
-
-Quick verify:
-
-```bash
-npm test
-```
-
-Run server:
-
-```bash
-npm run start:server
-```
-
-This implementation remains intentionally spec-first and does not redefine architecture or non-goals.
-
-- no agent orchestration logic
-- no model-provider coupling
-- no production storage backend assumptions
-
-## SDK Package (feat/sdk)
-
-This branch includes an initial thin TypeScript SDK scaffold aligned with the Memory API v0 contract.
-
-### Included
-
-- Typed request and response models mirroring `docs/specs/memory-api.v0.md` and related v0 docs.
-- `InfiniconClient` methods for v0 operations:
-  - `ingest`
-  - `query`
-  - `hydrate`
-  - `assembleContext`
-  - `consolidate`
-  - `tombstone`
-  - `subscribe`
-  - `getJob`
-- Small HTTP layer with conservative error mapping to `InfiniconSdkError`.
-- Unit tests for request shaping and error handling.
-
-### Build and test
-
-```bash
-bun run build
-bun test
-bun run typecheck
-```
-
-### Notes
-
-- Endpoints are intentionally thin integration points for the upcoming reference server implementation.
-- The SDK does not implement server-side semantics and does not redesign API behavior outside the spec.
-
-## Machine-readable Contracts (draft)
-
-Draft machine-readable artifacts derived from v0 prose specs live under [`contracts/`](contracts/README.md).
-
-- OpenAPI draft for Memory API v0: `contracts/openapi/memory-api.v0.json`
-- JSON Schemas for data model, context assembly, plugin descriptors, and storage adapter capabilities: `contracts/schemas/*`
-- Validation fixtures and checks: `contracts/fixtures/*`, `contracts/scripts/validate_contracts.py`
-
-Validate contracts:
-
-```bash
-python3 contracts/scripts/validate_contracts.py
-```
-
-Spec-first rule still applies: update `docs/specs/*` first for behavior changes, then update contracts.
-
-## Reference Server Skeleton (v0 draft)
-
-This branch now includes a conservative Bun-based reference server skeleton aligned to current v0 specs.
-
-Current runtime layout:
-
-- `src/server.ts` — Bun entrypoint
-- `src/transport/httpServer.ts` — HTTP routing layer
-- `src/services/memoryService.ts` — Memory API service behavior
-- `src/domain/types.ts` — typed request/response model
-- `src/domain/validation.ts` — request validators
-- `src/storage/ports.ts` — storage port interfaces
-- `src/storage/inMemory.ts` — in-memory adapter implementations
-- `tests/*.test.ts` — service/storage/route tests
-
-Run the server:
-
-```bash
-bun run src/server.ts
-```
-
-Run tests:
-
-```bash
-bun test
-```
-
-Run full verification:
+## Verification
 
 ```bash
 bun run verify
+python3 scripts/spec_integrity_check.py
+python3 contracts/scripts/validate_contracts.py
+node tests/validate-examples.js
 ```
 
-Notes:
+## Machine-Readable Contracts
 
-- Scope enforcement and tombstone hiding are implemented for the in-memory adapter path
-- Consolidation is job-backed and intentionally conservative in this skeleton
-- This is a baseline implementation target, not the final production adapter set
+Draft machine-readable artifacts derived from v0 prose specs live under [`contracts/`](contracts/README.md).
 
-## Reference Implementation Skeleton
+- OpenAPI: `contracts/openapi/memory-api.v0.json`
+- JSON Schemas: `contracts/schemas/*`
+- Fixtures: `contracts/fixtures/*`
 
-This branch now includes a minimal TypeScript runtime skeleton aligned with the v0 specs.
+Storage manifests and adapter capability descriptors live under [`docs/contracts/`](docs/contracts/README.md).
 
-Implemented paths:
+Prose specs in `docs/specs/*.md` remain normative. Update prose first, then contracts.
 
-- `ingest`
-- `query`
-- `hydrate`
-- `assembleContext`
-- `tombstone`
-- `subscribe`
-- `getJob`
+## Packages
 
-Implementation location:
+- [`@infinicon/core-types`](packages/core-types/README.md): spec-aligned TypeScript contracts, validators, and JSON schemas
+- [`@infinicon/plugin-host`](packages/plugin-host/src/index.ts): plugin registration host
 
-- `src/types.ts` typed API/domain shapes
-- `src/ports.ts` storage port contracts
-- `src/inmemory/stores.ts` in-memory port adapters
-- `src/runtime.ts` runtime implementation
-- `test/runtime.test.ts` behavior tests
+## Examples
 
-### Run locally
+- [Examples overview](examples/README.md)
 
-```bash
-bun run typecheck
-bun test
-```
+## Current Limits
 
-Notes:
+- In-memory storage only (process-local)
+- Consolidation jobs are metadata-driven stubs with optional plugin-owned synthesis
+- Lexical index ranking in the reference adapter
+- No authn/authz transport layer yet
 
-- The implementation is intentionally conservative and keeps to spec-level semantics.
-- It uses in-memory adapters only (no production persistence).
-- `subscribe` supports scoped cursor reads, at-least-once semantics, and loud failure on invalid cursor.
-- Dedupe conflicts reject divergent content within the same scope.
-- Tombstoned episode content is excluded from normal query/hydrate flows.
-- Several operations remain skeleton-level (`consolidate`, `getJob`) pending broader subsystem ownership work.
-- Events-first hardening was done without widening architecture boundaries.
-
-## 
+These boundaries are intentional to preserve spec-first modularity.

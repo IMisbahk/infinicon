@@ -43,11 +43,11 @@ Use these companion specs when relevant:
 - `docs/specs/api-compatibility-policy.v0.md`
 - `docs/specs/conformance-test-plan.v0.md`
 
-If a changed prose spec has a machine-readable draft counterpart, update it in the same change and run:
+If a changed prose spec has a machine-readable draft counterpart, update it under `contracts/` in the same change and run:
 
 ```bash
-python3 docs/specs/validate-machine-readable.py
-python3 docs/specs/run-conformance.py
+python3 contracts/scripts/validate_contracts.py
+bun test packages/core-types/test
 ```
 
 Breaking changes require a new major spec version once versioning begins.
