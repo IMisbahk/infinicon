@@ -1,0 +1,20 @@
+README.md
+  s_8005768c0df3a9::t_036f7768d8b18b 26-30,45-57,60-63,78,80
+  s_8005768c0df3a9::t_b34608a117b8be 31-44,58-59,64-77,79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "25ee5e4931a39e686d7911f395f764b2e7cebedd",
+  "prompts": {},
+  "sessions": {
+    "s_8005768c0df3a9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c7be954f-d7f9-4882-89bd-0cb901b6af93",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
