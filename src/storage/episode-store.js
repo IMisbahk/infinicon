@@ -1,4 +1,4 @@
-const { clone, scopeBaseKey } = require('../core/types')
+const { clone, scopeBaseKey } = require('../core/types.js')
 
 class InMemoryEpisodeStore {
   constructor() {

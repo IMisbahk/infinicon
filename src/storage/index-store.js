@@ -1,4 +1,4 @@
-const { clone, scopeBaseKey } = require('../core/types')
+const { clone, scopeBaseKey } = require('../core/types.js')
 
 function normalize(text) {
   return String(text || '')

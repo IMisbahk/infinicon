@@ -9,7 +9,7 @@ const {
   scopeBaseKey,
   validateMemoryRef,
   validateScope
-} = require('../core/types')
+} = require('../core/types.js')
 
 class MemoryService {
   constructor(deps) {
