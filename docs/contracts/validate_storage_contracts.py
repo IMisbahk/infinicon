@@ -12,8 +12,15 @@ def load_json(path: Path):
 
 
 def fail(message: str):
-    print(f"ERROR: {message}")
-    sys.exit(1)
+    raise ValueError(message)
+
+
+def _ensure_exact_set(label: str, actual_values: list[str], expected_values: set[str]):
+    actual_set = set(actual_values)
+    if actual_set != expected_values:
+        missing = sorted(expected_values - actual_set)
+        extra = sorted(actual_set - expected_values)
+        fail(f"{label} mismatch missing={missing} extra={extra}")
 
 
 def validate_manifest(manifest: dict):
@@ -25,9 +32,12 @@ def validate_manifest(manifest: dict):
         "ports",
         "openQuestions",
     }
-    missing = required_top - set(manifest.keys())
-    if missing:
-        fail(f"manifest missing keys: {sorted(missing)}")
+    optional_top = {"$schema"}
+    actual_top = set(manifest.keys())
+    missing = sorted(required_top - actual_top)
+    extra = sorted(actual_top - (required_top | optional_top))
+    if missing or extra:
+        fail(f"manifest top-level keys mismatch missing={missing} extra={extra}")
 
     if manifest["spec"] != "storage-ports.v0":
         fail("manifest spec must equal storage-ports.v0")
@@ -35,19 +45,108 @@ def validate_manifest(manifest: dict):
     if manifest["status"] not in {"draft", "accepted"}:
         fail("manifest status must be draft or accepted")
 
-    ports = manifest["ports"]
+    descriptor = manifest["adapterCapabilityDescriptor"]
+    expected_required_declarations = {
+        "implementedPorts",
+        "transactionalGuarantees",
+        "maximumObjectSizes",
+        "indexConsistencyBehavior",
+        "paginationBehavior",
+        "supportedFilters",
+    }
+    _ensure_exact_set(
+        "manifest adapterCapabilityDescriptor.requiredDeclarations",
+        descriptor.get("requiredDeclarations", []),
+        expected_required_declarations,
+    )
+
+    conditional = descriptor.get("conditionallyRequiredDeclarations", [])
+    if len(conditional) != 1:
+        fail("manifest conditionallyRequiredDeclarations must contain exactly one entry")
+    rule = conditional[0]
+    if rule.get("when") != "productionReady = true" or rule.get("field") != "backupRestoreExpectations":
+        fail("manifest conditional requirement must be productionReady=true => backupRestoreExpectations")
+
     expected_ports = {"episodeStore", "graphStore", "indexStore", "metadataStore"}
-    if set(ports.keys()) != expected_ports:
-        fail("manifest ports must contain exactly episodeStore graphStore indexStore metadataStore")
+    ports = manifest["ports"]
+    _ensure_exact_set("manifest ports", list(ports.keys()), expected_ports)
+
+    expected_port_content = {
+        "episodeStore": {
+            "requiredCapabilities": {
+                "appendEpisode",
+                "fetchEpisodeByRef",
+                "fetchEpisodesByRefs",
+                "resolveDedupeKeyWithinScope",
+                "tombstoneEpisode",
+            },
+            "requiredGuarantees": {
+                "episodesNotOverwrittenInPlace",
+                "dedupeLookupIsScoped",
+                "tombstonedContentExcludedFromNormalReads",
+            },
+        },
+        "graphStore": {
+            "requiredCapabilities": {
+                "addLink",
+                "fetchOutgoingLinks",
+                "fetchIncomingLinks",
+                "fetchProvenanceChain",
+                "tombstoneLink",
+            },
+            "requiredGuarantees": {
+                "linksAreScoped",
+                "crossTenantLinksRejectedUnlessExplicitlySupported",
+                "tombstonedLinksExcludedFromNormalTraversal",
+            },
+        },
+        "indexStore": {
+            "requiredCapabilities": {
+                "indexMemoryPayload",
+                "removeOrHideIndexedPayload",
+                "searchByQueryPayload",
+                "searchByFilters",
+                "reportIndexFreshnessWhenAvailable",
+            },
+            "requiredGuarantees": {
+                "tombstonedMemoryNotReturnedAsEligible",
+                "indexingConsistencyBehaviorDeclared",
+                "scoreInterpretationLimitsDeclared",
+            },
+        },
+        "metadataStore": {
+            "requiredCapabilities": {
+                "storeScopes",
+                "storeAccessMetadata",
+                "storeAsyncJobs",
+                "storePluginState",
+                "storeEventCursors",
+            },
+            "requiredGuarantees": {
+                "jobStateTransitionsAreDurable",
+                "scopeMetadataAvailableBeforeMemoryOperations",
+                "runtimeMetadataNotExposedAsMemoryContent",
+            },
+        },
+    }
 
     for port_name, port in ports.items():
         for key in ("requiredCapabilities", "requiredGuarantees"):
             if key not in port or not isinstance(port[key], list) or len(port[key]) == 0:
                 fail(f"{port_name}.{key} must be a non-empty array")
+        _ensure_exact_set(
+            f"{port_name}.requiredCapabilities",
+            port["requiredCapabilities"],
+            expected_port_content[port_name]["requiredCapabilities"],
+        )
+        _ensure_exact_set(
+            f"{port_name}.requiredGuarantees",
+            port["requiredGuarantees"],
+            expected_port_content[port_name]["requiredGuarantees"],
+        )
 
 
 def validate_adapter_schema(adapter_schema: dict):
-    required = set(adapter_schema.get("required", []))
     expected = {
         "implementedPorts",
         "transactionalGuarantees",
@@ -56,8 +155,7 @@ def validate_adapter_schema(adapter_schema: dict):
         "paginationBehavior",
         "supportedFilters",
     }
-    if required != expected:
-        fail("adapter schema required keys drifted from storage spec declarations")
+    _ensure_exact_set("adapter schema required keys", adapter_schema.get("required", []), expected)
 
 
 def validate_example(example: dict, name: str):
@@ -82,7 +180,7 @@ def validate_example(example: dict, name: str):
         fail(f"example {name} sets productionReady=true but omits backupRestoreExpectations")
 
 
-def main():
+def run_validation():
     manifest_path = ROOT / "storage-ports.v0.json"
     manifest_schema_path = ROOT / "storage-ports.v0.schema.json"
     adapter_schema_path = ROOT / "storage-adapter-capabilities.v0.schema.json"
@@ -100,7 +198,14 @@ def main():
     validate_example(pgvector_example, "pgvector")
     validate_example(local_example, "local-dev")
 
-    print("storage contract validation passed")
+
+def main():
+    try:
+        run_validation()
+        print("storage contract validation passed")
+    except ValueError as error:
+        print(f"ERROR: {error}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
