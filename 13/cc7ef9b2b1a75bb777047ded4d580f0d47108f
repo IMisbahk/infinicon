@@ -1,0 +1,50 @@
+packages/server/bin/infinicon-server.mjs
+  s_3ac260317d7bfe::t_fa9d4bbdf10eef 1-14
+Dockerfile
+  s_3ac260317d7bfe::t_f9988c85facf67 1-14
+packages/server/README.md
+  s_3ac260317d7bfe::t_7fd2178cd07f3d 1-71
+docs/devops/deployment.md
+  s_3ac260317d7bfe::t_49a2b2cbf00597 3-20
+  s_3ac260317d7bfe::t_6309ef8f8a82c0 53-54
+CHANGELOG.md
+  s_3ac260317d7bfe::t_c482d73dcc172b 8,15-16
+packages/server/package.json
+  s_3ac260317d7bfe::t_f6306fd9de3030 1-31
+README.md
+  s_3ac260317d7bfe::t_540efbd18a22ff 175
+  s_3ac260317d7bfe::t_6306d9525e66a1 72
+  s_3ac260317d7bfe::t_c0eeee48596e12 11
+  s_3ac260317d7bfe::t_6aca8f20281396 150,152
+  s_3ac260317d7bfe::t_ef010239240b1b 100
+  s_3ac260317d7bfe::t_6c6e9ae1cd9a4a 4
+  s_3ac260317d7bfe::t_e17acc54f62d70 17-18,23-32
+  s_3ac260317d7bfe::t_4fadd7989479a5 88,90
+  s_3ac260317d7bfe::t_c6b3653c2a63b1 33
+.dockerignore
+  s_3ac260317d7bfe::t_287c4b510c7dd3 4-5,8,12-13,15-20
+.github/workflows/publish-npm.yml
+  s_3ac260317d7bfe::t_e865abd3caa072 48-52
+packages/sdk/README.md
+  s_3ac260317d7bfe::t_cb840f43822a9c 7-16
+package.json
+  s_3ac260317d7bfe::t_8b3facfd0c66e8 27-29
+  s_3ac260317d7bfe::t_5191d7f227a800 32
+  s_3ac260317d7bfe::t_1a2852a15fcf01 24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "13cc7ef9b2b1a75bb777047ded4d580f0d47108f",
+  "prompts": {},
+  "sessions": {
+    "s_3ac260317d7bfe": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a4c5f31f-fd18-4213-9d4d-ce9aada225a1",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
