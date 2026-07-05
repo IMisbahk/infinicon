@@ -118,6 +118,30 @@ describe("InMemoryRuntime", () => {
     expect(warningCodes.includes("truncated") || warningCodes.includes("required_ref_omitted")).toBe(true)
   })
 
+  test("assembleContext includes required refs when budget allows even if query misses", () => {
+    const runtime = new InMemoryRuntime()
+
+    const ingest = runtime.ingest({
+      scope: scopeA,
+      episodes: [{ contentType: "text/plain", content: "operator runbook", createdBy: actor }],
+      consistency: "indexed",
+    })
+
+    const requiredRef = ingest.results[0]!.ref
+
+    const response = runtime.assembleContext({
+      scope: scopeA,
+      task: "completely unrelated terms",
+      budget: { maxTokens: 256 },
+      consistency: "strong",
+      constraints: { mustIncludeRefs: [requiredRef] },
+    })
+
+    expect(response.context.segments.some((segment) => segment.ref.id === requiredRef.id)).toBe(true)
+    const warningCodes = response.context.warnings.map((warning) => warning.code)
+    expect(warningCodes.includes("required_ref_omitted")).toBe(false)
+  })
+
   test("consolidate run_now creates completed job", () => {
     const runtime = new InMemoryRuntime()
 

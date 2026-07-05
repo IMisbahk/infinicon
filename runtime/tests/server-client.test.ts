@@ -61,4 +61,19 @@ describe("runtime server and client", () => {
     const response = await app.fetch(new Request("http://local/v0/nope", { method: "POST", body: "{}" }))
     expect(response.status).toBe(404)
   })
+
+  test("invalid json returns 400", async () => {
+    const app = createRuntimeServer()
+    const response = await app.fetch(
+      new Request("http://local/v0/ingest", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: "{not-json",
+      }),
+    )
+
+    expect(response.status).toBe(400)
+    const body = await response.json()
+    expect(body.code).toBe("invalid_json")
+  })
 })
