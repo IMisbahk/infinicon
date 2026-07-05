@@ -1,0 +1,131 @@
+src/runtime/types-reference.ts
+  s_98b357d7cbc526::t_a876564112c0af 1-290
+src/runtime/ports-reference.ts
+  s_98b357d7cbc526::t_67dc855051d288 1-8,10-82
+  s_98b357d7cbc526::t_73dfb2ddf70c9b 9
+src/runtime/utils-reference.ts
+  s_98b357d7cbc526::t_6c6e11b5557179 1-2,4-31
+  s_98b357d7cbc526::t_72246755859a62 3
+src/runtime/adapters/inMemoryStores.ts
+  s_98b357d7cbc526::t_650158dfbb5931 9-21
+  s_98b357d7cbc526::t_8946f075269bfc 6-8
+  s_98b357d7cbc526::t_bf6dc096b2c2f4 22-24
+  s_98b357d7cbc526::t_72f294c98dc52f 1-5,25-240
+src/runtime/index.ts
+  s_98b357d7cbc526::t_c0c9b11ba21826 10-11
+  s_98b357d7cbc526::t_cf3f6628061d8b 7-9
+  s_98b357d7cbc526::t_0ed3a991159ae5 5-6
+package.json
+  s_98b357d7cbc526::t_325da226407eea 11
+  s_98b357d7cbc526::t_7f25d36b673ac2 12
+  s_98b357d7cbc526::t_14caaa6aadb836 2,8-9
+README.md
+  s_98b357d7cbc526::t_e0015b62f2857f 22
+  s_98b357d7cbc526::t_5ce15a8600163b 144-156
+src/runtime/plugins.ts
+  s_98b357d7cbc526::t_f316bc09ca099c 1
+  s_98b357d7cbc526::t_5afa8000eaebaf 2-121
+tsconfig.json
+  s_98b357d7cbc526::t_290a3aebaa8476 7,18-19
+src/runtime/utils.ts
+  s_98b357d7cbc526::t_76483e705b3e08 29-40
+  s_98b357d7cbc526::t_86b80ab7f965fe 41
+  s_98b357d7cbc526::t_b34854c55e24e0 1-2
+src/runtime/service.ts
+  s_98b357d7cbc526::t_6c6e11b5557179 25-32
+  s_98b357d7cbc526::t_ee05d0faf4a771 41
+  s_98b357d7cbc526::t_f948807b41be3b 22-24
+  s_98b357d7cbc526::t_a427b57b40d468 33-35,38-40
+  s_98b357d7cbc526::t_5d71bfd8512e56 42-44
+  s_98b357d7cbc526::t_940d5b4033a51d 1-21,36-37,45-509
+.github/workflows/spec-integrity.yml
+  s_98b357d7cbc526::t_0fd51095e3b532 1-28
+CONTRIBUTING.md
+  s_98b357d7cbc526::t_8c80abdb8d4957 73-80
+docs/architecture/overview.md
+  s_98b357d7cbc526::t_9fa4f9c8a3e83e 119-120
+docs/architecture/reference-runtime.md
+  s_98b357d7cbc526::t_3c9dd0edd707d7 1-53
+docs/devops/ownership.md
+  s_98b357d7cbc526::t_5ce8fa068db157 1-26
+docs/devops/spec-integrity-checks.md
+  s_98b357d7cbc526::t_e4e3c7cba5010e 1-43
+infinicon-examples
+  s_2a65423708cc39::t_8c2045752ac3d1 1
+infinicon-runtime
+  s_8005768c0df3a9::t_c27d8d0bdcfc60 1
+infinicon-sdk
+  s_965c6a2cf478a8::t_2324bdcbcd375f 1
+scripts/spec_integrity_check.py
+  s_98b357d7cbc526::t_f096b2eec09da9 1-161
+src/runtime/errors.ts
+  s_98b357d7cbc526::t_af3c93caab2b4a 1-51
+src/runtime/validation.ts
+  s_98b357d7cbc526::t_c289440e4eabe6 1-6
+tests/runtime.service.test.ts
+  s_98b357d7cbc526::t_93831ba38b0744 1-133
+tests/test_spec_integrity_check.py
+  s_98b357d7cbc526::t_aeffd10fc1c054 1-92
+.claude/worktrees/agent-abb5524975c36d5a2
+  s_98b357d7cbc526::t_0459acb938a71a 1
+.gitignore
+  s_98b357d7cbc526::t_57fe89e8b1ece9 5-11
+infinicon-bootstrap
+  s_98b357d7cbc526::t_5c8c24150f8f08 1
+infinicon-core
+  s_98b357d7cbc526::t_d7c169ddb37d8a 1
+infinicon-devops
+  s_98b357d7cbc526::t_d475cb6b14b6d3 1
+infinicon-docs
+  s_98b357d7cbc526::t_79d67889330387 1
+infinicon-events
+  s_98b357d7cbc526::t_3841d603cb03d8 1
+infinicon-plugins
+  s_98b357d7cbc526::t_b4de12533610df 1
+infinicon-server
+  s_98b357d7cbc526::t_fa23079805cf52 1
+infinicon-storage
+  s_98b357d7cbc526::t_5adfa8c6c71cfd 1
+infinicon-testing
+  s_98b357d7cbc526::t_b0b7c2f9af474a 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "c62a24a873d00686a38c164310ef8bce4bb377eb",
+  "prompts": {},
+  "sessions": {
+    "s_2a65423708cc39": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "009b180a-032b-48bf-ba8f-8de4c4fec028",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    },
+    "s_8005768c0df3a9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c7be954f-d7f9-4882-89bd-0cb901b6af93",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    },
+    "s_965c6a2cf478a8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c2da9bc1-6658-4f5b-987f-b44d476c2f53",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    },
+    "s_98b357d7cbc526": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a452462b-f2b0-43fe-a769-579ba6aff394",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
