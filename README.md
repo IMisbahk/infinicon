@@ -31,7 +31,7 @@ const prior = await memory.recall("theme preference")
 
 If Infinicon helps your project, consider supporting development:
 
-**[☕ Support via Razorpay](https://razorpay.me/@misbah)**
+**[☕ Support via Razorpay](https://razorpay.me/@misbahkhursheed)**
 
 (GitHub also shows a **Sponsor** heart on the repo via [`.github/FUNDING.yml`](.github/FUNDING.yml).)
 
@@ -69,15 +69,15 @@ tests/              # runtime, server, contract tests
 
 ## Canonical Subsystems
 
-| Subsystem | Location |
-|-----------|----------|
-| **SDK (start here)** | `packages/sdk/` → `@infinicon/sdk` |
-| Runtime | `src/runtime/service.ts` |
-| Server | `src/server.ts` + `src/transport/httpServer.ts` |
-| Core types | `packages/core-types/` |
-| Plugin host | `packages/plugin-host/` |
-| Storage adapters | `src/runtime/adapters/` |
-| API contracts | `contracts/` |
+| Subsystem            | Location                                        |
+| -------------------- | ----------------------------------------------- |
+| **SDK (start here)** | `packages/sdk/` → `@infinicon/sdk`              |
+| Runtime              | `src/runtime/service.ts`                        |
+| Server               | `src/server.ts` + `src/transport/httpServer.ts` |
+| Core types           | `packages/core-types/`                          |
+| Plugin host          | `packages/plugin-host/`                         |
+| Storage adapters     | `src/runtime/adapters/`                         |
+| API contracts        | `contracts/`                                    |
 
 ## Run Locally
 
@@ -138,11 +138,11 @@ Prose specs in `docs/specs/*.md` remain normative. Update prose first, then cont
 
 ## Examples
 
-| Command | What |
-|---------|------|
-| `bun run example:simple` | One-file chat agent ([`examples/simple-chat.ts`](examples/simple-chat.ts)) |
-| `bun run example:agent` | Full example with recall + consolidation ([`examples/agent-chat/`](examples/agent-chat/README.md)) |
-| JSON fixtures | [`examples/memory-api/`](examples/memory-api/) etc. — spec samples, not runnable apps |
+| Command                  | What                                                                                               |
+| ------------------------ | -------------------------------------------------------------------------------------------------- |
+| `bun run example:simple` | One-file chat agent ([`examples/simple-chat.ts`](examples/simple-chat.ts))                         |
+| `bun run example:agent`  | Full example with recall + consolidation ([`examples/agent-chat/`](examples/agent-chat/README.md)) |
+| JSON fixtures            | [`examples/memory-api/`](examples/memory-api/) etc. — spec samples, not runnable apps              |
 
 See [examples/README.md](examples/README.md).
 
