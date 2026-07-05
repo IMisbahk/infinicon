@@ -48,4 +48,35 @@ export const errors = {
       message: `memory object not found: ${id}`,
       retryable: false,
     }),
+  invalidRequest: (message: string): RuntimeError =>
+    new RuntimeError({
+      code: "invalid_request",
+      message,
+      retryable: false,
+    }),
+}
+
+export const toHttpError = (error: unknown): { status: number; body: Record<string, unknown> } => {
+  if (error instanceof RuntimeError) {
+    const status =
+      error.code === "not_found" ? 404 : error.code === "internal_error" ? 500 : 400
+    return {
+      status,
+      body: {
+        code: error.code,
+        message: error.message,
+        retryable: error.retryable,
+        details: error.details,
+      },
+    }
+  }
+
+  return {
+    status: 500,
+    body: {
+      code: "internal_error",
+      message: "unexpected runtime error",
+      retryable: false,
+    },
+  }
 }

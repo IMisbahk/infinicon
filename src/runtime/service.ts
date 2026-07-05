@@ -22,14 +22,14 @@ import type {
   SubscribeRequest,
   TombstoneRequest,
   TombstoneResponse,
-} from "./types-reference"
+} from "./types"
 import type {
   EpisodeStore,
   GraphStore,
   IndexStore,
   MetadataStore,
   ObjectStore,
-} from "./ports-reference"
+} from "./ports"
 import type {
   ConsolidatorPlugin,
   EmbedderPlugin,
@@ -38,7 +38,7 @@ import type {
 } from "./plugins"
 import { NoopExtractorPlugin, SimpleEmbedderPlugin } from "./plugins"
 import { isVisibleForRead } from "./adapters/inMemoryStores"
-import { estimateTokens, nowIso, randomId, refKey } from "./utils-reference"
+import { estimateTokens, nowIso, randomId, refKey } from "./utils"
 import { assertScope } from "./validation"
 
 export type MemoryRuntimeDependencies = {
@@ -506,4 +506,27 @@ export class MemoryRuntimeService {
   private async appendEvent(event: MemoryEvent): Promise<void> {
     await this.deps.metadataStore.appendEvent(event)
   }
+}
+
+export async function createDerivedLink(
+  graphStore: GraphStore,
+  scope: MemoryRef["scope"],
+  from: MemoryRef,
+  to: MemoryRef,
+): Promise<Link> {
+  const link: Link = {
+    id: `${from.id}_derived_from_${to.id}`,
+    type: "link",
+    scope,
+    status: "active",
+    createdAt: nowIso(),
+    linkType: "derived_from",
+    from,
+    to,
+    metadata: {},
+    createdBy: { id: "runtime", type: "system" },
+  }
+
+  await graphStore.addLink(link)
+  return link
 }

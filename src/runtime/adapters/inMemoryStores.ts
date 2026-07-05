@@ -6,7 +6,7 @@ import type {
   MemoryFilters,
   MemoryRef,
   Scope,
-} from "../types-reference"
+} from "../types"
 import {
   type AdapterCapabilityDescriptor,
   type EpisodeStore,
@@ -17,8 +17,8 @@ import {
   type JobRecord,
   type MetadataStore,
   type ObjectStore,
-} from "../ports-reference"
-import { matchesScope, refKey, scopeKey } from "../utils-reference"
+} from "../ports"
+import { matchesScope, refKey, scopeKey } from "../utils"
 
 const isVisibleByFilters = (object: DurableMemoryObject, filters?: MemoryFilters): boolean => {
   if (object.status === "tombstoned" && !filters?.includeTombstoned) return false

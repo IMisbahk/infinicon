@@ -1,4 +1,4 @@
-import type { DurableMemoryObject, Link, MemoryRef, Scope } from "./types-reference"
+import type { DurableMemoryObject, Link, MemoryRef, Scope } from "./types"
 
 export type PluginDescriptor = {
   name: string
