@@ -72,7 +72,7 @@ describe("spec-aligned shape checks", () => {
           contentType: "text/plain",
           content: "hello",
           dedupeKey: "ep-1",
-          createdBy: "agent:test",
+          createdBy: { id: "agent:test", kind: "agent" },
         },
       ],
     }

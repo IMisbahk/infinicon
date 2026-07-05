@@ -9,6 +9,8 @@ import type {
   WorkingContext,
 } from "./model"
 
+import type { ActorRef } from "./model"
+
 export type MemoryApiError = {
   code: string
   message: string
@@ -20,7 +22,7 @@ export type IngestEpisode = {
   contentType: string
   content: unknown
   dedupeKey?: string
-  createdBy: string
+  createdBy: ActorRef
   metadata?: Record<string, unknown>
 }
 

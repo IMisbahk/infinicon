@@ -5,6 +5,7 @@ import type {
   TombstoneRequest,
 } from "./api"
 import type {
+  ActorRef,
   ContextBudget,
   ContextConstraints,
   LifecycleStatus,
@@ -27,6 +28,8 @@ const issue = (path: string, message: string): ValidationIssue => ({ path, messa
 const hasText = (value: string | undefined): boolean => typeof value === "string" && value.trim().length > 0
 const isFinitePositiveInt = (value: number | undefined): boolean =>
   typeof value === "number" && Number.isFinite(value) && Number.isInteger(value) && value > 0
+
+const hasCreatedBy = (value: ActorRef): boolean => hasText(value.id)
 
 export const validateScope = (scope: Scope): ValidationResult => {
   const issues: ValidationIssue[] = []
@@ -171,8 +174,8 @@ export const validateIngestRequest = (request: IngestRequest): ValidationResult 
       issues.push(issue(`episodes[${index}].contentType`, "contentType must be non-empty"))
     }
 
-    if (!hasText(episode.createdBy)) {
-      issues.push(issue(`episodes[${index}].createdBy`, "createdBy must be non-empty"))
+    if (!hasCreatedBy(episode.createdBy)) {
+      issues.push(issue(`episodes[${index}].createdBy.id`, "createdBy.id must be non-empty"))
     }
 
     if (episode.dedupeKey !== undefined && !hasText(episode.dedupeKey)) {
