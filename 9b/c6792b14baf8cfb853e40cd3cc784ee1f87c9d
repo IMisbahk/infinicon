@@ -1,0 +1,33 @@
+package.json
+  s_98b357d7cbc526::t_7adb4f12586c1a 18
+README.md
+  s_98b357d7cbc526::t_18a78a9b52053b 17
+docs/architecture/plugin-host.md
+  s_98b357d7cbc526::t_23f949eeb0b1ba 1-69
+packages/plugin-host/src/errors.ts
+  s_98b357d7cbc526::t_c97fb8b9b9032d 1-11
+packages/plugin-host/src/index.ts
+  s_98b357d7cbc526::t_3533a94f72eeab 1-20
+packages/plugin-host/src/pluginHost.ts
+  s_98b357d7cbc526::t_0e8b08b35b2256 1-255
+packages/plugin-host/src/types.ts
+  s_98b357d7cbc526::t_58e716f0208095 1-112
+packages/plugin-host/test/pluginHost.test.ts
+  s_98b357d7cbc526::t_cfc05c48cf2934 1-283
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "9bc6792b14baf8cfb853e40cd3cc784ee1f87c9d",
+  "prompts": {},
+  "sessions": {
+    "s_98b357d7cbc526": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a452462b-f2b0-43fe-a769-579ba6aff394",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
