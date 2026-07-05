@@ -1,0 +1,40 @@
+src/runtime/createRuntimeStores.ts
+  s_053366b8594682::t_9188d301f295a6 1-6,9-47
+  s_053366b8594682::t_6cd62074fe3ae8 7
+  s_053366b8594682::t_d570eef9de0d19 8
+src/runtime/jobRunner.ts
+  s_053366b8594682::t_d0b5c716b58e9f 1-38
+.env.example
+  s_053366b8594682::t_abb76b9e1b7d7c 3-12
+src/transport/httpServer.ts
+  s_053366b8594682::t_8f3a022929f7e2 8
+  s_053366b8594682::t_598fe3ce369e98 4-7,11-12,16-17,27-31,33-61,63-71,73-81,83-91,93-101,103-111,113-121,123-131,133-143,145-148,150,152-153,155-158,161-164
+  s_053366b8594682::t_5fd479e73683e7 3,32
+  s_053366b8594682::t_7778deca386b65 165
+src/server.ts
+  s_053366b8594682::t_93d523ab456e48 4,6-9,13
+src/transport/auth.ts
+  s_053366b8594682::t_b23b66e59cba98 1-26
+src/runtime/adapters/postgresStores.ts
+  s_053366b8594682::t_5590b5e81d6277 1-53,88-247,249-337
+  s_053366b8594682::t_2463d5b3420407 54-87
+  s_053366b8594682::t_f3ac1e35af7dea 248
+src/runtime/observability.ts
+  s_053366b8594682::t_8b262a5ed19591 1-41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "f881720a0c8ff7227872a90aa533fbc3d7bf3498",
+  "prompts": {},
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
