@@ -35,6 +35,7 @@ Deliverables:
 
 - OpenAPI, Protobuf, or both.
 - Generated request and response shapes.
+- Lifecycle event subscription and cursor semantics in machine-readable form.
 - API compatibility policy.
 - Initial conformance test plan.
 

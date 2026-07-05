@@ -16,6 +16,7 @@ Infinicon owns the lifecycle of memory objects:
 - Index memory for retrieval.
 - Assemble working context.
 - Consolidate and evolve memory over time.
+- Emit and cursor lifecycle events for memory changes.
 - Represent contradictions and supersession.
 - Tombstone memory and process deletion cascades.
 

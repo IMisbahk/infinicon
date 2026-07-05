@@ -77,12 +77,18 @@ Required capabilities:
 - Store async jobs.
 - Store plugin state.
 - Store event cursors.
+- Append lifecycle events.
+- Read lifecycle events from cursor.
 
 Required guarantees:
 
 - Job state transitions are durable.
 - Scope metadata is available before memory operations execute.
 - Runtime metadata is not exposed as memory content.
+- Cursor ordering must be stable within a scope.
+- Event append and cursor reads are scoped and authorization-aware at runtime integration boundaries.
+- Tombstoned memory content must not be embedded directly in emitted event payloads.
+- Adapters should declare event retention limits and cursor expiration behavior when they cannot retain events indefinitely.
 
 ## Adapter Capability Descriptor
 
@@ -107,3 +113,4 @@ A production adapter must document durability, backup, restore, migration, and f
 - Which port operations require transactions across ports?
 - Should v0 require cursor pagination for every list operation?
 - How should adapter migrations be versioned?
+- Should event retention be configured per namespace or globally?

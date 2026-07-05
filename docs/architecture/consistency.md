@@ -70,6 +70,19 @@ Job state must be durable and inspectable.
 
 Job failures must not corrupt already active memory.
 
+## Event Stream Consistency
+
+Lifecycle events are derived from durable memory operations.
+
+- Event delivery is at-least-once.
+- Cursor ordering should be stable within a scope.
+- Duplicate lifecycle events are valid and consumers must be idempotent.
+- If a requested resume cursor is invalid or expired, the runtime should fail loud with a structured error.
+- Strong consistency for subscription means no gap before the first returned event after a valid cursor.
+- Eventual consistency for subscription may return delayed lifecycle events and should include an eventual-consistency warning when exposed in transport metadata.
+
+Subscriptions are not a consensus log. They provide lifecycle awareness aligned with memory semantics.
+
 ## Contradictions
 
 Contradictions are represented, not hidden.
