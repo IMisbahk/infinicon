@@ -1,0 +1,23 @@
+src/runtime/ports.ts
+  s_2a65423708cc39::t_5411761d8e2919 1-82
+src/runtime/adapters/inMemoryStores.ts
+  s_2a65423708cc39::t_841fe0ed00c0d3 1-240
+src/runtime/plugins.ts
+  s_2a65423708cc39::t_2d649969d59ef5 1-121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "db4843bbc8e68ce678a763aff6570dec9453eba5",
+  "prompts": {},
+  "sessions": {
+    "s_2a65423708cc39": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "009b180a-032b-48bf-ba8f-8de4c4fec028",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
