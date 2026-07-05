@@ -1,0 +1,16 @@
+README.md
+  h_b8c068798e4e71 34,73,142
+.github/FUNDING.yml
+  h_b8c068798e4e71 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "b19f0d39e7510221e31bf13d4dfb228fb045a129",
+  "prompts": {},
+  "humans": {
+    "h_b8c068798e4e71": {
+      "author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
