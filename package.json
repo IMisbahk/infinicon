@@ -1,0 +1,12 @@
+{
+  "name": "infinicon",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:spec-integrity": "python3 scripts/spec_integrity_check.py",
+    "test:devops": "python3 -m unittest discover -s tests -v",
+    "test": "bun test",
+    "build": "bun build src/runtime/index.ts --outdir dist --target bun"
+  }
+}
