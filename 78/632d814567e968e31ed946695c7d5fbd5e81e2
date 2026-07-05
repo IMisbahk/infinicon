@@ -1,0 +1,22 @@
+CLAUDE.md
+  s_81056f85adc66a::t_0f69a53f06c032 42-43
+  s_81056f85adc66a::t_acba9f285e8925 11,13-14
+docs/runtime-bootstrap.md
+  s_81056f85adc66a::t_ec93ae1148ef0b 54-79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "78632d814567e968e31ed946695c7d5fbd5e81e2",
+  "prompts": {},
+  "sessions": {
+    "s_81056f85adc66a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0a0967d8-61b7-4560-8af8-8d77c10b0d2e",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
