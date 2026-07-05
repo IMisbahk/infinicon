@@ -1,0 +1,44 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod",
+    "agentId": "agent-support-1"
+  },
+  "task": "Resolve billing mismatch escalation",
+  "budget": {
+    "maxTokens": 1200,
+    "maxSegments": 4,
+    "reservedTokens": 300
+  },
+  "segments": [
+    {
+      "ref": {
+        "id": "co_01J00EXAMPLE0000000000003",
+        "type": "consolidation",
+        "scope": {
+          "tenantId": "tenant-acme",
+          "namespaceId": "support-prod"
+        }
+      },
+      "content": "Post-migration billing issues cluster around missing addendum codes and stale ERP sync windows.",
+      "score": 0.93,
+      "reason": "High relevance to billing mismatch escalation",
+      "provenance": {
+        "sourceRefs": [
+          {
+            "id": "ep_01J00EXAMPLE0000000000001",
+            "type": "episode",
+            "scope": {
+              "tenantId": "tenant-acme",
+              "namespaceId": "support-prod"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "tokenEstimate": 232,
+  "truncated": false,
+  "warnings": [],
+  "generatedAt": "2026-07-05T10:13:00Z"
+}

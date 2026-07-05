@@ -1,0 +1,54 @@
+{
+  "context": {
+    "scope": {
+      "tenantId": "tenant-acme",
+      "namespaceId": "support-prod"
+    },
+    "task": "prepare retrospective",
+    "budget": {
+      "maxTokens": 160,
+      "maxSegments": 2,
+      "reservedTokens": 60
+    },
+    "segments": [
+      {
+        "ref": {
+          "id": "co_01J00EXAMPLE0000000000003",
+          "type": "consolidation",
+          "scope": {
+            "tenantId": "tenant-acme",
+            "namespaceId": "support-prod"
+          }
+        },
+        "content": "Post-migration billing issues cluster around missing addendum codes and stale ERP sync windows.",
+        "score": 0.93,
+        "reason": "Highest value summary under budget",
+        "provenance": {
+          "sourceRefs": [
+            {
+              "id": "ep_01J00EXAMPLE0000000000001",
+              "type": "episode",
+              "scope": {
+                "tenantId": "tenant-acme",
+                "namespaceId": "support-prod"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "tokenEstimate": 155,
+    "truncated": true,
+    "warnings": [
+      {
+        "code": "truncated",
+        "message": "Additional relevant segments were omitted due to budget"
+      },
+      {
+        "code": "required_ref_omitted",
+        "message": "At least one required ref could not fit within budget"
+      }
+    ],
+    "generatedAt": "2026-07-05T10:18:00Z"
+  }
+}

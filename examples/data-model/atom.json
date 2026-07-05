@@ -1,0 +1,39 @@
+{
+  "id": "at_01J00EXAMPLE0000000000002",
+  "type": "atom",
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod"
+  },
+  "createdAt": "2026-07-05T10:01:10Z",
+  "createdBy": {
+    "kind": "plugin",
+    "id": "extractor.rules.v1"
+  },
+  "status": "active",
+  "atomType": "constraint",
+  "content": "Enterprise invoices must include contract addendum codes after plan migration",
+  "confidence": 0.91,
+  "provenance": {
+    "sourceRefs": [
+      {
+        "id": "ep_01J00EXAMPLE0000000000001",
+        "type": "episode",
+        "scope": {
+          "tenantId": "tenant-acme",
+          "namespaceId": "support-prod"
+        }
+      }
+    ],
+    "producer": {
+      "kind": "plugin",
+      "id": "extractor.rules.v1"
+    },
+    "producedAt": "2026-07-05T10:01:10Z",
+    "transform": "extract"
+  },
+  "metadata": {
+    "profile": "support",
+    "topic": "billing"
+  }
+}

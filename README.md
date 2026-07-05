@@ -23,3 +23,17 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [Storage ports v0](docs/specs/storage-ports.v0.md)
 - [Context assembly v0](docs/specs/context-assembly.v0.md)
 
+## Examples
+
+- [Examples overview](examples/README.md)
+- [Data model examples](examples/data-model)
+- [Memory API examples](examples/memory-api)
+- [Context assembly examples](examples/context-assembly)
+- [Plugin interface examples](examples/plugin-interface)
+
+Validate examples locally:
+
+```bash
+node tests/validate-examples.js
+```
+

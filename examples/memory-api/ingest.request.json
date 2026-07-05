@@ -1,0 +1,24 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod"
+  },
+  "episodes": [
+    {
+      "contentType": "application/json",
+      "content": {
+        "channel": "chat",
+        "text": "Customer reports repeated invoice mismatch after upgrade"
+      },
+      "dedupeKey": "ticket-4492-msg-17",
+      "createdBy": {
+        "kind": "agent",
+        "id": "agent-support-1"
+      },
+      "metadata": {
+        "ticketId": "4492"
+      }
+    }
+  ],
+  "consistency": "indexed"
+}

@@ -1,0 +1,19 @@
+{
+  "jobId": "job_consolidate_0001",
+  "type": "consolidation",
+  "status": "completed",
+  "createdAt": "2026-07-05T10:15:00Z",
+  "updatedAt": "2026-07-05T10:16:30Z",
+  "result": {
+    "createdConsolidationRefs": [
+      {
+        "id": "co_01J00EXAMPLE0000000000003",
+        "type": "consolidation",
+        "scope": {
+          "tenantId": "tenant-acme",
+          "namespaceId": "support-prod"
+        }
+      }
+    ]
+  }
+}

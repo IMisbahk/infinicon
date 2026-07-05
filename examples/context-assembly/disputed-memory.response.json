@@ -1,0 +1,50 @@
+{
+  "context": {
+    "scope": {
+      "tenantId": "tenant-acme",
+      "namespaceId": "research-prod"
+    },
+    "task": "summarize competing benchmark results",
+    "budget": {
+      "maxTokens": 800,
+      "maxSegments": 4,
+      "reservedTokens": 200
+    },
+    "segments": [
+      {
+        "ref": {
+          "id": "at_01J00EXAMPLE0000000000900",
+          "type": "atom",
+          "scope": {
+            "tenantId": "tenant-acme",
+            "namespaceId": "research-prod"
+          }
+        },
+        "content": "Model A outperforms Model B by 11 percent on eval set X",
+        "score": 0.78,
+        "reason": "Direct benchmark claim relevant to task",
+        "provenance": {
+          "sourceRefs": [
+            {
+              "id": "ep_01J00EXAMPLE0000000000890",
+              "type": "episode",
+              "scope": {
+                "tenantId": "tenant-acme",
+                "namespaceId": "research-prod"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "tokenEstimate": 128,
+    "truncated": false,
+    "warnings": [
+      {
+        "code": "disputed_memory_included",
+        "message": "Included memory has active contradictions"
+      }
+    ],
+    "generatedAt": "2026-07-05T10:19:00Z"
+  }
+}

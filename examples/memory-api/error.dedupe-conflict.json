@@ -1,0 +1,8 @@
+{
+  "code": "dedupe_conflict",
+  "message": "Dedupe key reused with mismatched content in same scope",
+  "retryable": false,
+  "details": {
+    "dedupeKey": "ticket-4492-msg-17"
+  }
+}

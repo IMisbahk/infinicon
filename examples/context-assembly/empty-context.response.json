@@ -1,0 +1,24 @@
+{
+  "context": {
+    "scope": {
+      "tenantId": "tenant-acme",
+      "namespaceId": "new-agent-memory"
+    },
+    "task": "draft onboarding response",
+    "budget": {
+      "maxTokens": 600,
+      "maxSegments": 3,
+      "reservedTokens": 200
+    },
+    "segments": [],
+    "tokenEstimate": 0,
+    "truncated": false,
+    "warnings": [
+      {
+        "code": "empty_context",
+        "message": "No matching memory found for scope and constraints"
+      }
+    ],
+    "generatedAt": "2026-07-05T10:17:00Z"
+  }
+}

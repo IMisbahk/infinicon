@@ -1,0 +1,14 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod"
+  },
+  "query": "billing migration constraints",
+  "filters": {
+    "statuses": ["active"],
+    "includeDisputed": false,
+    "includeSuperseded": false
+  },
+  "limit": 5,
+  "consistency": "strong"
+}
