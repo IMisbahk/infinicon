@@ -102,6 +102,26 @@ The first development adapter may be simple and local.
 
 A production adapter must document durability, backup, restore, migration, and failure behavior. A Postgres plus pgvector adapter is a strong first production target, but not part of the core contract.
 
+## Machine-Readable Contracts
+
+The following machine-readable artifacts mirror this draft spec and should stay aligned with it:
+
+- `docs/contracts/storage-ports.v0.json`
+- `docs/contracts/storage-ports.v0.schema.json`
+- `docs/contracts/storage-adapter-capabilities.v0.schema.json`
+- `docs/contracts/examples/storage-adapter-capabilities.pgvector.example.v0.json`
+- `docs/contracts/examples/storage-adapter-capabilities.local-dev.example.v0.json`
+
+These artifacts are contract aids and do not supersede the human-readable specification.
+
+Validation command:
+
+```bash
+python3 docs/contracts/validate_storage_contracts.py
+```
+
+For contract maintenance conventions, see `docs/contracts/README.md`.
+
 ## Open Questions
 
 - Which port operations require transactions across ports?
