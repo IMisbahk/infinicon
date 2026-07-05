@@ -14,6 +14,7 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [System boundaries](docs/architecture/boundaries.md)
 - [Roadmap](docs/roadmap.md)
 - [Architecture decision records](docs/adr/README.md)
+- [Reference runtime skeleton](docs/architecture/reference-runtime.md)
 
 ## Core Specs
 
@@ -33,5 +34,6 @@ Local verification:
 ```bash
 python3 scripts/spec_integrity_check.py
 python3 -m unittest discover -s tests -v
+bun test
 ```
 
