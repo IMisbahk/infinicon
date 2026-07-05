@@ -23,3 +23,9 @@ Run local validation:
 ```bash
 python3 docs/contracts/validate_storage_contracts.py
 ```
+
+Run validator tests:
+
+```bash
+python3 -m unittest tests/contracts/test_validate_storage_contracts.py
+```
