@@ -15,3 +15,4 @@ infinicon-*/
 node_modules/
 packages/*/dist/
 types/
+dist/

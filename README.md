@@ -189,3 +189,35 @@ This implementation remains intentionally spec-first and does not redefine archi
 - no model-provider coupling
 - no production storage backend assumptions
 
+## SDK Package (feat/sdk)
+
+This branch includes an initial thin TypeScript SDK scaffold aligned with the Memory API v0 contract.
+
+### Included
+
+- Typed request and response models mirroring `docs/specs/memory-api.v0.md` and related v0 docs.
+- `InfiniconClient` methods for v0 operations:
+  - `ingest`
+  - `query`
+  - `hydrate`
+  - `assembleContext`
+  - `consolidate`
+  - `tombstone`
+  - `subscribe`
+  - `getJob`
+- Small HTTP layer with conservative error mapping to `InfiniconSdkError`.
+- Unit tests for request shaping and error handling.
+
+### Build and test
+
+```bash
+bun run build
+bun test
+bun run typecheck
+```
+
+### Notes
+
+- Endpoints are intentionally thin integration points for the upcoming reference server implementation.
+- The SDK does not implement server-side semantics and does not redesign API behavior outside the spec.
+
