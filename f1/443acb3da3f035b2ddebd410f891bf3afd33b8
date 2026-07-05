@@ -1,0 +1,67 @@
+package.json
+  s_98b357d7cbc526::t_8bbcd860f9e35a 17-19
+CLAUDE.md
+  s_98b357d7cbc526::t_4f15dbec9fc2b7 1-43
+README.md
+  s_98b357d7cbc526::t_d405e3bb92e1e6 161-190
+docs/runtime-bootstrap.md
+  s_98b357d7cbc526::t_c77c6a476ff570 1-88
+packages/reference-server/package.json
+  s_98b357d7cbc526::t_c88712c12b190a 1-8
+packages/reference-server/src/server.js
+  s_98b357d7cbc526::t_6d12ad92e1bebe 1-114
+packages/runtime-adapters-memory/package.json
+  s_98b357d7cbc526::t_a0f6db7ab9182f 1-8
+packages/runtime-adapters-memory/src/index.js
+  s_98b357d7cbc526::t_5f38c5b56f263c 1
+packages/runtime-adapters-memory/src/memory-adapter.js
+  s_98b357d7cbc526::t_6959eccd543ea1 1-275
+packages/runtime-core/package.json
+  s_98b357d7cbc526::t_68e0bbd51257e1 1-8
+packages/runtime-core/src/errors.js
+  s_98b357d7cbc526::t_cdd60d1e184ffc 1-18
+packages/runtime-core/src/index.js
+  s_98b357d7cbc526::t_378e6f286cc2df 1-3
+packages/runtime-core/src/ports.js
+  s_98b357d7cbc526::t_dc2292c184e262 1-95
+packages/runtime-core/src/runtime.js
+  s_98b357d7cbc526::t_e1be36ec01048e 1-446
+packages/runtime-types/package.json
+  s_98b357d7cbc526::t_fe99984339ad2b 1-8
+packages/runtime-types/src/api-types.js
+  s_98b357d7cbc526::t_02592ca212cd0b 1-139
+packages/runtime-types/src/index.js
+  s_98b357d7cbc526::t_a6eb8d5c5737b9 1-3
+packages/runtime-types/src/memory-types.js
+  s_98b357d7cbc526::t_bea41b83ff4515 1-52
+packages/runtime-types/src/warnings.js
+  s_98b357d7cbc526::t_fe9c9e3eb368b5 1-14
+packages/sdk-ts/package.json
+  s_98b357d7cbc526::t_93f50b4e0158c6 1-8
+packages/sdk-ts/src/index.js
+  s_98b357d7cbc526::t_45a43e7f76bcff 1-57
+test/reference-server-errors.test.js
+  s_98b357d7cbc526::t_f0aeabe6709c21 1-45
+test/reference-server.test.js
+  s_98b357d7cbc526::t_635969dcbbb13e 1-51
+test/runtime-contract.test.js
+  s_98b357d7cbc526::t_900ccca02b9816 1-185
+test/runtime-edge-cases.test.js
+  s_98b357d7cbc526::t_a6fac1a758cf72 1-85
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "f1443acb3da3f035b2ddebd410f891bf3afd33b8",
+  "prompts": {},
+  "sessions": {
+    "s_98b357d7cbc526": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a452462b-f2b0-43fe-a769-579ba6aff394",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
