@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "spec": "storage-ports.v0",
+  "status": "draft",
+  "source": "../specs/storage-ports.v0.md",
+  "adapterCapabilityDescriptor": {
+    "requiredDeclarations": [
+      "implementedPorts",
+      "transactionalGuarantees",
+      "maximumObjectSizes",
+      "indexConsistencyBehavior",
+      "paginationBehavior",
+      "supportedFilters"
+    ],
+    "conditionallyRequiredDeclarations": [
+      {
+        "when": "productionReady = true",
+        "field": "backupRestoreExpectations"
+      }
+    ]
+  },
+  "ports": {
+    "episodeStore": {
+      "requiredCapabilities": [
+        "appendEpisode",
+        "fetchEpisodeByRef",
+        "fetchEpisodesByRefs",
+        "resolveDedupeKeyWithinScope",
+        "tombstoneEpisode"
+      ],
+      "requiredGuarantees": [
+        "episodesNotOverwrittenInPlace",
+        "dedupeLookupIsScoped",
+        "tombstonedContentExcludedFromNormalReads"
+      ]
+    },
+    "graphStore": {
+      "requiredCapabilities": [
+        "addLink",
+        "fetchOutgoingLinks",
+        "fetchIncomingLinks",
+        "fetchProvenanceChain",
+        "tombstoneLink"
+      ],
+      "requiredGuarantees": [
+        "linksAreScoped",
+        "crossTenantLinksRejectedUnlessExplicitlySupported",
+        "tombstonedLinksExcludedFromNormalTraversal"
+      ]
+    },
+    "indexStore": {
+      "requiredCapabilities": [
+        "indexMemoryPayload",
+        "removeOrHideIndexedPayload",
+        "searchByQueryPayload",
+        "searchByFilters",
+        "reportIndexFreshnessWhenAvailable"
+      ],
+      "requiredGuarantees": [
+        "tombstonedMemoryNotReturnedAsEligible",
+        "indexingConsistencyBehaviorDeclared",
+        "scoreInterpretationLimitsDeclared"
+      ]
+    },
+    "metadataStore": {
+      "requiredCapabilities": [
+        "storeScopes",
+        "storeAccessMetadata",
+        "storeAsyncJobs",
+        "storePluginState",
+        "storeEventCursors"
+      ],
+      "requiredGuarantees": [
+        "jobStateTransitionsAreDurable",
+        "scopeMetadataAvailableBeforeMemoryOperations",
+        "runtimeMetadataNotExposedAsMemoryContent"
+      ]
+    }
+  },
+  "openQuestions": [
+    "Which port operations require transactions across ports",
+    "Should v0 require cursor pagination for every list operation",
+    "How should adapter migrations be versioned"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://infinicon.dev/contracts/storage-adapter-capabilities.v0.schema.json",
+  "title": "Storage Adapter Capability Descriptor v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "implementedPorts",
+    "transactionalGuarantees",
+    "maximumObjectSizes",
+    "indexConsistencyBehavior",
+    "paginationBehavior",
+    "supportedFilters"
+  ],
+  "properties": {
+    "implementedPorts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "EpisodeStore",
+          "GraphStore",
+          "IndexStore",
+          "MetadataStore"
+        ]
+      }
+    },
+    "transactionalGuarantees": {
+      "type": "string",
+      "minLength": 1
+    },
+    "maximumObjectSizes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "indexConsistencyBehavior": {
+      "type": "string",
+      "minLength": 1
+    },
+    "paginationBehavior": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supportedFilters": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "productionReady": {
+      "type": "boolean",
+      "default": false
+    },
+    "backupRestoreExpectations": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "productionReady": {
+            "const": true
+          }
+        },
+        "required": [
+          "productionReady"
+        ]
+      },
+      "then": {
+        "required": [
+          "backupRestoreExpectations"
+        ]
+      }
+    }
+  ]
+}
