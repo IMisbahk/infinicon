@@ -1,0 +1,35 @@
+packages/plugin-host/src/index.ts
+  s_58e61bee8f3d81::t_fc5752c5c8bc45 1-12
+tsconfig.json
+  s_58e61bee8f3d81::t_538096070603aa 1-9,11,13-14
+  s_58e61bee8f3d81::t_a464206577b941 10,12
+packages/plugin-host/src/types.ts
+  s_58e61bee8f3d81::t_5b8660fa9b26ca 1-58
+package.json
+  s_58e61bee8f3d81::t_a16bbe8df488fd 1-10
+packages/plugin-host/src/errors.ts
+  s_58e61bee8f3d81::t_52c4d9c9283f54 1-11
+packages/plugin-host/src/pluginHost.ts
+  s_58e61bee8f3d81::t_11cb49f60f2944 114
+  s_58e61bee8f3d81::t_53d07130cf1a81 105-107
+  s_58e61bee8f3d81::t_ab32a9847f1e9f 32-33,37-39
+  s_58e61bee8f3d81::t_c2f8221c41df43 90-93
+  s_58e61bee8f3d81::t_a2d2a857b5a04b 1-5,7-31,34-36,40-89,94-104,108-113,115-126
+  s_58e61bee8f3d81::t_db3bfe2b5065c8 6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "6477fcb2d95a8a1ceb2547ca715adff87997f6ad",
+  "prompts": {},
+  "sessions": {
+    "s_58e61bee8f3d81": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "79916b25-5701-4fd1-b4d1-2e494be3fa05",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
