@@ -1,6 +1,9 @@
 .infinicon/
 CLAUDE.md
 AGENT.md
+.env
+.env.*
+!.env.example
 __pycache__/
 *.pyc
 *.py[cod]

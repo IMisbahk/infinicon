@@ -1,0 +1,8 @@
+node_modules/
+dist/
+packages/*/dist/
+.infinicon/
+.git/
+coverage/
+**/__pycache__/
+*.pyc

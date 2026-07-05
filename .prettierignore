@@ -1,0 +1,9 @@
+node_modules
+dist
+packages/*/dist
+.git
+.infinicon
+coverage
+bun.lock
+contracts/openapi
+docs/specs
