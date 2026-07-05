@@ -1,0 +1,24 @@
+{
+  "name": "@infinicon/sdk",
+  "version": "0.1.0",
+  "description": "Thin TypeScript client SDK for the Infinicon Memory API v0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist --target node",
+    "test": "bun test",
+    "typecheck": "bunx tsc --noEmit",
+    "check": "bun test && bunx tsc --noEmit"
+  },
+  "keywords": [
+    "infinicon",
+    "memory",
+    "sdk",
+    "ai"
+  ],
+  "license": "UNLICENSED"
+}
