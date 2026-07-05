@@ -1,0 +1,34 @@
+{
+  "request": {
+    "scope": {
+      "tenantId": "tenant-acme",
+      "namespaceId": "coding-prod"
+    },
+    "task": "Answer question",
+    "budget": {
+      "maxTokens": 1000
+    },
+    "consistency": "strong"
+  },
+  "response": {
+    "context": {
+      "scope": {
+        "tenantId": "tenant-acme",
+        "namespaceId": "coding-prod"
+      },
+      "task": "Answer question",
+      "budget": {
+        "maxTokens": 1000
+      },
+      "segments": [],
+      "tokenEstimate": 0,
+      "truncated": false,
+      "warnings": [
+        {
+          "code": "made_up_warning"
+        }
+      ],
+      "generatedAt": "2026-07-05T12:30:00Z"
+    }
+  }
+}

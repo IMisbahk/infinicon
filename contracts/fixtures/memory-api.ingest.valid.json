@@ -1,0 +1,26 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "coding-prod",
+    "agentId": "agent-coding",
+    "sessionId": "session-123"
+  },
+  "episodes": [
+    {
+      "contentType": "application/json",
+      "content": {
+        "role": "user",
+        "text": "Remember I prefer rust over go"
+      },
+      "dedupeKey": "episode-req-123-1",
+      "createdBy": {
+        "id": "agent-coding",
+        "kind": "agent"
+      },
+      "metadata": {
+        "channel": "chat"
+      }
+    }
+  ],
+  "consistency": "indexed"
+}

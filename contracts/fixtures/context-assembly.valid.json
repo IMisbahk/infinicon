@@ -1,0 +1,67 @@
+{
+  "request": {
+    "scope": {
+      "tenantId": "tenant-acme",
+      "namespaceId": "coding-prod"
+    },
+    "task": "Answer question about build flags",
+    "budget": {
+      "maxTokens": 1200,
+      "maxSegments": 8,
+      "reservedTokens": 200
+    },
+    "filters": {
+      "includeDisputed": false,
+      "includeSuperseded": false,
+      "types": ["atom", "consolidation"]
+    },
+    "constraints": {
+      "includeDisputed": false,
+      "preferRecency": true,
+      "preferHighConfidence": true,
+      "maxSegments": 8
+    },
+    "consistency": "eventual"
+  },
+  "response": {
+    "context": {
+      "scope": {
+        "tenantId": "tenant-acme",
+        "namespaceId": "coding-prod"
+      },
+      "task": "Answer question about build flags",
+      "budget": {
+        "maxTokens": 1200,
+        "maxSegments": 8,
+        "reservedTokens": 200
+      },
+      "segments": [
+        {
+          "ref": {
+            "id": "atm_201",
+            "type": "atom",
+            "scope": {
+              "tenantId": "tenant-acme",
+              "namespaceId": "coding-prod"
+            }
+          },
+          "content": "Project uses strict TypeScript and Bun runtime",
+          "score": 0.92,
+          "reason": "Directly relevant to build flags",
+          "provenance": {
+            "sourceRefs": ["ep_10"]
+          }
+        }
+      ],
+      "tokenEstimate": 240,
+      "truncated": false,
+      "warnings": [
+        {
+          "code": "eventual_consistency",
+          "message": "Used eventual index view"
+        }
+      ],
+      "generatedAt": "2026-07-05T12:30:00Z"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod",
+    "agentId": "agent-memory",
+    "sessionId": "session-42"
+  },
+  "object": {
+    "id": "atm_001",
+    "type": "atom",
+    "scope": {
+      "tenantId": "tenant-acme",
+      "namespaceId": "support-prod",
+      "agentId": "agent-memory",
+      "sessionId": "session-42"
+    },
+    "createdAt": "2026-07-05T12:00:00Z",
+    "createdBy": {
+      "id": "plugin-extractor-v1",
+      "kind": "plugin"
+    },
+    "status": "active",
+    "atomType": "preference",
+    "content": "User prefers concise answers",
+    "confidence": 0.91,
+    "provenance": {
+      "sourceRefs": [
+        {
+          "id": "ep_001",
+          "type": "episode",
+          "scope": {
+            "tenantId": "tenant-acme",
+            "namespaceId": "support-prod"
+          }
+        }
+      ],
+      "producedBy": "extractor.default",
+      "createdAt": "2026-07-05T12:00:00Z",
+      "transformationType": "extraction",
+      "confidence": 0.91,
+      "metadata": {
+        "model": "deterministic-rule"
+      }
+    },
+    "metadata": {
+      "profile": "support"
+    }
+  }
+}

@@ -1,43 +1,48 @@
-# Project CLAUDE.md
+# infinicon
+
+Persistent context for the coding assistant on this project.
 
 ## Session updates
 
 ### What improved
-- Bootstrapped an initial runtime workspace under `packages/` with clear module boundaries
-- Added core runtime contracts and storage port interfaces aligned with v0 specs
-- Implemented a conservative in-memory adapter for development/testing
-- Implemented reference server endpoints for health + core memory API flows
-- Added a thin SDK client wrapper around server endpoints
-- Added automated tests for runtime semantics, edge-case validation, and server error behavior
-- Added runtime bootstrap docs at `docs/runtime-bootstrap.md`
-- Hardened request validation across all current runtime operations
-- Added baseline lifecycle event capture and subscription replay semantics
+- Integrated parallel feature branches into `main` with dual-runtime preservation
+- Machine-readable contracts live in both `docs/specs/` and `contracts/`
+- Reference server skeleton at `src/server.ts` with domain, storage, and transport layers
+- Runtime packages under `packages/` plus `src/runtime/` memory and reference stacks
+- Plugin host, core-types validators, SDK clients, devops integrity checks, and examples
 
 ### What did not work
-- No remote is configured in this repository, so push/PR-related commands are unavailable in current environment
-- External explore agents could not be used in one planning step due to model credit limitations, so plan synthesis used local direct doc reads
+- `feat/events` skipped due to uncommitted doc edits in its worktree
+- Dual runtime implementations required side-by-side type/port modules instead of a single merge
 
 ### Permissions and constraints encountered
-- Repository currently has no project CLAUDE before this file
-- `.gitignore` includes `CLAUDE.md`; if this file should be tracked, use `git add -f CLAUDE.md`
-- Global instruction constraints still apply:
-  - no file deletion without explicit user approval
-  - no dependency additions without explicit user approval
-  - surgical edits over broad rewrites
+- Never add yourself as a contributor or mention cursor in commits
+- `.infinicon/` is local only and must not be committed
+- No dependency additions without explicit approval
 
-## Current implementation map
-- `packages/runtime-types` — contract helpers and validation
-- `packages/runtime-core` — ports, runtime services, error model
-- `packages/runtime-adapters-memory` — in-memory adapter for all storage ports
-- `packages/reference-server` — HTTP transport for v0 routes
-- `packages/sdk-ts` — thin client wrapper
-- `test/` — runtime semantics and server integration tests
+## Structure
+
+- `docs/` — specs, ADRs, architecture, devops guardrails
+- `contracts/` — OpenAPI + JSON schemas + fixtures + validation scripts
+- `src/runtime/` — memory-runtime and reference service stacks
+- `src/server.ts` — Bun reference server entrypoint
+- `packages/` — core-types, plugin-host, runtime bootstrap modules
+- `runtime/` — alternate reference skeleton package
+- `examples/` — spec-aligned JSON examples
+- `tests/` — runtime, server, contract, and devops tests
 
 ## Verification
-- Run all tests: `npm test`
-- Start reference server: `npm run start:server`
 
-## Notes for next session
-- Keep implementation changes mapped to spec docs first, then code
-- Next high-value work is machine-readable API schema generation and conformance fixtures from current runtime behavior
-- Replace in-memory event/job handling with durable adapter-backed implementations without changing public runtime semantics
+```bash
+bun test
+python3 scripts/spec_integrity_check.py
+python3 contracts/scripts/validate_contracts.py
+python3 docs/specs/validate-machine-readable.py
+bun run verify
+```
+
+## Bootstrap (every session)
+
+1. Read `.infinicon/memory.md` first
+2. Update `.infinicon/memory.md` when work completes
+3. Keep README and docs aligned with repo changes
