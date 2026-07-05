@@ -1,0 +1,19 @@
+examples/simple-chat.ts
+  s_053366b8594682::t_ba0c726ba5486f 7,53-80,82-83,86,107-114,116-117,121-126,128-133,136-143
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "5cc3f3e7df319781c00a662a639cc11039826b21",
+  "prompts": {},
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
