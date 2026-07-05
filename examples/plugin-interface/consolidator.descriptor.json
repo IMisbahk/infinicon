@@ -1,0 +1,30 @@
+{
+  "name": "consolidator.default.v1",
+  "version": "1.0.0",
+  "kind": "consolidator",
+  "supportedSpecVersion": "v0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "maxSources": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 1000
+      }
+    },
+    "additionalProperties": false
+  },
+  "capabilities": {
+    "supportsSupersession": true,
+    "surfacesUncertainty": true
+  },
+  "sideEffects": {
+    "writesDurableMemory": false,
+    "externalNetworkCalls": true
+  },
+  "idempotencyGuarantees": {
+    "sameInputSameOutput": false,
+    "scopeAware": true,
+    "notes": "Model-backed synthesis may vary while preserving provenance"
+  }
+}

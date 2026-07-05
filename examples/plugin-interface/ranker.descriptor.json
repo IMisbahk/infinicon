@@ -1,0 +1,29 @@
+{
+  "name": "ranker.hybrid.v1",
+  "version": "1.0.0",
+  "kind": "ranker",
+  "supportedSpecVersion": "v0",
+  "configSchema": {
+    "type": "object",
+    "required": ["strategy"],
+    "properties": {
+      "strategy": {
+        "type": "string",
+        "enum": ["lexical", "vector", "hybrid"]
+      }
+    },
+    "additionalProperties": false
+  },
+  "capabilities": {
+    "supportsReasons": true,
+    "deterministicTestMode": true
+  },
+  "sideEffects": {
+    "writesDurableMemory": false,
+    "externalNetworkCalls": false
+  },
+  "idempotencyGuarantees": {
+    "sameInputSameOutput": true,
+    "scopeAware": true
+  }
+}

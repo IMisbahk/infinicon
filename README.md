@@ -18,6 +18,7 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [Open decisions register](docs/open-decisions.md)
 - [Spec review process](docs/spec-review-process.md)
 - [Architecture decision records](docs/adr/README.md)
+- [Reference runtime skeleton](docs/architecture/reference-runtime-skeleton.md)
 
 ## Reference Implementation (early)
 
@@ -35,4 +36,18 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [Machine-readable contract v0](docs/specs/machine-readable-contract.v0.md)
 - [API compatibility policy v0](docs/specs/api-compatibility-policy.v0.md)
 - [Conformance test plan v0](docs/specs/conformance-test-plan.v0.md)
+
+## Examples
+
+- [Examples overview](examples/README.md)
+- [Data model examples](examples/data-model)
+- [Memory API examples](examples/memory-api)
+- [Context assembly examples](examples/context-assembly)
+- [Plugin interface examples](examples/plugin-interface)
+
+Validate examples locally:
+
+```bash
+node tests/validate-examples.js
+```
 

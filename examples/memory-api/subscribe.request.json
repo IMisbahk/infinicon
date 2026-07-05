@@ -1,0 +1,12 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod"
+  },
+  "eventTypes": [
+    "episode.ingested",
+    "memory.indexed",
+    "memory.tombstoned"
+  ],
+  "cursor": "cursor_0000"
+}

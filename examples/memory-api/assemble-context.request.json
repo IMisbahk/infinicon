@@ -1,0 +1,35 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod",
+    "agentId": "agent-support-1"
+  },
+  "task": "prepare safe billing escalation response",
+  "budget": {
+    "maxTokens": 1200,
+    "maxSegments": 4,
+    "reservedTokens": 300
+  },
+  "filters": {
+    "statuses": ["active"],
+    "includeDisputed": false,
+    "includeSuperseded": false
+  },
+  "constraints": {
+    "mustIncludeRefs": [
+      {
+        "id": "co_01J00EXAMPLE0000000000003",
+        "type": "consolidation",
+        "scope": {
+          "tenantId": "tenant-acme",
+          "namespaceId": "support-prod"
+        }
+      }
+    ],
+    "excludedRefs": [],
+    "preferRecency": true,
+    "preferHighConfidence": true,
+    "maxSegments": 4
+  },
+  "consistency": "eventual"
+}

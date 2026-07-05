@@ -1,0 +1,34 @@
+{
+  "id": "ln_01J00EXAMPLE0000000000004",
+  "type": "link",
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod"
+  },
+  "createdAt": "2026-07-05T10:12:00Z",
+  "createdBy": {
+    "kind": "system",
+    "id": "runtime"
+  },
+  "status": "active",
+  "linkType": "derived_from",
+  "from": {
+    "id": "at_01J00EXAMPLE0000000000002",
+    "type": "atom",
+    "scope": {
+      "tenantId": "tenant-acme",
+      "namespaceId": "support-prod"
+    }
+  },
+  "to": {
+    "id": "ep_01J00EXAMPLE0000000000001",
+    "type": "episode",
+    "scope": {
+      "tenantId": "tenant-acme",
+      "namespaceId": "support-prod"
+    }
+  },
+  "metadata": {
+    "confidence": 0.91
+  }
+}

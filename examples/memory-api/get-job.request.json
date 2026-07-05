@@ -1,0 +1,7 @@
+{
+  "scope": {
+    "tenantId": "tenant-acme",
+    "namespaceId": "support-prod"
+  },
+  "jobId": "job_consolidate_0001"
+}
