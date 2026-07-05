@@ -158,4 +158,76 @@ describe("PluginHost", () => {
 
     expect(host.listByKind("ranker")).toHaveLength(1)
   })
+
+  it("reports stats and has status", () => {
+    const host = new PluginHost(pluginSpecVersionV0)
+    const plugin = makeRankerPlugin()
+
+    host.register({ plugin, config: { deterministic: true } })
+
+    expect(host.has("ranker", "baseline-ranker", "1.0.0")).toBe(true)
+    expect(host.stats()).toEqual({
+      totalRegisteredPlugins: 1,
+      registeredByKind: {
+        extractor: 0,
+        embedder: 0,
+        ranker: 1,
+        consolidator: 0,
+        formatter: 0,
+        storage_adapter: 0,
+      },
+    })
+  })
+
+  it("unregisters plugin", () => {
+    const host = new PluginHost(pluginSpecVersionV0)
+    const plugin = makeRankerPlugin()
+
+    host.register({ plugin, config: { deterministic: true } })
+    expect(host.unregister("ranker", "baseline-ranker", "1.0.0")).toBe(true)
+    expect(host.has("ranker", "baseline-ranker", "1.0.0")).toBe(false)
+    expect(host.stats().totalRegisteredPlugins).toBe(0)
+  })
+
+  it("emits lifecycle events", async () => {
+    const host = new PluginHost(pluginSpecVersionV0)
+    const plugin = makeRankerPlugin()
+    const events: string[] = []
+
+    const subscription = host.subscribe((event) => {
+      events.push(event.type)
+    })
+
+    host.register({ plugin, config: { deterministic: true } })
+    await host.run<RankerInput, RankerOutput>(
+      "ranker",
+      "baseline-ranker",
+      "1.0.0",
+      {
+        query: "events",
+        candidates: [{ id: "a", baseScore: 1 }],
+      },
+      {
+        scope: { tenantId: "t1", namespaceId: "n1" },
+        requestId: "r3",
+      },
+    )
+    host.unregister("ranker", "baseline-ranker", "1.0.0")
+
+    subscription.unsubscribe()
+
+    expect(events).toEqual(["plugin_registered", "plugin_executed", "plugin_unregistered"])
+  })
+
+  it("provides readonly host view", () => {
+    const host = new PluginHost(pluginSpecVersionV0)
+    const plugin = makeRankerPlugin()
+
+    host.register({ plugin, config: { deterministic: true } })
+
+    const readonlyView = host.asReadonly()
+    expect(readonlyView.specVersion).toBe(pluginSpecVersionV0)
+    expect(readonlyView.has("ranker", "baseline-ranker", "1.0.0")).toBe(true)
+    expect(readonlyView.stats().totalRegisteredPlugins).toBe(1)
+  })
 })

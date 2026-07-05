@@ -9,9 +9,11 @@ This document describes the v0 plugin host implementation in this repository.
 The plugin host is responsible for:
 
 - Registering trusted in-process plugins
+- Unregistering plugins by `(kind, name, version)`
 - Validating plugin descriptors
 - Validating plugin configuration at startup time
 - Routing plugin execution by `(kind, name, version)`
+- Exposing lightweight registry stats and host event hooks for observability
 
 The plugin host is intentionally not responsible for:
 
@@ -46,6 +48,14 @@ Registration fails for duplicate plugin keys, invalid descriptor fields, invalid
 Execution fails loudly when a plugin is missing.
 
 The host returns defensive copies for `listByKind` so callers cannot mutate internal registry state accidentally.
+
+The host exposes:
+
+- `stats()` for current plugin inventory by kind
+- `subscribe(listener)` for plugin lifecycle events (`plugin_registered`, `plugin_executed`, `plugin_unregistered`)
+- `asReadonly()` to hand a read-only host view to subsystems that should not mutate registration state
+
+These are conservative observability/lifecycle hooks and do not alter plugin trust boundaries or architecture ownership.
 
 ## Integration points
 
