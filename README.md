@@ -23,3 +23,23 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [Storage ports v0](docs/specs/storage-ports.v0.md)
 - [Context assembly v0](docs/specs/context-assembly.v0.md)
 
+## Machine-Readable Draft Artifacts
+
+These artifacts are draft contracts generated from the prose v0 specs. They are tooling aids, not a replacement for normative prose specs.
+
+- [Memory API OpenAPI draft](docs/specs/memory-api.v0.openapi.json)
+- [Data model schema draft](docs/specs/data-model.v0.schema.json)
+- [Context assembly schema draft](docs/specs/context-assembly.v0.schema.json)
+- [Plugin interface schema draft](docs/specs/plugin-interface.v0.schema.json)
+- [Storage ports schema draft](docs/specs/storage-ports.v0.schema.json)
+- [Contract mapping notes](docs/specs/machine-readable-contract-notes.v0.md)
+- [Validation script](docs/specs/validate-machine-readable.py)
+
+Run validation locally:
+
+```bash
+python3 docs/specs/validate-machine-readable.py
+```
+
+If a prose spec changes, update machine-readable artifacts in the same change.
+
