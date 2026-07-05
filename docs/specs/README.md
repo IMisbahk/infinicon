@@ -27,6 +27,8 @@ Machine-readable artifacts are contract helpers for tooling and conformance work
 - `storage-ports.v0.schema.json`
 - `machine-readable-contract-notes.v0.md`
 - `validate-machine-readable.py`
+- `run-conformance.py`
+- `fixtures/*.json`
 
 ## Update policy
 
@@ -38,9 +40,11 @@ When a normative prose spec changes:
 
 ```bash
 python3 docs/specs/validate-machine-readable.py
+python3 docs/specs/run-conformance.py
 ```
 
 4. Ensure JSON parse remains valid for all machine-readable files
+5. Update or add fixtures when request or response shape changes
 
 ## Scope guard
 

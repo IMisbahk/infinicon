@@ -34,11 +34,14 @@ These artifacts are draft contracts generated from the prose v0 specs. They are 
 - [Storage ports schema draft](docs/specs/storage-ports.v0.schema.json)
 - [Contract mapping notes](docs/specs/machine-readable-contract-notes.v0.md)
 - [Validation script](docs/specs/validate-machine-readable.py)
+- [Conformance runner](docs/specs/run-conformance.py)
+- [Conformance fixtures](docs/specs/fixtures)
 
 Run validation locally:
 
 ```bash
 python3 docs/specs/validate-machine-readable.py
+python3 docs/specs/run-conformance.py
 ```
 
 If a prose spec changes, update machine-readable artifacts in the same change.
