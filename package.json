@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "bun run src/server/index.ts",
     "check:spec-integrity": "python3 scripts/spec_integrity_check.py",
     "test:devops": "python3 -m unittest discover -s tests -v",
     "test": "bun test",
     "check": "bun test",
-    "build": "bun build src/runtime/index.ts --outdir dist --target bun"
+    "build": "bun build src/runtime/index.ts --outdir dist --target bun",
+    "build:core-types": "bun build packages/core-types/src/index.ts --outdir packages/core-types/dist --target=node",
+    "test:core-types": "bun test packages/core-types/test"
   }
 }

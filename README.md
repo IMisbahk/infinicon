@@ -154,3 +154,7 @@ python3 -m unittest discover -s tests -v
 bun test
 ```
 
+## Packages
+
+- [`@infinicon/core-types`](packages/core-types/README.md): spec-aligned TypeScript contracts for v0 data model, memory API, plugin interfaces, storage ports, context assembly, runtime validation, and JSON schemas
+

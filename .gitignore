@@ -12,3 +12,6 @@ coverage.xml
 .DS_Store
 .claude/
 infinicon-*/
+node_modules/
+packages/*/dist/
+types/

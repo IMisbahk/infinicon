@@ -8,6 +8,8 @@
     "noEmit": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true,
     "types": [
       "bun-types"
     ]
@@ -16,6 +18,7 @@
     "src/**/*.ts",
     "test/**/*.ts",
     "tests/**/*.ts",
-    "runtime/**/*.ts"
+    "runtime/**/*.ts",
+    "packages/**/*.ts"
   ]
 }
