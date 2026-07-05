@@ -1,0 +1,21 @@
+.github/workflows/spec-integrity.yml
+  s_2a65423708cc39::t_d75c43b4446ad6 1-28
+.gitignore
+  s_2a65423708cc39::t_0cd7ca74f661e3 3-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "e0c0cc1221ddcd914ab6da279d689fe516886577",
+  "prompts": {},
+  "sessions": {
+    "s_2a65423708cc39": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "009b180a-032b-48bf-ba8f-8de4c4fec028",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
