@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: infinicon-runtime
+    runtime: node
+    plan: free
+    buildCommand: curl -fsSL https://bun.sh/install | bash && export PATH="$HOME/.bun/bin:$PATH" && bun install
+    startCommand: bun run src/server.ts
+    envVars:
+      - key: PORT
+        value: "8787"
+      - key: HOST
+        value: "0.0.0.0"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: infinicon-db
+          property: connectionString
+      - key: INFINICON_API_KEY
+        generateValue: true
+    healthCheckPath: /health
+
+databases:
+  - name: infinicon-db
+    plan: free

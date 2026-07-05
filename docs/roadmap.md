@@ -59,8 +59,9 @@ Deliverables:
 
 Implementation note:
 
-- A development runtime skeleton is available in `runtime/` with in-memory adapters and contract tests.
-- The skeleton now includes a Bun HTTP reference server with a health endpoint and a thin typed client SDK.
+- The reference runtime lives in `src/runtime/` (`MemoryRuntimeService`, in-memory adapters, contract tests).
+- The Bun HTTP reference server entrypoint is `src/server.ts` (health endpoint, v0 memory API routes).
+- The thin typed client SDK is `src/client.ts`. There is no standalone `runtime/` package.
 
 Exit criteria:
 
@@ -78,6 +79,11 @@ Deliverables:
 - Context budgeting.
 - Segment ordering and warning behavior.
 - Retrieval quality test fixtures.
+
+Implementation note:
+
+- Default plugins register via `src/runtime/pluginBootstrap.ts` (keyword extractor, simple embedder/ranker/consolidator).
+- Retrieval fixtures live under `tests/fixtures/retrieval/`.
 
 Exit criteria:
 
@@ -102,6 +108,12 @@ Exit criteria:
 - Consolidation failures do not corrupt active memory.
 - Tombstoned source memory cannot resurface through derived memory without warnings or policy.
 
+Implementation note:
+
+- Async jobs drain via `JobRunner` (background poll in `src/server.ts`).
+- Supersession applied when consolidator returns `supersedes`.
+- Large tombstone cascades enqueue `tombstone_cascade` jobs (threshold: 5 refs).
+
 ## Phase 5: Production Hardening
 
 Goal: make the reference server credible in production.
@@ -113,6 +125,13 @@ Deliverables:
 - Metrics and tracing hooks.
 - Backup, restore, and migration guidance.
 - Deployment guide.
+
+Implementation note:
+
+- Postgres JSONB adapters in `src/runtime/adapters/postgresStores.ts` (set `DATABASE_URL`).
+- Bearer auth middleware in `src/transport/auth.ts`.
+- JSON metrics on `/health` and `/metrics`.
+- Ops docs: `docs/devops/deployment.md`, `docs/devops/backup-restore.md`, `render.yaml`.
 
 Exit criteria:
 

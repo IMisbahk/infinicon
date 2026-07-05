@@ -5,7 +5,7 @@ const scope = { tenantId: "tenant-a", namespaceId: "ns-a" }
 
 describe("MemoryRuntimeService via createRuntime", () => {
   test("supports ingest and query", async () => {
-    const runtime = createRuntime()
+    const runtime = await createRuntime()
 
     const ingested = await runtime.ingest({
       scope,
@@ -22,7 +22,8 @@ describe("MemoryRuntimeService via createRuntime", () => {
     expect(ingested.results[0]?.status).toBe("created")
 
     const query = await runtime.query({ scope, query: "hello", limit: 5 })
-    expect(query.refs.length).toBe(1)
+    expect(query.refs.length).toBeGreaterThanOrEqual(1)
+    expect(query.refs.some((row) => row.ref.type === "episode")).toBe(true)
   })
 })
 

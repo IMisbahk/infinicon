@@ -144,6 +144,56 @@ describe("MemoryRuntimeService", () => {
     expect(assembled.context.warnings.some((w) => w.code === "truncated")).toBe(true)
   })
 
+  test("assembleContext reports empty_context when no matches", async () => {
+    const runtime = createRuntime()
+
+    const assembled = await runtime.assembleContext({
+      scope,
+      task: "nothing matches this query",
+      budget: { maxTokens: 128 },
+    })
+
+    expect(assembled.context.segments.length).toBe(0)
+    expect(assembled.context.warnings.some((w) => w.code === "empty_context")).toBe(true)
+  })
+
+  test("assembleContext reports disputed_memory_included", async () => {
+    const objectStore = new InMemoryObjectStore()
+    const runtime = new MemoryRuntimeService({
+      episodeStore: new InMemoryEpisodeStore(),
+      graphStore: new InMemoryGraphStore(),
+      indexStore: new InMemoryIndexStore(),
+      metadataStore: new InMemoryMetadataStore(),
+      objectStore,
+    })
+
+    const ingested = await runtime.ingest({
+      scope,
+      episodes: [
+        {
+          contentType: "text/plain",
+          content: "disputed benchmark claim",
+          createdBy: { id: "tester", kind: "system" },
+        },
+      ],
+    })
+
+    const ref = ingested.results[0].ref
+    const stored = await objectStore.get(ref)
+    expect(stored).not.toBeNull()
+    await objectStore.upsert({ ...stored!, status: "disputed" })
+
+    const assembled = await runtime.assembleContext({
+      scope,
+      task: "benchmark",
+      budget: { maxTokens: 128 },
+      filters: { includeDisputed: true },
+    })
+
+    expect(assembled.context.segments.length).toBe(1)
+    expect(assembled.context.warnings.some((w) => w.code === "disputed_memory_included")).toBe(true)
+  })
+
   test("tombstone hides content from query", async () => {
     const runtime = createRuntime()
 
@@ -273,7 +323,7 @@ describe("InMemoryMetadataStore", () => {
     await store.upsertJob({
       jobId: "job-1",
       scope,
-      kind: "consolidation",
+      type: "consolidation",
       status: "queued",
       createdAt: now,
       updatedAt: now,

@@ -1,0 +1,20 @@
+{
+  "name": "basic-ranking",
+  "scope": {
+    "tenantId": "fixture",
+    "namespaceId": "retrieval"
+  },
+  "episodes": [
+    {
+      "contentType": "text/plain",
+      "content": "rust memory runtime design notes"
+    },
+    {
+      "contentType": "text/plain",
+      "content": "python web dashboard widgets overview"
+    }
+  ],
+  "query": "rust memory",
+  "expectMinRefs": 1,
+  "expectMatchTokens": ["rust", "memory"]
+}
