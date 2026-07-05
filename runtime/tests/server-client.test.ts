@@ -55,4 +55,10 @@ describe("runtime server and client", () => {
       globalThis.fetch = previousFetch
     }
   })
+
+  test("unknown endpoint returns not found", async () => {
+    const app = createRuntimeServer()
+    const response = await app.fetch(new Request("http://local/v0/nope", { method: "POST", body: "{}" }))
+    expect(response.status).toBe(404)
+  })
 })

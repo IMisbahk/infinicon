@@ -136,4 +136,40 @@ describe("InMemoryRuntime", () => {
 
     expect(job.status).toBe("completed")
   })
+
+  test("consolidate enqueue creates queued job", () => {
+    const runtime = new InMemoryRuntime()
+
+    const consolidation = runtime.consolidate({
+      scope: scopeA,
+      trigger: "idle",
+      mode: "enqueue",
+    })
+
+    expect(consolidation.status).toBe("queued")
+
+    const job = runtime.getJob({
+      scope: scopeA,
+      jobId: consolidation.jobId,
+    })
+
+    expect(job.status).toBe("queued")
+  })
+
+  test("subscribe returns lifecycle events", () => {
+    const runtime = new InMemoryRuntime()
+
+    runtime.ingest({
+      scope: scopeA,
+      episodes: [{ contentType: "text/plain", content: "event me", createdBy: actor }],
+      consistency: "indexed",
+    })
+
+    const events = runtime.subscribe({
+      scope: scopeA,
+      eventTypes: ["episode.ingested", "memory.indexed"],
+    })
+
+    expect(events.events.length).toBeGreaterThanOrEqual(2)
+  })
 })
