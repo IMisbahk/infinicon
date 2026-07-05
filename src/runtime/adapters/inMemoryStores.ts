@@ -224,8 +224,18 @@ export class InMemoryMetadataStore implements MetadataStore {
     this.events.set(key, current)
   }
 
-  async listEvents(scope: Scope): Promise<MemoryEvent[]> {
-    return this.events.get(scopeKey(scope)) ?? []
+  async listEvents(scope: Scope, cursor?: string): Promise<MemoryEvent[]> {
+    const events = this.events.get(scopeKey(scope)) ?? []
+    if (!cursor) return events
+    const cursorIndex = events.findIndex((event) => event.id === cursor)
+    if (cursorIndex < 0) return events
+    return events.slice(cursorIndex + 1)
+  }
+
+  async listQueuedJobs(limit = 32): Promise<JobRecord[]> {
+    const queued = [...this.jobs.values()].filter((job) => job.status === "queued")
+    queued.sort((a, b) => a.createdAt.localeCompare(b.createdAt))
+    return queued.slice(0, limit)
   }
 }
 

@@ -61,6 +61,7 @@ export type JobRecord = {
   status: "queued" | "running" | "completed" | "failed" | "cancelled"
   createdAt: string
   updatedAt: string
+  payload?: unknown
   result?: unknown
   error?: { code: string; message: string; retryable: boolean; details?: Record<string, unknown> }
 }
@@ -72,6 +73,7 @@ export interface MetadataStore {
   getJob(scope: Scope, jobId: string): Promise<JobRecord | null>
   appendEvent(event: MemoryEvent): Promise<void>
   listEvents(scope: Scope, cursor?: string): Promise<MemoryEvent[]>
+  listQueuedJobs(limit?: number): Promise<JobRecord[]>
 }
 
 export interface ObjectStore {

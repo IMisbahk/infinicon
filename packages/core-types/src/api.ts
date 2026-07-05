@@ -116,6 +116,7 @@ export type TombstoneResult = {
 
 export type TombstoneResponse = {
   results: TombstoneResult[]
+  jobId?: string
 }
 
 export type MemoryEventType =
