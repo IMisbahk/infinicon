@@ -1,0 +1,26 @@
+packages/core-types/src/api.ts
+  s_053366b8594682::t_2dc6141c409026 12-13
+  s_053366b8594682::t_6f9d2ec09eb7fc 25
+packages/core-types/test/contracts.test.ts
+  s_053366b8594682::t_611cf3699e4845 75
+packages/core-types/src/validators.ts
+  s_053366b8594682::t_a413889186c851 8
+  s_053366b8594682::t_3952a7ae18c186 32-33
+  s_053366b8594682::t_dd0a7e6181971a 177-178
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "ced7339d925e302061af17a48b4ca86927524abb",
+  "prompts": {},
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
