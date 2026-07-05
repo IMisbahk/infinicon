@@ -1,0 +1,40 @@
+CHANGELOG.md
+  s_053366b8594682::t_3354c71550d5b6 3-13
+packages/sdk/README.md
+  s_053366b8594682::t_d384136f88e051 3-4,7-9
+  s_053366b8594682::t_7c7ce51b640d96 10
+LICENSE
+  s_053366b8594682::t_a271f3c4bebf83 1-21
+.github/workflows/publish-npm.yml
+  s_053366b8594682::t_0c464fb59e8463 1-47
+.github/FUNDING.yml
+  s_053366b8594682::t_f3ab0995fc63fb 1-2
+README.md
+  s_053366b8594682::t_949e89d756dd47 59-60
+  s_053366b8594682::t_b2ef142d1fee69 155-166
+  s_053366b8594682::t_77b5972964d717 3-7,14-36
+  s_053366b8594682::t_aef5e81eaf66da 37
+.gitignore
+  h_b8c068798e4e71 27-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "5ddaebe801ba3d85bceb3579791fee2b3019ec8e",
+  "prompts": {},
+  "humans": {
+    "h_b8c068798e4e71": {
+      "author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
