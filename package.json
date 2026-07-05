@@ -1,11 +1,14 @@
 {
-  "name": "infinicon-runtime",
+  "name": "infinicon",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "bun run src/server/index.ts",
+    "check:spec-integrity": "python3 scripts/spec_integrity_check.py",
+    "test:devops": "python3 -m unittest discover -s tests -v",
     "test": "bun test",
-    "check": "bun test"
+    "check": "bun test",
+    "build": "bun build src/runtime/index.ts --outdir dist --target bun"
   }
 }

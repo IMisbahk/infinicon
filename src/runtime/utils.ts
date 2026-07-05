@@ -1,3 +1,5 @@
+import crypto from "node:crypto"
+
 import type { MemoryRef, Scope } from "./types"
 
 export function scopeKey(scope: Scope): string {
@@ -22,6 +24,19 @@ export function sameTenantNamespace(a: Scope, b: Scope): boolean {
 
 export function nowIso(): string {
   return new Date().toISOString()
+}
+
+export function randomId(prefix: string): string {
+  const random = crypto.randomBytes(8).toString("hex")
+  return `${prefix}_${random}`
+}
+
+export function matchesScope(objectScope: Scope, scope: Scope): boolean {
+  if (objectScope.tenantId !== scope.tenantId) return false
+  if (objectScope.namespaceId !== scope.namespaceId) return false
+  if (scope.agentId && objectScope.agentId !== scope.agentId) return false
+  if (scope.sessionId && objectScope.sessionId !== scope.sessionId) return false
+  return true
 }
 
 export function estimateTokens(input: unknown): number {

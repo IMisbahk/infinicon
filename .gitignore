@@ -3,3 +3,12 @@ CLAUDE.md
 AGENT.md
 __pycache__/
 *.pyc
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+.DS_Store
+.claude/
+infinicon-*/

@@ -1,0 +1,28 @@
+name: spec-integrity
+
+on:
+  push:
+    branches:
+      - main
+      - feat/**
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run spec integrity check
+        run: python scripts/spec_integrity_check.py
+
+      - name: Run tests
+        run: python -m unittest discover -s tests -v

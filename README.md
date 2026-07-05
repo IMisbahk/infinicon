@@ -19,6 +19,7 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [Spec review process](docs/spec-review-process.md)
 - [Architecture decision records](docs/adr/README.md)
 - [Reference runtime skeleton](docs/architecture/reference-runtime-skeleton.md)
+- [Reference runtime architecture](docs/architecture/reference-runtime.md)
 
 ## Reference Implementation (early)
 
@@ -139,4 +140,17 @@ python3 docs/specs/run-conformance.py
 ```
 
 If a prose spec changes, update machine-readable artifacts in the same change.
+
+## DevOps Guardrails
+
+- [DevOps ownership](docs/devops/ownership.md)
+- [Spec integrity checks](docs/devops/spec-integrity-checks.md)
+
+Local verification:
+
+```bash
+python3 scripts/spec_integrity_check.py
+python3 -m unittest discover -s tests -v
+bun test
+```
 

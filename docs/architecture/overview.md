@@ -116,6 +116,8 @@ It extracts atoms, creates consolidations, detects contradictions, supersedes st
 
 The pipeline may use model-backed plugins, but the runtime does not own model inference. It owns the contract and lifecycle around those calls.
 
+For a concrete mapping of these contracts to the current reference code layout, see [Reference Runtime Skeleton](reference-runtime.md).
+
 ## Storage Ports
 
 Infinicon does not define one `StorageBackend` god interface. It defines separate storage ports:
