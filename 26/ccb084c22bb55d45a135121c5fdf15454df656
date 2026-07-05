@@ -1,0 +1,105 @@
+examples/memory-api/get-job.request.json
+  s_965c6a2cf478a8::t_3b9db21c3745f6 1-7
+examples/memory-api/error.dedupe-conflict.json
+  s_965c6a2cf478a8::t_3f4e32996d33ad 1-8
+examples/memory-api/hydrate.request.json
+  s_965c6a2cf478a8::t_5af8941085c92e 1-17
+examples/memory-api/query.response.json
+  s_965c6a2cf478a8::t_075ce860a62970 1-29
+examples/memory-api/consolidate.response.json
+  s_965c6a2cf478a8::t_9476660df3852f 1-4
+examples/data-model/working-context.json
+  s_965c6a2cf478a8::t_e43b93d7a3e4b2 1-44
+examples/context-assembly/empty-context.response.json
+  s_965c6a2cf478a8::t_61697174b681ca 1-24
+examples/memory-api/hydrate.response.json
+  s_965c6a2cf478a8::t_63223c5ed439bc 1-51
+examples/memory-api/assemble-context.response.json
+  s_965c6a2cf478a8::t_c0d88b02c36f1c 1-51
+examples/data-model/consolidation.json
+  s_965c6a2cf478a8::t_facf6ae2e93c68 1-63
+examples/memory-api/consolidate.request.json
+  s_965c6a2cf478a8::t_77c55ffb9a1b4f 1-11
+examples/memory-api/tombstone.response.json
+  s_965c6a2cf478a8::t_c3ba4fe6bc6647 1-33
+examples/memory-api/subscribe.event.json
+  s_98b357d7cbc526::t_2c51de45dbf69c 1-20
+examples/memory-api/subscribe.request.json
+  s_965c6a2cf478a8::t_eec2e3a5a79579 1-12
+examples/memory-api/assemble-context.request.json
+  s_965c6a2cf478a8::t_ad42a63fab9e32 1-35
+examples/data-model/episode.json
+  s_965c6a2cf478a8::t_407a313315f1e4 1-27
+examples/plugin-interface/extractor.descriptor.json
+  s_965c6a2cf478a8::t_35398c8133d3e8 1-28
+examples/memory-api/get-job.response.json
+  s_965c6a2cf478a8::t_c4565a1a85dc1b 1-19
+examples/plugin-interface/ranker.descriptor.json
+  s_965c6a2cf478a8::t_f22fdcf0d828a6 1-29
+examples/memory-api/query.request.json
+  s_965c6a2cf478a8::t_ee1b3949b0a3b4 1-14
+examples/memory-api/tombstone.request.json
+  s_965c6a2cf478a8::t_7aeb614b26533c 1-18
+examples/memory-api/ingest.response.json
+  s_965c6a2cf478a8::t_5114af3925aea7 1-15
+examples/context-assembly/disputed-memory.response.json
+  s_965c6a2cf478a8::t_7d39bbdfa87c8c 1-50
+README.md
+  s_965c6a2cf478a8::t_3824b8e5985097 26-31,33-39
+  s_965c6a2cf478a8::t_6917a664f6b987 32
+examples/memory-api/ingest.request.json
+  s_965c6a2cf478a8::t_f8dfdf94908587 1-24
+examples/README.md
+  s_965c6a2cf478a8::t_f8293d92eec984 1-11,13-22
+  s_965c6a2cf478a8::t_54ec005c9e014e 12
+examples/data-model/atom.json
+  s_965c6a2cf478a8::t_30c67475b965b8 1-39
+examples/context-assembly/truncated-context.response.json
+  s_965c6a2cf478a8::t_2482fabc2a379d 1-54
+examples/data-model/link.json
+  s_965c6a2cf478a8::t_206e5eeaf678aa 1-34
+examples/plugin-interface/consolidator.descriptor.json
+  s_58e61bee8f3d81::t_6260a0aa300687 1-30
+examples/plugin-interface/storage-adapter.descriptor.json
+  s_a3fbae59981f52::t_1ab5a7becbd37e 1-34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "26ccb084c22bb55d45a135121c5fdf15454df656",
+  "prompts": {},
+  "sessions": {
+    "s_58e61bee8f3d81": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "79916b25-5701-4fd1-b4d1-2e494be3fa05",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    },
+    "s_965c6a2cf478a8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c2da9bc1-6658-4f5b-987f-b44d476c2f53",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    },
+    "s_98b357d7cbc526": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "a452462b-f2b0-43fe-a769-579ba6aff394",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    },
+    "s_a3fbae59981f52": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ff597009-35b5-4bcf-967d-d70f0284c8e7",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
