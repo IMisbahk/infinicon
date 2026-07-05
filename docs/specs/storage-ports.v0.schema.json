@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://infinicon.dev/specs/storage-ports.v0.schema.json",
+  "title": "Infinicon Storage Ports v0",
+  "description": "Machine-readable draft derived from docs/specs/storage-ports.v0.md",
+  "type": "object",
+  "required": [
+    "ports",
+    "adapterCapabilityDescriptor"
+  ],
+  "properties": {
+    "ports": {
+      "type": "object",
+      "required": [
+        "episodeStore",
+        "graphStore",
+        "indexStore",
+        "metadataStore"
+      ],
+      "properties": {
+        "episodeStore": {
+          "$ref": "#/definitions/PortContract"
+        },
+        "graphStore": {
+          "$ref": "#/definitions/PortContract"
+        },
+        "indexStore": {
+          "$ref": "#/definitions/PortContract"
+        },
+        "metadataStore": {
+          "$ref": "#/definitions/PortContract"
+        }
+      },
+      "additionalProperties": false
+    },
+    "adapterCapabilityDescriptor": {
+      "type": "object",
+      "required": [
+        "implementedPorts",
+        "transactionalGuarantees",
+        "indexConsistencyBehavior",
+        "paginationBehavior",
+        "supportedFilters"
+      ],
+      "properties": {
+        "implementedPorts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "episodeStore",
+              "graphStore",
+              "indexStore",
+              "metadataStore"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "transactionalGuarantees": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "maximumObjectSizes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "indexConsistencyBehavior": {
+          "type": "string"
+        },
+        "paginationBehavior": {
+          "type": "string"
+        },
+        "supportedFilters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "backupRestoreExpectations": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "PortContract": {
+      "type": "object",
+      "required": [
+        "requiredCapabilities",
+        "requiredGuarantees"
+      ],
+      "properties": {
+        "requiredCapabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "requiredGuarantees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
