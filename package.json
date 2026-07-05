@@ -7,8 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "bun run src/server/index.ts",
-    "dev:server": "bun run src/server.ts",
+    "dev": "bun run src/server.ts",
     "start:server": "bun run src/server.ts",
     "check:spec-integrity": "python3 scripts/spec_integrity_check.py",
     "check:contracts": "python3 contracts/scripts/validate_contracts.py",
@@ -23,7 +22,6 @@
     "test:plugin-host": "bun test packages/plugin-host/test",
     "test:sdk": "bun test test",
     "typecheck:sdk": "bunx tsc --noEmit",
-    "start:reference-server": "node packages/reference-server/src/server.js",
     "verify": "bun test && python3 -m unittest discover -s tests -v && python3 contracts/scripts/validate_contracts.py"
   }
 }

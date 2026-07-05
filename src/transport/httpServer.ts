@@ -1,5 +1,12 @@
-import { MemoryService, toHttpError } from "../services/memoryService"
-import { createInMemoryStoragePorts } from "../storage/inMemory"
+import {
+  InMemoryEpisodeStore,
+  InMemoryGraphStore,
+  InMemoryIndexStore,
+  InMemoryMetadataStore,
+  InMemoryObjectStore,
+  MemoryRuntimeService,
+  toHttpError,
+} from "../runtime"
 
 export type HttpHandler = {
   fetch: (request: Request) => Promise<Response>
@@ -12,16 +19,25 @@ const json = (body: unknown, status = 200): Response => {
   })
 }
 
+export const createRuntime = (): MemoryRuntimeService => {
+  return new MemoryRuntimeService({
+    episodeStore: new InMemoryEpisodeStore(),
+    graphStore: new InMemoryGraphStore(),
+    indexStore: new InMemoryIndexStore(),
+    metadataStore: new InMemoryMetadataStore(),
+    objectStore: new InMemoryObjectStore(),
+  })
+}
+
 export const createServer = (): HttpHandler => {
-  const storage = createInMemoryStoragePorts()
-  const service = new MemoryService(storage)
+  const service = createRuntime()
 
   return {
     fetch: async (request: Request) => {
       const { pathname } = new URL(request.url)
 
       if (pathname === "/health" && request.method === "GET") {
-        return json({ status: "ok" })
+        return json({ ok: true, service: "infinicon-runtime" })
       }
 
       if (pathname === "/v0/ingest" && request.method === "POST") {
@@ -88,6 +104,16 @@ export const createServer = (): HttpHandler => {
         try {
           const payload = await request.json()
           return json(await service.subscribe(payload))
+        } catch (error) {
+          const mapped = toHttpError(error)
+          return json(mapped.body, mapped.status)
+        }
+      }
+
+      if (pathname === "/v0/get-job" && request.method === "POST") {
+        try {
+          const payload = await request.json()
+          return json(await service.getJob(payload))
         } catch (error) {
           const mapped = toHttpError(error)
           return json(mapped.body, mapped.status)
