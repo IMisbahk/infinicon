@@ -1,0 +1,37 @@
+docs/specs/fixtures/ingest.response.valid.json
+  s_20a7fcc5e715f5::t_2b09e17cde17fb 1-16
+docs/specs/fixtures/query.response.valid.json
+  s_20a7fcc5e715f5::t_e0ee0b60a77fb6 1-17
+docs/specs/fixtures/assemble-context.request.valid.json
+  s_20a7fcc5e715f5::t_4cd0531504a35c 1-18
+docs/specs/fixtures/get-job.response.valid.json
+  s_20a7fcc5e715f5::t_2ed97ca8722f22 1-7
+docs/specs/fixtures/ingest.request.valid.json
+  s_20a7fcc5e715f5::t_cb9ce5d81238f1 1-19
+docs/specs/fixtures/assemble-context.response.valid.json
+  s_20a7fcc5e715f5::t_bf5e33dc45d162 1-54
+docs/specs/fixtures/query.request.valid.json
+  s_20a7fcc5e715f5::t_bc4c24d2ba2209 1-9
+docs/specs/fixtures/tombstone.response.valid.json
+  s_20a7fcc5e715f5::t_7e15e9a479d84f 1-25
+docs/specs/fixtures/get-job.request.valid.json
+  s_20a7fcc5e715f5::t_bf9c2ab30acc7d 1-7
+docs/specs/fixtures/tombstone.request.valid.json
+  s_20a7fcc5e715f5::t_51ecd4f2651725 1-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "c3d15525b2011c882256350252e1f45b63b9239a",
+  "prompts": {},
+  "sessions": {
+    "s_20a7fcc5e715f5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "74be7a7f-db9c-4c73-82ab-aa97a50bffd1",
+        "model": "openai/gpt-5.3-codex-20260224"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
