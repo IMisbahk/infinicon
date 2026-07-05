@@ -15,6 +15,7 @@
     "build": "bun build src/runtime/index.ts --outdir dist --target bun",
     "build:core-types": "bun build packages/core-types/src/index.ts --outdir packages/core-types/dist --target=node",
     "test:core-types": "bun test packages/core-types/test",
+    "test:plugin-host": "bun test packages/plugin-host/test",
     "start:server": "node packages/reference-server/src/server.js",
     "verify": "bun test && python3 -m unittest discover -s tests -v"
   }

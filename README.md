@@ -14,6 +14,7 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [System boundaries](docs/architecture/boundaries.md)
 - [Consistency model](docs/architecture/consistency.md)
 - [Security architecture](docs/architecture/security.md)
+- [Plugin host architecture](docs/architecture/plugin-host.md)
 - [Roadmap](docs/roadmap.md)
 - [Open decisions register](docs/open-decisions.md)
 - [Spec review process](docs/spec-review-process.md)
