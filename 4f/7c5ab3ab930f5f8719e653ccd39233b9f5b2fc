@@ -1,0 +1,78 @@
+README.md
+  h_b8c068798e4e71 1-4
+  s_f723b2e8739003::t_cb57a590bc899c 5-25
+docs/glossary.md
+  s_f723b2e8739003::t_ecaf69ba045f10 1-75
+docs/specs/storage-ports.v0.md
+  s_f723b2e8739003::t_f8c31fb07a3a8d 1-109
+docs/adr/0001-spec-first-development.md
+  s_f723b2e8739003::t_a27e62d0834109 1-53
+docs/adr/0003-memory-primitives.md
+  s_f723b2e8739003::t_eead4640440bf2 1-49
+docs/roadmap.md
+  s_f723b2e8739003::t_4ed8fbac0a0802 1-123
+docs/comparisons/landscape.md
+  s_f723b2e8739003::t_25fee97901a87c 1-67
+docs/adr/0004-storage-port-separation.md
+  s_f723b2e8739003::t_2381c262b2b7e7 1-48
+docs/architecture/overview.md
+  s_f723b2e8739003::t_078539c09f67ef 1-149
+docs/adr/0002-hybrid-deployment-model.md
+  s_f723b2e8739003::t_019312334e12e3 1-50
+docs/adr/0005-consolidation-ownership.md
+  s_f723b2e8739003::t_39ad56c0cf25c4 1-61
+docs/architecture/boundaries.md
+  s_f723b2e8739003::t_3f779bf0614fda 1-155
+docs/specs/context-assembly.v0.md
+  s_f723b2e8739003::t_e03ab2307b38b5 1-109
+docs/architecture/security.md
+  s_f723b2e8739003::t_ce7c280174c1e5 1-111
+docs/specs/plugin-interface.v0.md
+  s_f723b2e8739003::t_6f064d18b9612a 1-167
+CODE_OF_CONDUCT.md
+  s_f723b2e8739003::t_d3df53e0065895 1-38
+CONTRIBUTING.md
+  s_f723b2e8739003::t_868da139fb7530 1-72
+docs/specs/memory-api.v0.md
+  s_f723b2e8739003::t_251d9b8e44ef79 1-351
+docs/vision.md
+  s_f723b2e8739003::t_976d4240a4a0ca 1-57
+.gitignore
+  s_da9541479a6788::t_63cfa23967509d 1
+  h_b8c068798e4e71 2-3
+docs/specs/data-model.v0.md
+  s_f723b2e8739003::t_06e07b3bf9add7 1-273
+docs/architecture/consistency.md
+  s_f723b2e8739003::t_6f8a4a77f5b1f6 1-135
+docs/adr/README.md
+  s_f723b2e8739003::t_6c3fc50c1efb38 1-48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "4f7c5ab3ab930f5f8719e653ccd39233b9f5b2fc",
+  "prompts": {},
+  "humans": {
+    "h_b8c068798e4e71": {
+      "author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_da9541479a6788": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "4c9b751c-b9f6-44c9-afac-4516c1a2c875",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    },
+    "s_f723b2e8739003": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "41ad65d8-8f55-4e3f-a1c1-c548bad81323",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
