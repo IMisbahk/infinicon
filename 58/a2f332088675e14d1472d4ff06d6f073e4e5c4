@@ -1,0 +1,29 @@
+package.json
+  s_053366b8594682::t_bee5e46334b3e2 9-11
+tsconfig.json
+  s_053366b8594682::t_b89347a6e4f365 23-27
+src/types.ts
+  s_053366b8594682::t_c66c4cb2af332a 1,3,5-6,8,10-11,14
+bun.lock
+  s_053366b8594682::t_4add7136469f98 1-19
+src/runtime/types.ts
+  s_053366b8594682::t_dc782bb1d892e9 1-44,56
+src/runtime/validation.ts
+  s_053366b8594682::t_1bced478268dbc 1-6,24-29,36,41,51,77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "58a2f332088675e14d1472d4ff06d6f073e4e5c4",
+  "prompts": {},
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
