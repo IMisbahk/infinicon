@@ -23,3 +23,19 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [Storage ports v0](docs/specs/storage-ports.v0.md)
 - [Context assembly v0](docs/specs/context-assembly.v0.md)
 
+## Machine-readable Contracts (draft)
+
+Draft machine-readable artifacts derived from v0 prose specs live under [`contracts/`](contracts/README.md).
+
+- OpenAPI draft for Memory API v0: `contracts/openapi/memory-api.v0.json`
+- JSON Schemas for data model, context assembly, plugin descriptors, and storage adapter capabilities: `contracts/schemas/*`
+- Validation fixtures and checks: `contracts/fixtures/*`, `contracts/scripts/validate_contracts.py`
+
+Validate contracts:
+
+```bash
+python3 contracts/scripts/validate_contracts.py
+```
+
+Spec-first rule still applies: update `docs/specs/*` first for behavior changes, then update contracts.
+

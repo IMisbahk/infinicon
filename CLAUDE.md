@@ -4,7 +4,7 @@
 
 Infinicon is a **production-grade memory runtime for AI agents** with a strict **spec-first** development approach.
 
-Current repo state: documentation/specification phase only (no runtime implementation code yet).
+Current repo state: documentation/specification phase with initial machine-readable contracts and validation scaffolding under `contracts/`.
 
 Core goals from docs:
 
@@ -29,10 +29,14 @@ Primary stack right now:
 - `docs/specs/` — v0 draft specs (`data-model`, `memory-api`, `plugin-interface`, `storage-ports`, `context-assembly`)
 - `docs/adr/` — accepted architecture decisions (0001–0005)
 - `docs/comparisons/landscape.md` — positioning and scope boundaries
+- `contracts/openapi/memory-api.v0.json` — draft machine-readable API contract
+- `contracts/schemas/*` — draft JSON schemas for data model and interfaces
+- `contracts/fixtures/*` — valid/invalid fixture payloads for contract checks
+- `contracts/scripts/validate_contracts.py` — dependency-free contract validation runner
 
 ## Build & run
 
-This repository is currently docs/spec-only. There is no runtime package, build target, or executable yet.
+This repository is still primarily docs/spec, plus early contracts and verification scripts.
 
 Current practical verification commands:
 
@@ -43,12 +47,11 @@ git status
 # inspect project docs tree
 find docs -maxdepth 3 -type f | sort
 
-# quick spec review entry points
-cat README.md
-cat CONTRIBUTING.md
+# contract validation
+python3 contracts/scripts/validate_contracts.py
 ```
 
-When code starts landing, update this section with exact build/test/run commands from the actual toolchain.
+When runtime packages land, extend this section with exact build/test/run commands from the project toolchain.
 
 ## Conventions
 
