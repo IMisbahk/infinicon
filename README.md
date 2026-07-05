@@ -23,3 +23,7 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [Storage ports v0](docs/specs/storage-ports.v0.md)
 - [Context assembly v0](docs/specs/context-assembly.v0.md)
 
+## Packages
+
+- [`@infinicon/core-types`](packages/core-types/README.md): spec-aligned TypeScript contracts for v0 data model, memory API, plugin interfaces, storage ports, and context assembly
+
