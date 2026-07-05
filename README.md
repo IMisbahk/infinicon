@@ -23,3 +23,34 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [Storage ports v0](docs/specs/storage-ports.v0.md)
 - [Context assembly v0](docs/specs/context-assembly.v0.md)
 
+## SDK Package (feat/sdk)
+
+This branch includes an initial thin TypeScript SDK scaffold aligned with the Memory API v0 contract.
+
+### Included
+
+- Typed request and response models mirroring `docs/specs/memory-api.v0.md` and related v0 docs.
+- `InfiniconClient` methods for v0 operations:
+  - `ingest`
+  - `query`
+  - `hydrate`
+  - `assembleContext`
+  - `consolidate`
+  - `tombstone`
+  - `subscribe`
+  - `getJob`
+- Small HTTP layer with conservative error mapping to `InfiniconSdkError`.
+- Unit tests for request shaping and error handling.
+
+### Build and test
+
+```bash
+bun run build
+bun test
+```
+
+### Notes
+
+- Endpoints are intentionally thin integration points for the upcoming reference server implementation.
+- The SDK does not implement server-side semantics and does not redesign API behavior outside the spec.
+
