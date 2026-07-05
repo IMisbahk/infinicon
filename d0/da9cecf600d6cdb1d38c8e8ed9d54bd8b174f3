@@ -1,0 +1,32 @@
+src/index.ts
+  s_053366b8594682::t_12df7509d706f1 5
+  s_053366b8594682::t_149e83b324cd78 3
+test/scopedMemory.test.ts
+  s_053366b8594682::t_9fd652c7115536 1-109
+packages/sdk/README.md
+  s_053366b8594682::t_bb68faef65b0ff 5-24,26-44
+packages/sdk/src/index.ts
+  s_053366b8594682::t_f24cbb82cf9403 2,4
+src/createClient.ts
+  s_053366b8594682::t_4343da023d283e 1
+  s_053366b8594682::t_f9e144a5085c10 3-21
+  s_053366b8594682::t_f761b38626da29 2,22-27
+src/scopedMemory.ts
+  s_053366b8594682::t_96b44af0cacbd4 1-91
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "d0da9cecf600d6cdb1d38c8e8ed9d54bd8b174f3",
+  "prompts": {},
+  "sessions": {
+    "s_053366b8594682": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "0fe685e7-917e-426e-b3e6-55e1c2553cf9",
+        "model": "default"
+      },
+      "human_author": "Misbah Khursheed <m.misbahkhursheed@gmail.com>"
+    }
+  }
+}
