@@ -84,4 +84,12 @@ export class MetadataStore {
   async saveEventCursor(_scope, _cursor) {
     throw new Error("MetadataStore.saveEventCursor must be implemented")
   }
+
+  async appendEvent(_scope, _event) {
+    throw new Error("MetadataStore.appendEvent must be implemented")
+  }
+
+  async getEventsSince(_scope, _cursor, _eventTypes) {
+    throw new Error("MetadataStore.getEventsSince must be implemented")
+  }
 }

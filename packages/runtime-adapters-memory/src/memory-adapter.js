@@ -218,6 +218,7 @@ export class InMemoryMetadataStore extends MetadataStore {
     this.jobs = new Map()
     this.pluginState = new Map()
     this.cursors = new Map()
+    this.events = new Map()
   }
 
   async upsertScope(scope) {
@@ -242,6 +243,25 @@ export class InMemoryMetadataStore extends MetadataStore {
   async saveEventCursor(scope, cursor) {
     this.cursors.set(scopeKey(scope), cursor)
     return true
+  }
+
+  async appendEvent(scope, event) {
+    const key = scopeKey(scope)
+    const existing = this.events.get(key) ?? []
+    const next = [...existing, event]
+    this.events.set(key, next)
+    return event
+  }
+
+  async getEventsSince(scope, cursor, eventTypes = null) {
+    const key = scopeKey(scope)
+    const events = this.events.get(key) ?? []
+    const sinceIndex = cursor ? events.findIndex((event) => event.cursor === cursor) : -1
+    const sliceStart = sinceIndex < 0 ? 0 : sinceIndex + 1
+    const filtered = events
+      .slice(sliceStart)
+      .filter((event) => !Array.isArray(eventTypes) || eventTypes.length === 0 || eventTypes.includes(event.type))
+    return filtered
   }
 }
 
