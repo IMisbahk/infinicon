@@ -21,12 +21,17 @@ async function readJsonBody(request) {
   if (chunks.length === 0) {
     return {}
   }
-  return JSON.parse(Buffer.concat(chunks).toString("utf8"))
+  try {
+    return JSON.parse(Buffer.concat(chunks).toString("utf8"))
+  } catch {
+    throw new MemoryApiRuntimeError("invalid_json", "request body must be valid JSON", false)
+  }
 }
 
 function toErrorResponse(error) {
   if (error instanceof MemoryApiRuntimeError) {
-    return jsonResponse(400, { error: error.toResponseError() })
+    const statusCode = error.code === "internal_error" ? 500 : 400
+    return jsonResponse(statusCode, { error: error.toResponseError() })
   }
   return jsonResponse(500, {
     error: {

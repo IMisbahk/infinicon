@@ -1,8 +1,12 @@
 import {
   assertAssembleContextRequest,
+  assertConsolidateRequest,
+  assertGetJobRequest,
   assertHydrateRequest,
   assertIngestRequest,
   assertQueryRequest,
+  assertSubscribeRequest,
+  assertTombstoneRequest,
 } from "../../runtime-types/src/api-types.js"
 import { cloneScope, createMemoryRef, sameScope } from "../../runtime-types/src/memory-types.js"
 import { createWarning } from "../../runtime-types/src/warnings.js"
@@ -13,8 +17,25 @@ function nowIso() {
 }
 
 function randomId(prefix) {
-  const part = Math.random().toString(36).slice(2, 10)
-  return `${prefix}_${Date.now()}_${part}`
+  const tick = Number(process.hrtime.bigint() % 1000000n)
+  const part = `${Date.now()}_${tick}`
+  return `${prefix}_${part}`
+}
+
+function createEvent(scope, type, payload = {}) {
+  return {
+    cursor: randomId("evt"),
+    type,
+    at: nowIso(),
+    scope: cloneScope(scope),
+    payload,
+  }
+}
+
+async function appendEvents(metadataStore, scope, events) {
+  for (const event of events) {
+    await metadataStore.appendEvent(scope, event)
+  }
 }
 
 function estimateTokens(text) {
@@ -126,6 +147,14 @@ export class MemoryRuntime {
         )
       }
     }
+
+    const ingestEvents = results.map((result) =>
+      createEvent(request.scope, "episode.ingested", {
+        ref: result.ref,
+        status: result.status,
+      }),
+    )
+    await appendEvents(this.metadataStore, request.scope, ingestEvents)
 
     return { results }
   }
@@ -307,6 +336,12 @@ export class MemoryRuntime {
   }
 
   async consolidate(request) {
+    try {
+      assertConsolidateRequest(request)
+    } catch (error) {
+      throw new MemoryApiRuntimeError("invalid_request", error.message, false)
+    }
+
     const jobId = randomId("job_consolidate")
     const job = {
       jobId,
@@ -321,6 +356,10 @@ export class MemoryRuntime {
       },
     }
     await this.metadataStore.saveJob(job)
+    await appendEvents(this.metadataStore, request.scope, [
+      createEvent(request.scope, "consolidation.started", { jobId }),
+      createEvent(request.scope, job.status === "completed" ? "consolidation.completed" : "consolidation.queued", { jobId }),
+    ])
     return {
       jobId,
       status: job.status,
@@ -328,6 +367,12 @@ export class MemoryRuntime {
   }
 
   async tombstone(request) {
+    try {
+      assertTombstoneRequest(request)
+    } catch (error) {
+      throw new MemoryApiRuntimeError("invalid_request", error.message, false)
+    }
+
     const results = []
     for (const ref of request.refs ?? []) {
       if (!sameScope(ref.scope, request.scope)) {
@@ -356,18 +401,42 @@ export class MemoryRuntime {
       await this.indexStore.removeOrHidePayload(ref)
       results.push({ ref, status: "tombstoned", affectedDerivedRefs: [] })
     }
+
+    const tombstonedEvents = results
+      .filter((result) => result.status === "tombstoned")
+      .map((result) => createEvent(request.scope, "memory.tombstoned", { ref: result.ref, cascadePolicy: request.cascadePolicy }))
+    await appendEvents(this.metadataStore, request.scope, tombstonedEvents)
+
     return { results }
   }
 
   async subscribe(request) {
+    try {
+      assertSubscribeRequest(request)
+    } catch (error) {
+      throw new MemoryApiRuntimeError("invalid_request", error.message, false)
+    }
+
+    const cursor = request.cursor ?? randomId("cursor")
+    await this.metadataStore.saveEventCursor(request.scope, cursor)
+
+    const events = await this.metadataStore.getEventsSince(request.scope, request.cursor ?? null, request.eventTypes ?? null)
+
     return {
       scope: cloneScope(request.scope),
-      cursor: request.cursor ?? null,
+      cursor,
       eventTypes: request.eventTypes ?? [],
+      events,
     }
   }
 
   async getJob(request) {
+    try {
+      assertGetJobRequest(request)
+    } catch (error) {
+      throw new MemoryApiRuntimeError("invalid_request", error.message, false)
+    }
+
     const job = await this.metadataStore.getJob(request.scope, request.jobId)
     if (!job) {
       throw new MemoryApiRuntimeError("job_not_found", "job not found", false)
