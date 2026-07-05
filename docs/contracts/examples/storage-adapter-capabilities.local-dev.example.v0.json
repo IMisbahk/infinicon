@@ -1,0 +1,23 @@
+{
+  "implementedPorts": [
+    "EpisodeStore",
+    "GraphStore",
+    "IndexStore",
+    "MetadataStore"
+  ],
+  "transactionalGuarantees": "Best-effort atomicity within process memory boundaries; no cross-process transactional guarantees",
+  "maximumObjectSizes": {
+    "episode.content.bytes": 262144,
+    "consolidation.content.bytes": 131072,
+    "metadata.value.bytes": 16384
+  },
+  "indexConsistencyBehavior": "accepted and indexed are effectively equivalent in local process mode",
+  "paginationBehavior": "offset pagination with deterministic ordering by createdAt then id",
+  "supportedFilters": [
+    "type",
+    "status",
+    "agentId",
+    "sessionId"
+  ],
+  "productionReady": false
+}

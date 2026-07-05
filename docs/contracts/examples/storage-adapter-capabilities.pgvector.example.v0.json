@@ -1,0 +1,25 @@
+{
+  "implementedPorts": [
+    "EpisodeStore",
+    "GraphStore",
+    "IndexStore",
+    "MetadataStore"
+  ],
+  "transactionalGuarantees": "Single Postgres transaction for write path operations within one request; cross-request atomicity is not guaranteed",
+  "maximumObjectSizes": {
+    "episode.content.bytes": 1048576,
+    "consolidation.content.bytes": 524288,
+    "metadata.value.bytes": 32768
+  },
+  "indexConsistencyBehavior": "accepted writes are eventually indexed; indexed consistency waits for lexical and vector index visibility",
+  "paginationBehavior": "cursor pagination for all list/search operations; stable ordering by (score desc, id asc)",
+  "supportedFilters": [
+    "type",
+    "status",
+    "createdAtRange",
+    "agentId",
+    "sessionId"
+  ],
+  "productionReady": true,
+  "backupRestoreExpectations": "WAL archiving plus nightly base backups; restore tested monthly with RPO 15m and RTO 2h"
+}
