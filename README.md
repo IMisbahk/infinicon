@@ -12,6 +12,7 @@ It is currently in a spec-first architecture phase. The implementation should em
 - [Glossary](docs/glossary.md)
 - [Architecture overview](docs/architecture/overview.md)
 - [System boundaries](docs/architecture/boundaries.md)
+- [Plugin host architecture](docs/architecture/plugin-host.md)
 - [Roadmap](docs/roadmap.md)
 - [Architecture decision records](docs/adr/README.md)
 
